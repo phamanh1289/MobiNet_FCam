@@ -1,9 +1,10 @@
-package vn.com.fpt.mobinet_fcam
+package vn.com.fpt.mobinet_fcam.ui.main
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import vn.com.fpt.mobinet_fcam.R
+import vn.com.fpt.mobinet_fcam.ui.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

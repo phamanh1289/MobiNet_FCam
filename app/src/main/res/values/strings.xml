@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MobiNet_FCam</string>
+    <string name="Helvetica">fonts/Helvetica.ttf</string>
+    <string name="Helvetica_Bold">fonts/Helvetica-Bold.ttf</string>
+    <string name="Helvetica_light">fonts/Helvetica-light.ttf</string>
 </resources>
