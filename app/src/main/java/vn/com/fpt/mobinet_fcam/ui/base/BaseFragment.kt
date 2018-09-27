@@ -40,8 +40,8 @@ open class BaseFragment : Fragment(), BaseView {
         if (activity is BaseActivity) {
             if (activity is MainActivity) {
                 val activity = activity as MainActivity
-//                if (isAddToBackStack) activity.mCountBack++
-//                activity.handleShowMenu()
+                if (isAddToBackStack) activity.mCountBack++
+                activity.handleShowMenu()
             }
             (activity as BaseActivity).addFragment(fragment, isAddToBackStack, isAnimation)
         }
@@ -70,7 +70,7 @@ open class BaseFragment : Fragment(), BaseView {
     fun setTitle(model: TitleAndMenuModel) {
         if (activity is MainActivity) {
             titleModel = model
-//            (activity as MainActivity).setTitleMain(titleModel)
+            (activity as MainActivity).setTitleMain(titleModel)
         }
     }
 

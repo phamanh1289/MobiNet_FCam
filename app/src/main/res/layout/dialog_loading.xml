@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal|center_vertical"
+              android:orientation="vertical">
 
     <com.tuyenmonkey.mkloader.MKLoader
         android:layout_width="@dimen/_45dp"
         android:layout_height="@dimen/_45dp"
         android:layout_gravity="center"
-        app:mk_type="TwinFishesSpinner"
-        app:mk_color="@color/colorPrimary" />
-</FrameLayout>
+        app:mk_color="@color/redMain"
+        app:mk_type="TwinFishesSpinner"/>
+
+    <TextView
+        android:textSize="@dimen/_15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:text="@string/process_data"
+        android:textColor="@color/white"/>
+</LinearLayout>

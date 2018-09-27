@@ -13,7 +13,7 @@ object ApiConfig {
         var url = ""
         when (type) {
             ApiConfigType.DEVELOP -> {
-                url = "http://wsmobiqc.fpt.vn/MobiQC.svc/"
+                url = "http://wsfcam.fpt.vn/FCAM.svc/"
             }
             else -> {
             }

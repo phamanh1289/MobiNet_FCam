@@ -14,11 +14,16 @@ class SharedPrefUtils constructor(app: Context?) {
 
     companion object {
         private const val SHARED_PREF_NAME = "MobiNet_FCam"
+        private const val IMEI_DEVICE = "imeiDevice"
+        private const val USER_NAME = "userName"
     }
 
-//    var imeiDevice: String
-//        get() = sharedPreferences?.getString(IMEI_DEVICE, "")!!
-//        set(value) = sharedPreferences?.put { putString(IMEI_DEVICE, value) }!!
+    var imeiDevice: String
+        get() = sharedPreferences?.getString(IMEI_DEVICE, "")!!
+        set(value) = sharedPreferences?.put { putString(IMEI_DEVICE, value) }!!
+    var userName: String
+        get() = sharedPreferences?.getString(USER_NAME, "")!!
+        set(value) = sharedPreferences?.put { putString(USER_NAME, value) }!!
 
     private inline fun SharedPreferences.put(body: SharedPreferences.Editor.() -> Unit) {
         val editor = this.edit()

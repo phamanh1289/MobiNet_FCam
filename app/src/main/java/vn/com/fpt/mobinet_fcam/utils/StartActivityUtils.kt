@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import vn.com.fpt.mobinet_fcam.ui.main.MainActivity
+import vn.com.fpt.mobinet_fcam.ui.splash_screen.SplashScreenActivity
 
 /**
  * *******************************************
@@ -13,7 +14,7 @@ import vn.com.fpt.mobinet_fcam.ui.main.MainActivity
  * * All rights reserved                    **
  * *******************************************
  */
-class StartActivityUtils {
+object StartActivityUtils {
 
     fun toMainActivity(context: Context) {
         val intent = Intent().setClass(context, MainActivity::class.java)
@@ -22,9 +23,9 @@ class StartActivityUtils {
     }
 
     fun toSplashActivity(context: Context) {
-//        val intent = Intent().setClass(context, SplashScreenActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//        context.startActivity(intent)
+        val intent = Intent().setClass(context, SplashScreenActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        context.startActivity(intent)
     }
 
     fun toSettingPermission(context: Context, packageName: String) {

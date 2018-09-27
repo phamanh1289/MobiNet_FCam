@@ -1,6 +1,21 @@
 <resources>
-    <string name="app_name">MobiNet_FCam</string>
+    <string name="app_name">Mobi-Net</string>
     <string name="Helvetica">fonts/Helvetica.ttf</string>
     <string name="Helvetica_Bold">fonts/Helvetica-Bold.ttf</string>
     <string name="Helvetica_light">fonts/Helvetica-light.ttf</string>
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="mess_error_data">Error</string>
+    <string name="mess_success_data">Successfully</string>
+    <string name="login_user_name">User name</string>
+    <string name="login_empty_user_name">User name is not null.</string>
+    <string name="login_empty_password">Password is not null.</string>
+    <string name="login_password">Password</string>
+    <string name="process_data">Processing, please wait…</string>
+    <string name="mess_assigned_user">This device is assigned to userLogin \"%1$s\"</string>
+    <string name="login">Login</string>
+    <string name="login_show_password">Show password</string>
+    <string name="mess_error_not_active">This device is not activated, contact your manager to active it.</string>
+    <string name="mess_miss_permission">Please, provide access to the application!</string>
+    <string name="mess_close_app">Do you want to close this application?</string>
 </resources>

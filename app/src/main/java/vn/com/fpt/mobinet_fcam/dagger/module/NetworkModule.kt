@@ -33,8 +33,8 @@ class NetworkModule(private val mType: ApiConfigType) {
             .writeTimeout(4, TimeUnit.MINUTES)
             .addInterceptor(ConnectivityInterceptor())
             .retryOnConnectionFailure(true)
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(ApiCustomInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 
     @Provides
     fun provideOkHttpClient(app: Application): OkHttpClient {
