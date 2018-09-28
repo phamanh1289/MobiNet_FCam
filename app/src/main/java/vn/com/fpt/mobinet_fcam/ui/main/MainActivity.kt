@@ -1,12 +1,14 @@
 package vn.com.fpt.mobinet_fcam.ui.main
 
 import android.os.Bundle
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
 import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.ui.base.BaseActivity
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
+import vn.com.fpt.mobinet_fcam.ui.functions.FunctionsFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.StartActivityUtils
 import javax.inject.Inject
@@ -27,10 +29,23 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
 
     private fun initView() {
         actMain_ivMenuMain.setOnClickListener {
-            getSharePreferences().toClearSessionLogin()
-            StartActivityUtils.toSplashActivity(this)
             if (mCountBack != 0) onBackPressed()
         }
+        actMain_ivLogOut.setOnClickListener {
+            if (it.visibility == View.VISIBLE) {
+                AppUtils.showDialog(supportFragmentManager, content = getString(R.string.mess_log_out_user), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+                    override fun onClickOk() {
+                        getSharePreferences().toClearSessionLogin()
+                        StartActivityUtils.toSplashActivity(this@MainActivity)
+                        this@MainActivity.finish()
+                    }
+
+                    override fun onClickCancel() {
+                    }
+                })
+            }
+        }
+        addFragment(FunctionsFragment(), false, false)
     }
 
     fun setTitleMain(model: TitleAndMenuModel?) {
@@ -41,6 +56,7 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
 
     fun handleShowMenu() {
         actMain_ivMenuMain.setImageResource(if (mCountBack == 0) R.drawable.ic_logo else R.drawable.ic_arrow_back)
+        actMain_ivLogOut.visibility = if (mCountBack == 0) View.VISIBLE else View.GONE
     }
 
     private fun handleTitleMain() {

@@ -18,4 +18,12 @@
     <string name="mess_error_not_active">This device is not activated, contact your manager to active it.</string>
     <string name="mess_miss_permission">Please, provide access to the application!</string>
     <string name="mess_close_app">Do you want to close this application?</string>
+    <string name="mess_log_out_user">Do you want to logout?</string>
+    <string name="functions">Functions</string>
+    <string name="menu_deployment">Deployment List</string>
+    <string name="menu_maintenance">Maintenance List</string>
+    <string name="menu_utilities">Utilities</string>
+    <string name="menu_port_net">Port Net</string>
+    <string name="menu_report">Reports</string>
+    <string name="menu_info">Info</string>
 </resources>

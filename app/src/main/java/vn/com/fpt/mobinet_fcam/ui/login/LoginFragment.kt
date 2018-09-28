@@ -32,16 +32,6 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
     //True : device có trong list imei mặc định
     private var isCheckDefaultUser = false
 
-    companion object {
-        fun newInstance(supId: String): LoginFragment {
-            val args = Bundle()
-            args.putString("", supId)
-            val fragment = LoginFragment()
-            fragment.arguments = args
-            return fragment
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
