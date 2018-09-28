@@ -13,6 +13,8 @@ import android.telephony.TelephonyManager
 import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.dialog.ConfirmDialog
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * *******************************************
@@ -22,6 +24,10 @@ import vn.com.fpt.mobinet_fcam.others.dialog.ConfirmDialog
  * *******************************************
  */
 object AppUtils {
+
+    @SuppressLint("SimpleDateFormat")
+    val formatter = SimpleDateFormat(Constants.TIME_DATE_FORMAT)
+
     fun getNetwork(context: Context?): Boolean {
         val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         val activeNetwork = cm?.activeNetworkInfo
@@ -83,5 +89,12 @@ object AppUtils {
         } else {
             "$manufacturer $model"
         }
+    }
+
+    fun getCurrentDate(lateDate: Int): String {
+        val c = Calendar.getInstance()
+        if (lateDate != 0)
+            c.add(Calendar.DATE, lateDate)
+        return formatter.format(c.time)
     }
 }

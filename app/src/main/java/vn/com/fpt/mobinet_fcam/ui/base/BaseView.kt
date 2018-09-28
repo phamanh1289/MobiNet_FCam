@@ -11,6 +11,7 @@ import vn.com.fpt.mobinet_fcam.utils.SharedPrefUtils
  * *******************************************
  */
 interface BaseView {
+
     fun showLoading()
 
     fun hideLoading()

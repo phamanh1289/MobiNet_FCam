@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.google.gson.Gson
 import com.tbruyelle.rxpermissions2.RxPermissions
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.dagger.component.ActivityComponent
 import vn.com.fpt.mobinet_fcam.data.network.model.CustomTransaction
+import vn.com.fpt.mobinet_fcam.data.network.model.InfoUserModel
 import vn.com.fpt.mobinet_fcam.others.dialog.LoadingDialog
 import vn.com.fpt.mobinet_fcam.ui.main.MainActivity
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
@@ -124,4 +126,18 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
+    fun setDefaultUser(user: InfoUserModel?) {
+        sharePreferences?.infoUser = Gson().toJson(user,InfoUserModel::class.java)
+        user?.let {
+            BaseApplication.instance.setUser(it)
+        }
+    }
+
+    fun getDefaultUser(): InfoUserModel? {
+        sharePreferences?.infoUser.isNullOrBlank().let {
+            val user = if (it) null else Gson().fromJson(sharePreferences?.infoUser, InfoUserModel::class.java)
+            BaseApplication.instance.setUser(user)
+        }
+        return BaseApplication.instance.getUser()
+    }
 }

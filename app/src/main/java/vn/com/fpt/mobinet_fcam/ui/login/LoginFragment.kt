@@ -14,6 +14,7 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
+import vn.com.fpt.mobinet_fcam.utils.StartActivityUtils
 import javax.inject.Inject
 
 /**
@@ -28,6 +29,8 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
     lateinit var presenter: LoginPresenter
 
     private var isCheckShowHidePassWord = true
+    //True : device có trong list imei mặc định
+    private var isCheckDefaultUser = false
 
     companion object {
         fun newInstance(supId: String): LoginFragment {
@@ -56,6 +59,7 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
         if (AppUtils.getDefaultImei(AppUtils.getImeiDevice(context))) {
             fragLogin_tvUser.setText(Constants.DEFAULT_USER)
             fragLogin_tvPass.setText(Constants.DEFAULT_PASSWORD)
+            isCheckDefaultUser = true
         } else
             fragLogin_tvUser.setText(getSharePreferences().userName)
     }
@@ -65,25 +69,23 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
         val result = when {
             userName.isBlank() -> getString(R.string.login_empty_user_name)
             fragLogin_tvPass.text.toString().trim().isBlank() -> getString(R.string.login_empty_password)
-            else -> handleDefaultUser(userName)
+            else -> {
+                if (!isCheckDefaultUser && userName != getSharePreferences().userName)
+                    getString(R.string.mess_assigned_user, getSharePreferences().userName)
+                else ""
+            }
         }
         if (result.isNotBlank())
             AppUtils.showDialog(fragmentManager, content = result, confirmDialogInterface = null)
         return !result.isNotBlank()
     }
 
-    private fun handleDefaultUser(userName: String): String {
-        val defaultUser = getSharePreferences().userName
-        val user = (if (defaultUser.isNotBlank()) defaultUser else Constants.DEFAULT_USER)
-        return if (userName != user && !AppUtils.getDefaultImei(AppUtils.getImeiDevice(context))) getString(R.string.mess_assigned_user, user) else ""
-    }
-
     private fun handleShowHidePassword() {
         fragLogin_tvPass.transformationMethod =
                 if (isCheckShowHidePassWord) HideReturnsTransformationMethod.getInstance()
                 else PasswordTransformationMethod.getInstance()
-        fragLogin_imgDoneError.isSelected = isCheckShowHidePassWord
-        fragLogin_tvDoneError.isSelected = isCheckShowHidePassWord
+        fragLogin_tvPass.setSelection(fragLogin_tvPass.length())
+        fragLogin_imgShowPass.isSelected = isCheckShowHidePassWord
         isCheckShowHidePassWord = !isCheckShowHidePassWord
     }
 
@@ -102,22 +104,26 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
                 }
             }
         }
-        fragLogin_cbShowPass.setOnClickListener { handleShowHidePassword() }
+        fragLogin_imgShowPass.setOnClickListener { handleShowHidePassword() }
     }
 
     private fun handleInfoUserData(data: InfoUserModel) {
         when (data.deptid) {
-            Constants.REQUEST_UPDATE_APP -> {
-                AppUtils.showDialog(fragmentManager, content = "Update", confirmDialogInterface = null)
-            }
-            Constants.LOGIN_FAILD -> {
-                AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_error_data), content = data.description, confirmDialogInterface = null)
-            }
-            else -> {
-                AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_success_data), content = "Success", confirmDialogInterface = null)
-            }
+            Constants.REQUEST_UPDATE_APP -> handleUpdateNewVersion(data.link)
+            Constants.LOGIN_FAILD -> AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_error_data), content = data.description, confirmDialogInterface = null)
+            else -> handleLoginSuccess(data)
         }
         hideLoading()
+    }
+
+    private fun handleUpdateNewVersion(link: String) {
+        AppUtils.showDialog(fragmentManager, content = "Update", confirmDialogInterface = null)
+    }
+
+    private fun handleLoginSuccess(data: InfoUserModel) {
+        getSharePreferences().dayLogin = AppUtils.getCurrentDate(Constants.CURRENT_DATE)
+        setDefaultUser(data)
+        StartActivityUtils.toMainActivity(context)
     }
 
     override fun loadLogin(response: InfoUserModel) {

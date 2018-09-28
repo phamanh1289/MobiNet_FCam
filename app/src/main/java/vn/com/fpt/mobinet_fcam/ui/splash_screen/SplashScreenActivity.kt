@@ -78,6 +78,15 @@ class SplashScreenActivity : BaseActivity(), SplashScreenActivityContract.Splash
             }
         else {
             getSharePreferences().imeiDevice = AppUtils.getImeiDevice(this)
+            checkReLogin()
+        }
+    }
+
+    private fun checkReLogin(){
+        if (getSharePreferences().checkReLogin())
+            StartActivityUtils.toMainActivity(this)
+        else{
+            getSharePreferences().toClearSessionLogin()
             addFragment(LoginFragment(), false, true)
         }
     }
@@ -107,10 +116,10 @@ class SplashScreenActivity : BaseActivity(), SplashScreenActivityContract.Splash
     private fun handleDataUser(userLogin: UserLoginModel) {
         if (userLogin.userID.isNotBlank())
             getSharePreferences().userName = userLogin.userID
-        if (userLogin.userID.isNotBlank())
+        if (userLogin.deviceIMEI.isNotBlank())
             getSharePreferences().imeiDevice = userLogin.deviceIMEI
         hideLoading()
-        addFragment(LoginFragment(), false, true)
+        checkReLogin()
     }
 
     override fun loadCheckImei(response: ResponseModel) {

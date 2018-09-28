@@ -8,6 +8,7 @@ import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.ui.base.BaseActivity
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
+import vn.com.fpt.mobinet_fcam.utils.StartActivityUtils
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainActivityContract.MainView {
@@ -16,7 +17,6 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
     @Inject
     lateinit var presenter: MainActivityPresenter
     var mCountBack = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,6 +27,8 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
 
     private fun initView() {
         actMain_ivMenuMain.setOnClickListener {
+            getSharePreferences().toClearSessionLogin()
+            StartActivityUtils.toSplashActivity(this)
             if (mCountBack != 0) onBackPressed()
         }
     }
@@ -38,7 +40,7 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
     }
 
     fun handleShowMenu() {
-        actMain_ivMenuMain.setImageResource(if (mCountBack == 0) R.drawable.ic_logo else R.drawable.ic_back)
+        actMain_ivMenuMain.setImageResource(if (mCountBack == 0) R.drawable.ic_logo else R.drawable.ic_arrow_back)
     }
 
     private fun handleTitleMain() {

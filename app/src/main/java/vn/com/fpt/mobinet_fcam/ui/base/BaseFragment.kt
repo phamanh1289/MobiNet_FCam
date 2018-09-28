@@ -2,6 +2,7 @@ package vn.com.fpt.mobinet_fcam.ui.base
 
 import android.support.v4.app.Fragment
 import vn.com.fpt.mobinet_fcam.dagger.component.ActivityComponent
+import vn.com.fpt.mobinet_fcam.data.network.model.InfoUserModel
 import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.ui.main.MainActivity
 import vn.com.fpt.mobinet_fcam.utils.SharedPrefUtils
@@ -62,9 +63,8 @@ open class BaseFragment : Fragment(), BaseView {
     }
 
     fun clearAllBackStack() {
-        if (activity is BaseActivity) {
+        if (activity is BaseActivity)
             (activity as BaseActivity).clearAllBackStack()
-        }
     }
 
     fun setTitle(model: TitleAndMenuModel) {
@@ -76,5 +76,13 @@ open class BaseFragment : Fragment(), BaseView {
 
     fun getTitle(): TitleAndMenuModel {
         return titleModel
+    }
+
+    fun getDefaultUser(): InfoUserModel? {
+        return (activity as BaseActivity).getDefaultUser()
+    }
+
+    fun setDefaultUser(user: InfoUserModel) {
+        (activity as BaseActivity).setDefaultUser(user)
     }
 }

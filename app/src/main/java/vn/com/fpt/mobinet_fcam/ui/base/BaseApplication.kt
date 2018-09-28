@@ -10,6 +10,7 @@ import vn.com.fpt.mobinet_fcam.dagger.component.DaggerApplicationComponent
 import vn.com.fpt.mobinet_fcam.dagger.connect.ApiConfigType
 import vn.com.fpt.mobinet_fcam.dagger.module.ApplicationModule
 import vn.com.fpt.mobinet_fcam.dagger.module.NetworkModule
+import vn.com.fpt.mobinet_fcam.data.network.model.InfoUserModel
 
 /**
  * *******************************************
@@ -24,6 +25,7 @@ class BaseApplication : MultiDexApplication() {
     }
 
     lateinit var baseApp: ApplicationComponent
+    private var user: InfoUserModel? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -49,5 +51,13 @@ class BaseApplication : MultiDexApplication() {
 
     fun getApplicationComponent(): ApplicationComponent {
         return baseApp
+    }
+
+    fun setUser(user: InfoUserModel?) {
+        this.user = user
+    }
+
+    fun getUser(): InfoUserModel? {
+        return user
     }
 }

@@ -24,6 +24,7 @@ object Constants {
     const val NO_REQUEST = 0
     const val REQUEST_SUCCESS = 1
     const val NO_IMAGE = 0
+    const val CURRENT_DATE = 0
     const val SUCCESSFUL = "Successful"
     const val ERROR_NETWORK = "No connection on device. Please turn on wifi/3G!"
     const val TITLE_DIALOG = "Warning"
@@ -34,4 +35,5 @@ object Constants {
     const val DEFAULT_IMEI_5 = "000000000000000"
     const val DEFAULT_USER = "SIR3-Pitou.Pich"
     const val DEFAULT_PASSWORD = "306017"
+    const val TIME_DATE_FORMAT = "dd/MM/yyyy"
 }

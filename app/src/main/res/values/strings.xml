@@ -12,7 +12,7 @@
     <string name="login_empty_password">Password is not null.</string>
     <string name="login_password">Password</string>
     <string name="process_data">Processing, please wait…</string>
-    <string name="mess_assigned_user">This device is assigned to userLogin \"%1$s\"</string>
+    <string name="mess_assigned_user">This device is assigned to user \"%1$s\"</string>
     <string name="login">Login</string>
     <string name="login_show_password">Show password</string>
     <string name="mess_error_not_active">This device is not activated, contact your manager to active it.</string>
