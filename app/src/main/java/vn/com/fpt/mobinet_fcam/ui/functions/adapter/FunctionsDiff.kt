@@ -1,7 +1,7 @@
 package vn.com.fpt.mobinet_fcam.ui.functions.adapter
 
 import android.support.v7.util.DiffUtil
-import vn.com.fpt.mobinet_fcam.data.network.MenuModel
+import vn.com.fpt.mobinet_fcam.data.network.model.MenuModel
 
 /**
  * *******************************************

@@ -21,10 +21,18 @@ object Constants {
     //=================
     const val REQUEST_UPDATE_APP = -2
     const val LOGIN_FAILD = -1
-    const val NO_REQUEST = 0
+    const val FIRST_ITEM = 0
     const val REQUEST_SUCCESS = 1
-    const val NO_IMAGE = 0
     const val CURRENT_DATE = 0
+    const val MENU_DEPLOYMENT_LIST = 0
+    const val MENU_MAINTENANCE_LIST = 1
+    const val MENU_UTILITIES = 2
+    const val MENU_PORT_NET = 3
+    const val MENU_REPORT = 4
+    const val MENU_INFO = 5
+    const val LATE_DATE = -7
+    const val SET_CURRENT_IS_MAX_DATE = true
+    const val SET_CURRENT_IS_MIN_DATE = false
     const val SUCCESSFUL = "Successful"
     const val ERROR_NETWORK = "No connection on device. Please turn on wifi/3G!"
     const val TITLE_DIALOG = "Warning"
@@ -36,4 +44,7 @@ object Constants {
     const val DEFAULT_USER = "SIR3-Pitou.Pich"
     const val DEFAULT_PASSWORD = "306017"
     const val TIME_DATE_FORMAT = "dd/MM/yyyy"
+    const val CONTRACT_DEPLOYMENT = "deployment"
+    const val CONTRACT_MAINTENANCE = "maintenance"
+    const val TYPE_CONTRACT = "typeContract"
 }

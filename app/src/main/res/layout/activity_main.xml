@@ -26,7 +26,6 @@
 
         <TextView
             android:id="@+id/actMain_tvTitleMain"
-            fontPath="@string/Helvetica_Bold"
             android:layout_width="0dp"
             android:layout_marginStart="@dimen/_6dp"
             android:layout_height="wrap_content"

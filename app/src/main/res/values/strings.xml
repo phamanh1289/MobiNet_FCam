@@ -26,4 +26,16 @@
     <string name="menu_port_net">Port Net</string>
     <string name="menu_report">Reports</string>
     <string name="menu_info">Info</string>
+    <string name="search_list_checkListType">Checklist Type</string>
+    <string name="search_list_serviceType">Service Type</string>
+    <string name="search_list_fromDate">From Date</string>
+    <string name="search_list_toDate">To Date</string>
+    <string name="search_list_view">View</string>
+    <string name="type_contract_adsl">ADSL</string>
+    <string name="type_contract_ftth">FTTH</string>
+    <string name="type_contract_normal">Normal</string>
+    <string name="type_contract_system">System</string>
+    <string name="title_search_list_deployment">Search Deployment Info</string>
+    <string name="title_search_list_maintenance">Search Maintenance Info</string>
+    <string name="date_time_format">%1$s/%2$s/%3$s</string>
 </resources>

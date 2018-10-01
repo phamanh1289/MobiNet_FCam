@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_function.*
 import vn.com.fpt.mobinet_fcam.R
-import vn.com.fpt.mobinet_fcam.data.network.MenuModel
+import vn.com.fpt.mobinet_fcam.data.network.model.MenuModel
 import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
+import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.report.ReportContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search.SearchContractFragment
-import vn.com.fpt.mobinet_fcam.ui.deployment.report.ReportDeploymentFragment
-import vn.com.fpt.mobinet_fcam.ui.deployment.search.SearchDeploymentFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.adapter.FunctionsAdapter
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.login.BlankPresenter
-import vn.com.fpt.mobinet_fcam.ui.maintenance.search.SearchMaintenanceFragment
 import vn.com.fpt.mobinet_fcam.ui.port_net.PortNetFragment
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
@@ -72,15 +72,14 @@ class FunctionsFragment : BaseFragment() {
     }
 
     private fun handleOnClick(position: Int) {
-        val fragment = when (listMenu[position].image) {
-            R.drawable.ic_menu_deployment -> SearchDeploymentFragment()
-            R.drawable.ic_menu_maintance -> SearchMaintenanceFragment()
-            R.drawable.ic_menu_utilities -> SearchContractFragment()
-            R.drawable.ic_menu_port_net -> PortNetFragment()
-            R.drawable.ic_menu_report -> ReportDeploymentFragment()
-            else -> InfoFragment()
+        val fragment = when (position) {
+            Constants.MENU_DEPLOYMENT_LIST -> SearchListFragment.newInstance(typeContract = Constants.CONTRACT_DEPLOYMENT)
+            Constants.MENU_MAINTENANCE_LIST -> SearchListFragment.newInstance(typeContract = Constants.CONTRACT_MAINTENANCE)
+            Constants.MENU_UTILITIES -> SearchContractFragment()
+            Constants.MENU_PORT_NET -> PortNetFragment()
+            Constants.MENU_REPORT -> ReportContractFragment()
+            else -> InfoFragment() //Else : MENU_INFO
         }
         addFragment(fragment, true, true)
     }
-
 }

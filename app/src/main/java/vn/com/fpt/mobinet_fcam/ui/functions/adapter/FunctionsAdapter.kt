@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_menu_main.view.*
 import vn.com.fpt.mobinet_fcam.R
-import vn.com.fpt.mobinet_fcam.data.network.MenuModel
+import vn.com.fpt.mobinet_fcam.data.network.model.MenuModel
 
 /**
  * *******************************************

@@ -1,4 +1,4 @@
-package vn.com.fpt.mobinet_fcam.ui.deployment.search
+package vn.com.fpt.mobinet_fcam.ui.contract.report
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,15 +15,15 @@ import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
  * * All rights reserved                    **
  * *******************************************
  */
-class SearchDeploymentFragment : BaseFragment() {
+class ReportMaintenanceFragment : BaseFragment() {
 //    @Inject
 //    lateinit var presenter: BlankPresenter
 
     companion object {
-        fun newInstance(supId: String): SearchDeploymentFragment {
+        fun newInstance(typeContract: String): ReportMaintenanceFragment {
             val args = Bundle()
-            args.putString("", supId)
-            val fragment = SearchDeploymentFragment()
+            args.putString("", typeContract)
+            val fragment = ReportMaintenanceFragment()
             fragment.arguments = args
             return fragment
         }

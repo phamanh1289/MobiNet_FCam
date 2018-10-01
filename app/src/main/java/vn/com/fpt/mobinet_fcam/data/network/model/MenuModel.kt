@@ -1,4 +1,4 @@
-package vn.com.fpt.mobinet_fcam.data.network
+package vn.com.fpt.mobinet_fcam.data.network.model
 
 import vn.com.fpt.mobinet_fcam.data.network.model.BaseModel
 
@@ -9,4 +9,4 @@ import vn.com.fpt.mobinet_fcam.data.network.model.BaseModel
  * * All rights reserved                    **
  * *******************************************
  */
-data class MenuModel(val title: String, val image: Int) : BaseModel()
+data class MenuModel(val title: String, val image: Int, val type : Int) : BaseModel()

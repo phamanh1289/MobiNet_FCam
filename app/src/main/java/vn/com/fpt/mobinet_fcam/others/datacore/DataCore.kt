@@ -2,7 +2,9 @@ package vn.com.fpt.mobinet_fcam.others.datacore
 
 import android.content.Context
 import vn.com.fpt.mobinet_fcam.R
-import vn.com.fpt.mobinet_fcam.data.network.MenuModel
+import vn.com.fpt.mobinet_fcam.data.network.model.MenuModel
+import vn.com.fpt.mobinet_fcam.data.network.model.SingleChoiceModel
+import vn.com.fpt.mobinet_fcam.others.constant.Constants
 
 /**
  * *******************************************
@@ -15,12 +17,30 @@ object DataCore {
     fun getListMenu(context: Context?): ArrayList<MenuModel> {
         val list = ArrayList<MenuModel>()
         context?.let {
-            list.add(MenuModel(title = it.getString(R.string.menu_deployment), image = R.drawable.ic_menu_deployment))
-            list.add(MenuModel(title = it.getString(R.string.menu_maintenance), image = R.drawable.ic_menu_maintance))
-            list.add(MenuModel(title = it.getString(R.string.menu_utilities), image = R.drawable.ic_menu_utilities))
-            list.add(MenuModel(title = it.getString(R.string.menu_port_net), image = R.drawable.ic_menu_port_net))
-            list.add(MenuModel(title = it.getString(R.string.menu_report), image = R.drawable.ic_menu_report))
-            list.add(MenuModel(title = it.getString(R.string.menu_info), image = R.drawable.ic_menu_info))
+            list.add(MenuModel(title = it.getString(R.string.menu_deployment), image = R.drawable.ic_menu_deployment, type = Constants.MENU_DEPLOYMENT_LIST))
+            list.add(MenuModel(title = it.getString(R.string.menu_maintenance), image = R.drawable.ic_menu_maintance, type = Constants.MENU_MAINTENANCE_LIST))
+            list.add(MenuModel(title = it.getString(R.string.menu_utilities), image = R.drawable.ic_menu_utilities, type = Constants.MENU_UTILITIES))
+            list.add(MenuModel(title = it.getString(R.string.menu_port_net), image = R.drawable.ic_menu_port_net, type = Constants.MENU_PORT_NET))
+            list.add(MenuModel(title = it.getString(R.string.menu_report), image = R.drawable.ic_menu_report, type = Constants.MENU_REPORT))
+            list.add(MenuModel(title = it.getString(R.string.menu_info), image = R.drawable.ic_menu_info, type = Constants.MENU_INFO))
+        }
+        return list
+    }
+
+    fun getListTypeContract(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_contract_adsl)))
+            list.add(SingleChoiceModel(id = 2, account = it.getString(R.string.type_contract_ftth)))
+        }
+        return list
+    }
+
+    fun getListCheckType(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_contract_normal)))
+            list.add(SingleChoiceModel(id = 3, account = it.getString(R.string.type_contract_system)))
         }
         return list
     }
