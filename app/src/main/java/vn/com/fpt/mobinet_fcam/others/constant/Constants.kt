@@ -17,6 +17,12 @@ object Constants {
     const val PARAM_PASSWORD_LOW = "password"
     const val PARAM_DEVICE_IMEI_LOW = "deviceimei"
     const val PARAM_VERSION_APP_LOW = "versionapp"
+    const val PARAM_USER_NAME_UPPER = "Username"
+    const val PARAM_FROM_DATE_UPPER = "Fromdate"
+    const val PARAM_TO_DATE = "Todate"
+    const val PARAM_TYPE_UPPER = "Type"
+    const val PARAM_SERVICE_TYPE_UPPER = "ServiceType"
+    const val PARAM_CHECK_LIST_TYPE_UPPER = "ChecklistType"
     //End
     //=================
     const val REQUEST_UPDATE_APP = -2
@@ -24,6 +30,7 @@ object Constants {
     const val FIRST_ITEM = 0
     const val REQUEST_SUCCESS = 1
     const val CURRENT_DATE = 0
+    const val NO_VALUE = 0
     const val MENU_DEPLOYMENT_LIST = 0
     const val MENU_MAINTENANCE_LIST = 1
     const val MENU_UTILITIES = 2
@@ -47,4 +54,5 @@ object Constants {
     const val CONTRACT_DEPLOYMENT = "deployment"
     const val CONTRACT_MAINTENANCE = "maintenance"
     const val TYPE_CONTRACT = "typeContract"
+    const val MODEL = "model"
 }

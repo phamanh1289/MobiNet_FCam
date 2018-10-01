@@ -5,6 +5,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import vn.com.fpt.mobinet_fcam.data.network.model.InfoUserModel
 import vn.com.fpt.mobinet_fcam.data.network.model.ResponseModel
+import vn.com.fpt.mobinet_fcam.data.network.model.SearchListContractModel
 
 /**
  * *******************************************
@@ -20,5 +21,11 @@ interface ApiService {
 
     @POST("LoginV2")
     fun postLogin(@Body map: HashMap<String, Any>): Observable<InfoUserModel>
+
+    @POST("GetInfoContractDepl")
+    fun getContractDeployment(@Body map: HashMap<String, Any>): Observable<SearchListContractModel>
+
+    @POST("GetInfoContractMain")
+    fun getContractMaintenance(@Body map: HashMap<String, Any>): Observable<SearchListContractModel>
 
 }

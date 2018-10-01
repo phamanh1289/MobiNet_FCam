@@ -1,5 +1,6 @@
 package vn.com.fpt.mobinet_fcam.ui.contract.search_list
 
+import vn.com.fpt.mobinet_fcam.data.network.model.SearchListContractModel
 import vn.com.fpt.mobinet_fcam.ui.base.BaseView
 
 /**
@@ -11,9 +12,12 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseView
  */
 interface SearchListContract {
     interface SearchListView : BaseView {
+        fun loadContractDeployment(response: SearchListContractModel)
         fun handleError(response: String)
     }
 
     interface SearchListPresenter {
+        fun getContractDeployment(map: HashMap<String, Any>)
+        fun getContractMaintenance(map: HashMap<String, Any>)
     }
 }

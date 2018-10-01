@@ -148,4 +148,22 @@ object AppUtils {
         toDate.text = getCurrentDate(Constants.CURRENT_DATE)
         fromDate.text = getCurrentDate(lateDate)
     }
+
+    fun handleCheckDate(context: Context?, start: String, end: String): String {
+        context?.let {
+            val startDate = formatter.parse(start)
+            val endDate = formatter.parse(end)
+            if (endDate.before(startDate))
+                return it.getString(R.string.error_date)
+        }
+        return ""
+    }
+
+    fun toConvertDateFormat(context: Context?, date: String): String {
+        val arr: List<String> = date.split("/")
+        context?.let {
+            return it.getString(R.string.date_time_format, arr[2], arr[1], arr[0])
+        }
+        return ""
+    }
 }

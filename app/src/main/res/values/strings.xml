@@ -38,4 +38,10 @@
     <string name="title_search_list_deployment">Search Deployment Info</string>
     <string name="title_search_list_maintenance">Search Maintenance Info</string>
     <string name="date_time_format">%1$s/%2$s/%3$s</string>
+    <string name="error_date">\"From date\" must be in or before the \"To date\".</string>
+    <string name="remaining_contract">Remaining Contract</string>
+    <string name="vip_contract">VIP Contract</string>
+    <string name="coming_contract">Coming Contract</string>
+    <string name="late_contract">Late Contract</string>
+    <string name="hi_open_net">Hi-Opennet Contract</string>
 </resources>
