@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search_list.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.SearchListContractModel
@@ -33,6 +34,7 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
     private lateinit var listCheckType: ArrayList<SingleChoiceModel>
     private var positionServiceType = 0
     private var positionCheckType = 0
+    private var paramsJson = ""
 
     companion object {
         fun newInstance(typeContract: String): SearchListFragment {
@@ -85,6 +87,7 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
                     it.getContractMaintenance(map)
                 } else
                     it.getContractDeployment(map)
+                paramsJson = Gson().toJson(map)
             }
         else AppUtils.showDialog(fragmentManager, content = result, confirmDialogInterface = null)
     }
@@ -123,7 +126,7 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
 
     override fun loadContractDeployment(response: SearchListContractModel) {
         hideLoading()
-        addFragment(ResultFragment.newInstance(response, typeContract), true, true)
+        addFragment(ResultFragment.newInstance(response, typeContract, paramsJson), true, true)
     }
 
     override fun handleError(response: String) {

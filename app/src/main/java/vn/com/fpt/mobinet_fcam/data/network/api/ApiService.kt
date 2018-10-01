@@ -28,4 +28,16 @@ interface ApiService {
     @POST("GetInfoContractMain")
     fun getContractMaintenance(@Body map: HashMap<String, Any>): Observable<SearchListContractModel>
 
+    @POST("GetListInfoContractDepl")
+    fun getListContractDepl(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
+    @POST("GetListInfoContractMain")
+    fun getListContractMain(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
+    @POST("GetDetailContractDepl")
+    fun getDetailContractDepl(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
+    @POST("GetDetailContractMain")
+    fun getDetailContractMain(@Body map: HashMap<String, Any>): Observable<SearchListContractModel>
+
 }

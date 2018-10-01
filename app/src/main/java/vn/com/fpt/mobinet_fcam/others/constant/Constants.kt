@@ -21,7 +21,7 @@ object Constants {
     const val PARAM_FROM_DATE_UPPER = "Fromdate"
     const val PARAM_TO_DATE = "Todate"
     const val PARAM_TYPE_UPPER = "Type"
-    const val PARAM_SERVICE_TYPE_UPPER = "ServiceType"
+    const val PARAM_CONTRACT_TYPE_UPPER = "ContractType"
     const val PARAM_CHECK_LIST_TYPE_UPPER = "ChecklistType"
     //End
     //=================
@@ -38,6 +38,10 @@ object Constants {
     const val MENU_REPORT = 4
     const val MENU_INFO = 5
     const val LATE_DATE = -7
+    const val CONTRACT_REMAIN = 1
+    const val CONTRACT_VIP = 2
+    const val CONTRACT_COMING = 3
+    const val CONTRACT_LATE = 4
     const val SET_CURRENT_IS_MAX_DATE = true
     const val SET_CURRENT_IS_MIN_DATE = false
     const val SUCCESSFUL = "Successful"
@@ -54,5 +58,7 @@ object Constants {
     const val CONTRACT_DEPLOYMENT = "deployment"
     const val CONTRACT_MAINTENANCE = "maintenance"
     const val TYPE_CONTRACT = "typeContract"
+    const val TYPE_INFO = "info"
+    const val PARAMS_JSON = "paramsJson"
     const val MODEL = "model"
 }

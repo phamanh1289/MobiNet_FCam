@@ -160,10 +160,21 @@ object AppUtils {
     }
 
     fun toConvertDateFormat(context: Context?, date: String): String {
-        val arr: List<String> = date.split("/")
+        val arr: List<String> = if (date.contains("/")) date.split("/") else date.split("-")
         context?.let {
             return it.getString(R.string.date_time_format, arr[2], arr[1], arr[0])
         }
         return ""
+    }
+
+    fun toConvertTimeToString(context: Context?, time: String): String {
+        return when {
+            time.isNullOrBlank() -> "N/A"
+            (time.contains("T")) -> {
+                val arr = time.split("T")
+                "${toConvertDateFormat(context, arr[0])} ${arr[1].split(".")[0]}"
+            }
+            else -> time
+        }
     }
 }

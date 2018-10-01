@@ -35,6 +35,7 @@
     <string name="type_contract_ftth">FTTH</string>
     <string name="type_contract_normal">Normal</string>
     <string name="type_contract_system">System</string>
+    <string name="info_contract">Info Contract</string>
     <string name="title_search_list_deployment">Search Deployment Info</string>
     <string name="title_search_list_maintenance">Search Maintenance Info</string>
     <string name="date_time_format">%1$s/%2$s/%3$s</string>
@@ -44,4 +45,9 @@
     <string name="coming_contract">Coming Contract</string>
     <string name="late_contract">Late Contract</string>
     <string name="hi_open_net">Hi-Opennet Contract</string>
+    <string name="item_result_contract">Contract</string>
+    <string name="item_result_create_date">Create date</string>
+    <string name="item_result_assign_date">Assign date</string>
+    <string name="item_result_service_type">Service type</string>
+    <string name="item_result_priority">Priority</string>
 </resources>
