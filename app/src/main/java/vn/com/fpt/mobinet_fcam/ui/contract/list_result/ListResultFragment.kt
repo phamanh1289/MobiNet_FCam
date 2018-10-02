@@ -11,9 +11,11 @@ import kotlinx.android.synthetic.main.fragment_list_result.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.InfoContractModel
 import vn.com.fpt.mobinet_fcam.data.network.model.ResponseModel
+import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.list_result.adapter.ListResultAdapter
+import vn.com.fpt.mobinet_fcam.ui.contract.detail.DetailContractFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.list_result.adapter.ListDeploymentAdapter
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
@@ -30,7 +32,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
     lateinit var presenter: ListResultPresenter
 
     private var listDataContract = ArrayList<InfoContractModel>()
-    private lateinit var adapterDeployment: ListResultAdapter
+    private lateinit var mAdapterDeployment: ListDeploymentAdapter
     private var paramsJson = ""
     private var typeInfo = 0
     private var typeContract = ""
@@ -66,6 +68,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
             typeContract = it.getString(Constants.TYPE_CONTRACT)
             typeInfo = it.getInt(Constants.TYPE_INFO)
         }
+        setTitle(TitleAndMenuModel(title = getString(R.string.info_contract)))
         initParams()
     }
 
@@ -83,14 +86,16 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
         listDataContract = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<InfoContractModel>>() {}.type)
         when (typeContract) {
             Constants.CONTRACT_DEPLOYMENT -> {
-                adapterDeployment = ListResultAdapter { }
-                adapterDeployment.submitList(listDataContract)
-                adapterDeployment.notifyDataSetChanged()
+                mAdapterDeployment = ListDeploymentAdapter {
+                    addFragment(DetailContractFragment.newInstance(listDataContract[it].objid, listDataContract[it].contract), true, true)
+                }
+                mAdapterDeployment.submitList(listDataContract)
+                mAdapterDeployment.notifyDataSetChanged()
                 fragListResult_rvMain.apply {
                     val layout = LinearLayoutManager(context)
                     layoutManager = layout
                     setHasFixedSize(true)
-                    adapter = adapterDeployment
+                    adapter = mAdapterDeployment
                 }
             }
             else -> {

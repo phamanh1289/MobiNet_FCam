@@ -1,8 +1,12 @@
 package vn.com.fpt.mobinet_fcam.data.network.api
 
 import io.reactivex.Observable
+import okhttp3.ResponseBody
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
+import vn.com.fpt.mobinet_fcam.data.network.model.DetailContractModel
 import vn.com.fpt.mobinet_fcam.data.network.model.InfoUserModel
 import vn.com.fpt.mobinet_fcam.data.network.model.ResponseModel
 import vn.com.fpt.mobinet_fcam.data.network.model.SearchListContractModel
@@ -35,9 +39,12 @@ interface ApiService {
     fun getListContractMain(@Body map: HashMap<String, Any>): Observable<ResponseModel>
 
     @POST("GetDetailContractDepl")
-    fun getDetailContractDepl(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+    fun getDetailContractDepl(@Body map: HashMap<String, Any>): Observable<DetailContractModel>
 
     @POST("GetDetailContractMain")
-    fun getDetailContractMain(@Body map: HashMap<String, Any>): Observable<SearchListContractModel>
+    fun getDetailContractMain(@Body map: HashMap<String, Any>): Observable<DetailContractModel>
+
+    @GET("GetImage/{id}")
+    fun getImage(@Path("id") id: String): Observable<ResponseBody>
 
 }

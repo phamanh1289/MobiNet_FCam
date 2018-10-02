@@ -3,9 +3,11 @@ package vn.com.fpt.mobinet_fcam.dagger.component
 import dagger.Subcomponent
 import vn.com.fpt.mobinet_fcam.dagger.module.ActivityModule
 import vn.com.fpt.mobinet_fcam.dagger.scope.ActivityScope
+import vn.com.fpt.mobinet_fcam.ui.contract.detail.DetailContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.list_result.ListResultFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.search.SearchContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.utilities.SearchContractFragment
+import vn.com.fpt.mobinet_fcam.ui.image.view_image.ViewImageFragment
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.login.LoginFragment
 import vn.com.fpt.mobinet_fcam.ui.main.MainActivity
@@ -29,6 +31,8 @@ interface ActivityComponent {
     fun inject(searchContractFragment: SearchContractFragment)
     fun inject(portNetFragment: PortNetFragment)
     fun inject(infoFragment: InfoFragment)
-    fun inject(detailResultFragment: ListResultFragment)
+    fun inject(listResultFragment: ListResultFragment)
+    fun inject(detailContractFragment: DetailContractFragment)
+    fun inject(viewImageFragment: ViewImageFragment)
 
 }

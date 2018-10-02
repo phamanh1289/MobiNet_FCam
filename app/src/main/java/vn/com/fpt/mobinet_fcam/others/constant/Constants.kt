@@ -23,6 +23,7 @@ object Constants {
     const val PARAM_TYPE_UPPER = "Type"
     const val PARAM_CONTRACT_TYPE_UPPER = "ContractType"
     const val PARAM_CHECK_LIST_TYPE_UPPER = "ChecklistType"
+    const val PARAM_OBJ_ID = "ObjID"
     //End
     //=================
     const val REQUEST_UPDATE_APP = -2
@@ -54,10 +55,15 @@ object Constants {
     const val DEFAULT_IMEI_5 = "000000000000000"
     const val DEFAULT_USER = "SIR3-Pitou.Pich"
     const val DEFAULT_PASSWORD = "306017"
-    const val TIME_DATE_FORMAT = "dd/MM/yyyy"
+    const val TIME_DATE_FORMAT = "dd-MM-yyyy"
+    const val TIME_DATE_FORMAT_FROM_SERVER = "MM-dd-yyyy"
+    const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_1 = "yyyy-MM-dd HH:mm:ss.S"
+    const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_2 = "yyyy-MM-dd HH:mm:ss"
+    const val TIME_DATE_FULL_FORMAT = "dd-MM-yyyy HH:mm:ss"
     const val CONTRACT_DEPLOYMENT = "deployment"
     const val CONTRACT_MAINTENANCE = "maintenance"
     const val TYPE_CONTRACT = "typeContract"
+    const val TYPE_IMAGE= "typeImage"
     const val TYPE_INFO = "info"
     const val PARAMS_JSON = "paramsJson"
     const val MODEL = "model"

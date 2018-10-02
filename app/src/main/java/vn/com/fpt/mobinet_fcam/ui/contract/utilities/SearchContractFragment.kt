@@ -1,4 +1,4 @@
-package vn.com.fpt.mobinet_fcam.ui.contract.search
+package vn.com.fpt.mobinet_fcam.ui.contract.utilities
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -47,7 +47,7 @@ class SharedPrefUtils constructor(app: Context?) {
     fun checkReLogin(): Boolean {
         return if (infoUser.isBlank())
             false
-        else dayLogin == AppUtils.getCurrentDate(Constants.CURRENT_DATE)
+        else dayLogin == String().getCurrentDate(Constants.CURRENT_DATE)
     }
 
     fun toClearSessionLogin() {

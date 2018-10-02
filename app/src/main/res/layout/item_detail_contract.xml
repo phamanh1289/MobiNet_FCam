@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemDetailContract_llRootView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/_8dp"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        android:id="@+id/itemDetailContract_tvTitle"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.35"
+        android:textSize="@dimen/_16dp"
+        android:textColor="@color/blueMain"/>
+
+    <TextView
+        android:id="@+id/itemDetailContract_tvValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.65"
+        android:textSize="@dimen/_16dp"
+        android:textColor="@color/blueMain"/>
+
+</LinearLayout>

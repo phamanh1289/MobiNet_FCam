@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_result_deployment.view.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.InfoContractModel
-import vn.com.fpt.mobinet_fcam.utils.AppUtils
+import vn.com.fpt.mobinet_fcam.utils.convertToFullFormat
 
 /**
  * *******************************************
@@ -17,7 +17,7 @@ import vn.com.fpt.mobinet_fcam.utils.AppUtils
  * * All rights reserved                    **
  * *******************************************
  */
-class ListResultAdapter(val onClick: (Int) -> Unit) : ListAdapter<InfoContractModel, ListResultAdapter.ListResultHolder>(ListResultDiff()) {
+class ListDeploymentAdapter(val onClick: (Int) -> Unit) : ListAdapter<InfoContractModel, ListDeploymentAdapter.ListResultHolder>(ListResultDiff()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListResultHolder {
         return ListResultHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_result_deployment, parent, false))
     }
@@ -30,8 +30,8 @@ class ListResultAdapter(val onClick: (Int) -> Unit) : ListAdapter<InfoContractMo
         fun bindData(model: InfoContractModel?, onClick: (Int) -> Unit) {
             model?.let { item ->
                 itemView.itemResultDeployment_tvContract.text = item.contract
-                itemView.itemResultDeployment_tvCreateDate.text = AppUtils.toConvertTimeToString(itemView.context, item.datecreate)
-                itemView.itemResultDeployment_tvAssignDate.text = AppUtils.toConvertTimeToString(itemView.context, item.dateassign)
+                itemView.itemResultDeployment_tvCreateDate.text = item.datecreate.convertToFullFormat("")
+                itemView.itemResultDeployment_tvAssignDate.text = item.dateassign.convertToFullFormat("")
                 itemView.itemResultDeployment_tvServiceType.text = item.typecus
                 itemView.itemResultDeployment_tvPriority.text = item.priority
                 itemView.setOnClickListener { onClick(adapterPosition) }

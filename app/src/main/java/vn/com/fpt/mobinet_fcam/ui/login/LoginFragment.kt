@@ -15,6 +15,7 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import vn.com.fpt.mobinet_fcam.utils.StartActivityUtils
+import vn.com.fpt.mobinet_fcam.utils.getCurrentDate
 import javax.inject.Inject
 
 /**
@@ -111,7 +112,7 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
     }
 
     private fun handleLoginSuccess(data: InfoUserModel) {
-        getSharePreferences().dayLogin = AppUtils.getCurrentDate(Constants.CURRENT_DATE)
+        getSharePreferences().dayLogin = String().getCurrentDate(Constants.CURRENT_DATE)
         setDefaultUser(data)
         StartActivityUtils.toMainActivity(context)
     }

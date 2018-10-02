@@ -52,6 +52,7 @@ object AppUtils {
             Constants.DEFAULT_IMEI_4 -> true
             Constants.DEFAULT_IMEI_5 -> true
             "868222039057725" -> true
+            "358099073026072" -> true
             else -> false
         }
     }
@@ -97,12 +98,6 @@ object AppUtils {
         }
     }
 
-    fun getCurrentDate(lateDate: Int): String {
-        val c = Calendar.getInstance()
-        if (lateDate != 0)
-            c.add(Calendar.DATE, lateDate)
-        return formatter.format(c.time)
-    }
 
     fun showDialogSingChoice(fragmentManager: FragmentManager?, title: String, listData: ArrayList<SingleChoiceModel>, view: TextView, itemSelected: Int) {
         val dialog = SingChoiceDialog()
@@ -129,7 +124,7 @@ object AppUtils {
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
             val arrDate = tvDate.text.toString()
             if (arrDate.isNotBlank()) {
-                val list = if (arrDate.contains("-")) arrDate.split("-") else arrDate.split("/")
+                val list = arrDate.split("-")
                 datePickerDialog.updateDate(list[2].toInt(), list[1].toInt() - 1, list[0].toInt())
             }
             if (typeDate)
@@ -144,37 +139,4 @@ object AppUtils {
         return if (month < 10) "0$month" else month.toString()
     }
 
-    fun getDefaultDateSearch(toDate: TextView, fromDate: TextView, lateDate: Int) {
-        toDate.text = getCurrentDate(Constants.CURRENT_DATE)
-        fromDate.text = getCurrentDate(lateDate)
-    }
-
-    fun handleCheckDate(context: Context?, start: String, end: String): String {
-        context?.let {
-            val startDate = formatter.parse(start)
-            val endDate = formatter.parse(end)
-            if (endDate.before(startDate))
-                return it.getString(R.string.error_date)
-        }
-        return ""
-    }
-
-    fun toConvertDateFormat(context: Context?, date: String): String {
-        val arr: List<String> = if (date.contains("/")) date.split("/") else date.split("-")
-        context?.let {
-            return it.getString(R.string.date_time_format, arr[2], arr[1], arr[0])
-        }
-        return ""
-    }
-
-    fun toConvertTimeToString(context: Context?, time: String): String {
-        return when {
-            time.isNullOrBlank() -> "N/A"
-            (time.contains("T")) -> {
-                val arr = time.split("T")
-                "${toConvertDateFormat(context, arr[0])} ${arr[1].split(".")[0]}"
-            }
-            else -> time
-        }
-    }
 }

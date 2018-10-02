@@ -14,8 +14,7 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.result.ResultFragment
-import vn.com.fpt.mobinet_fcam.utils.AppUtils
-import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
+import vn.com.fpt.mobinet_fcam.utils.*
 import javax.inject.Inject
 
 /**
@@ -73,14 +72,13 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
     }
 
     private fun initParams() {
-        val result = AppUtils.handleCheckDate(context, fragSearchList_tvFromDate.text.toString(), fragSearchList_tvToDate.text.toString())
-        if (result.isBlank())
+        if (fragSearchList_tvFromDate.text.toString().isValidateDate(fragSearchList_tvToDate.text.toString()))
             presenter.let {
                 showLoading()
                 val map = HashMap<String, Any>()
                 map[Constants.PARAM_USER_NAME_UPPER] = getDefaultUser()?.mobiaccount.toString()
-                map[Constants.PARAM_FROM_DATE_UPPER] = AppUtils.toConvertDateFormat(context, fragSearchList_tvFromDate.text.toString())
-                map[Constants.PARAM_TO_DATE] = AppUtils.toConvertDateFormat(context, fragSearchList_tvToDate.text.toString())
+                map[Constants.PARAM_FROM_DATE_UPPER] = fragSearchList_tvFromDate.text.toString().convertToDateFormat("")
+                map[Constants.PARAM_TO_DATE] = fragSearchList_tvToDate.text.toString().convertToDateFormat("")
                 map[Constants.PARAM_TYPE_UPPER] = listServiceType[positionServiceType].id
                 if (typeContract == Constants.CONTRACT_MAINTENANCE) {
                     map[Constants.PARAM_CHECK_LIST_TYPE_UPPER] = listCheckType[positionCheckType].id
@@ -89,7 +87,7 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
                     it.getContractDeployment(map)
                 paramsJson = Gson().toJson(map)
             }
-        else AppUtils.showDialog(fragmentManager, content = result, confirmDialogInterface = null)
+        else AppUtils.showDialog(fragmentManager, content = getString(R.string.error_date), confirmDialogInterface = null)
     }
 
     private fun getDefaultData() {
@@ -102,7 +100,8 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
             fragSearchList_tvCheckList.text = listCheckType[Constants.FIRST_ITEM].account
             fragSearchList_tvCheckList.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager, getString(R.string.search_list_checkListType), listCheckType, fragSearchList_tvCheckList, positionCheckType) }
         }
-        AppUtils.getDefaultDateSearch(fragSearchList_tvToDate, fragSearchList_tvFromDate, Constants.LATE_DATE)
+        fragSearchList_tvToDate.text = String().getCurrentDate(Constants.CURRENT_DATE)
+        fragSearchList_tvFromDate.text = String().getCurrentDate(Constants.LATE_DATE)
     }
 
     fun setDefaultValueIndex(view: Int, index: Int) {

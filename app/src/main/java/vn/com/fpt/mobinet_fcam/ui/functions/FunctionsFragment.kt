@@ -13,7 +13,7 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.report.ReportContractFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.search.SearchContractFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.utilities.SearchContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.adapter.FunctionsAdapter
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
