@@ -24,6 +24,7 @@ object Constants {
     const val PARAM_CONTRACT_TYPE_UPPER = "ContractType"
     const val PARAM_CHECK_LIST_TYPE_UPPER = "ChecklistType"
     const val PARAM_OBJ_ID = "ObjID"
+    const val PARAM_SERVICE_TYPE = "ServiceType"
     //End
     //=================
     const val REQUEST_UPDATE_APP = -2

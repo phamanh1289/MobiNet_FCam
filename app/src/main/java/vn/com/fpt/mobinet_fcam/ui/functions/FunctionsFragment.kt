@@ -13,10 +13,10 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.report.ReportContractFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.utilities.SearchContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.utilities.SearchContractFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.adapter.FunctionsAdapter
-import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.login.BlankPresenter
 import vn.com.fpt.mobinet_fcam.ui.port_net.PortNetFragment
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
@@ -78,7 +78,8 @@ class FunctionsFragment : BaseFragment() {
             Constants.MENU_UTILITIES -> SearchContractFragment()
             Constants.MENU_PORT_NET -> PortNetFragment()
             Constants.MENU_REPORT -> ReportContractFragment()
-            else -> InfoFragment() //Else : MENU_INFO
+//            else -> InfoFragment() //Else : MENU_INFO
+            else -> UpdateContractFragment() //Else : MENU_INFO
         }
         addFragment(fragment, true, true)
     }

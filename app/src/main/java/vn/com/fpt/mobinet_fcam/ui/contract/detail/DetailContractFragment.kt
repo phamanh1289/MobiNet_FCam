@@ -16,6 +16,7 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.detail.adpater.DetailContractAdapter
+import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
 import vn.com.fpt.mobinet_fcam.ui.image.view_image.ViewImageFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
@@ -33,15 +34,17 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
     lateinit var presenter: DetailContractPresenter
 
     private var objId = 0
+    private var serviceType = 0
     private var contractNumber = ""
     private var listDetailKeyValue = ArrayList<DetailContractKeyValueModel>()
     private lateinit var adapterDetail: DetailContractAdapter
 
     companion object {
-        fun newInstance(objId: Int, contract: String): DetailContractFragment {
+        fun newInstance(objId: Int, contract: String,serviceType: Int): DetailContractFragment {
             val args = Bundle()
             args.putInt(Constants.PARAM_OBJ_ID, objId)
             args.putString(Constants.TYPE_CONTRACT, contract)
+            args.putInt(Constants.PARAM_SERVICE_TYPE, serviceType)
             val fragment = DetailContractFragment()
             fragment.arguments = args
             return fragment
@@ -64,12 +67,13 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
         arguments?.let {
             objId = it.getInt(Constants.PARAM_OBJ_ID)
             contractNumber = it.getString(Constants.TYPE_CONTRACT)
+            serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
         }
         setTitle(TitleAndMenuModel(title = getString(R.string.info_contract)))
-        initParams()
+        initParamsGetDetail()
     }
 
-    private fun initParams() {
+    private fun initParamsGetDetail() {
         presenter.let {
             showLoading()
             val map = HashMap<String, Any>()
@@ -98,6 +102,7 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
             adapter = adapterDetail
         }
         hideLoading()
+        fragDetailContract_tvUpdate.setOnClickListener { addFragment(UpdateContractFragment.newInstance(response,serviceType),true,true) }
     }
 
     override fun handleError(response: String) {

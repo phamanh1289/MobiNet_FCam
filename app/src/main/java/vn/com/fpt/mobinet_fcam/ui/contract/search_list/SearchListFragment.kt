@@ -124,7 +124,7 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
 
     override fun loadContractDeployment(response: SearchListContractModel) {
         hideLoading()
-        addFragment(ResultFragment.newInstance(response, typeContract, paramsJson), true, true)
+        addFragment(ResultFragment.newInstance(response, typeContract, paramsJson,listServiceType[positionServiceType].id), true, true)
     }
 
     override fun handleError(response: String) {

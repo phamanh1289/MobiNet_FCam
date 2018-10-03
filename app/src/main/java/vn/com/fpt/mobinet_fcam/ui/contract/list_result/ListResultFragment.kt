@@ -37,14 +37,16 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
     private var mAdapterMaintenance: ListMaintenanceAdapter? = null
     private var paramsJson = ""
     private var typeInfo = 0
+    private var serviceType = 0
     private var typeContract = ""
 
     companion object {
-        fun newInstance(json: String, typeContract: String, info: Int): ListResultFragment {
+        fun newInstance(json: String, typeContract: String, info: Int, serviceType: Int): ListResultFragment {
             val args = Bundle()
             args.putString(Constants.PARAMS_JSON, json)
             args.putString(Constants.TYPE_CONTRACT, typeContract)
             args.putInt(Constants.TYPE_INFO, info)
+            args.putInt(Constants.PARAM_SERVICE_TYPE, serviceType)
             val fragment = ListResultFragment()
             fragment.arguments = args
             return fragment
@@ -69,6 +71,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
             paramsJson = it.getString(Constants.PARAMS_JSON) ?: ""
             typeContract = it.getString(Constants.TYPE_CONTRACT)
             typeInfo = it.getInt(Constants.TYPE_INFO)
+            serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
         }
         setTitle(TitleAndMenuModel(title = getString(R.string.info_contract)))
         initParams()
@@ -89,7 +92,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
         when (typeContract) {
             Constants.CONTRACT_DEPLOYMENT -> {
                 mAdapterDeployment = ListDeploymentAdapter {
-                    addFragment(DetailContractFragment.newInstance(listDataContract[it].objid, listDataContract[it].contract), true, true)
+                    addFragment(DetailContractFragment.newInstance(listDataContract[it].objid, listDataContract[it].contract,serviceType), true, true)
                 }
                 mAdapterDeployment?.apply {
                     submitList(listDataContract)

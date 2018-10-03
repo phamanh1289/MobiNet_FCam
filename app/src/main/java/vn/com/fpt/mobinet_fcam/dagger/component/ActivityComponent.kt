@@ -6,6 +6,7 @@ import vn.com.fpt.mobinet_fcam.dagger.scope.ActivityScope
 import vn.com.fpt.mobinet_fcam.ui.contract.detail.DetailContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.list_result.ListResultFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.utilities.SearchContractFragment
 import vn.com.fpt.mobinet_fcam.ui.image.view_image.ViewImageFragment
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
@@ -34,5 +35,6 @@ interface ActivityComponent {
     fun inject(listResultFragment: ListResultFragment)
     fun inject(detailContractFragment: DetailContractFragment)
     fun inject(viewImageFragment: ViewImageFragment)
+    fun inject(updateContractFragment: UpdateContractFragment)
 
 }

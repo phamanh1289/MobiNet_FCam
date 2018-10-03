@@ -28,13 +28,15 @@ class ResultFragment : BaseFragment() {
     private lateinit var resultModel: SearchListContractModel
     private var typeContract = Constants.CONTRACT_DEPLOYMENT
     private var paramsJson = ""
+    private var serviceType = 0
 
     companion object {
-        fun newInstance(model: SearchListContractModel, typeContract: String, params: String): ResultFragment {
+        fun newInstance(model: SearchListContractModel, typeContract: String, params: String, serviceType: Int): ResultFragment {
             val args = Bundle()
             args.putParcelable(Constants.MODEL, model)
             args.putString(Constants.TYPE_CONTRACT, typeContract)
             args.putString(Constants.PARAMS_JSON, params)
+            args.putInt(Constants.PARAM_SERVICE_TYPE, serviceType)
             val fragment = ResultFragment()
             fragment.arguments = args
             return fragment
@@ -57,6 +59,7 @@ class ResultFragment : BaseFragment() {
             resultModel = it.getParcelable(Constants.MODEL)
             typeContract = it.getString(Constants.TYPE_CONTRACT)
             paramsJson = it.getString(Constants.PARAMS_JSON)
+            serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
         }
         loadDataToView()
         initOnClick()
@@ -74,7 +77,7 @@ class ResultFragment : BaseFragment() {
         if (textView.checkNoValue(null))
             AppUtils.showDialog(fragmentManager, content = getString(R.string.not_found_contract), confirmDialogInterface = null)
         else
-            addFragment(ListResultFragment.newInstance(paramsJson, typeContract, type), true, true)
+            addFragment(ListResultFragment.newInstance(paramsJson, typeContract, type, serviceType), true, true)
     }
 
     private fun loadDataToView() {

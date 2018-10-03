@@ -31,8 +31,10 @@ object DataCore {
     fun getListTypeContract(context: Context?): ArrayList<SingleChoiceModel> {
         val list = ArrayList<SingleChoiceModel>()
         context?.let {
-            list.add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_contract_adsl)))
-            list.add(SingleChoiceModel(id = 2, account = it.getString(R.string.type_contract_ftth)))
+            list.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_contract_adsl)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.type_contract_ftth)))
+            }
         }
         return list
     }
@@ -40,8 +42,10 @@ object DataCore {
     fun getListCheckType(context: Context?): ArrayList<SingleChoiceModel> {
         val list = ArrayList<SingleChoiceModel>()
         context?.let {
-            list.add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_contract_normal)))
-            list.add(SingleChoiceModel(id = 3, account = it.getString(R.string.type_contract_system)))
+            with(list) {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_contract_normal)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.type_contract_system)))
+            }
         }
         return list
     }
@@ -75,6 +79,129 @@ object DataCore {
                     title = it.getString(R.string.value_detail_contract_image)))
             list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_cusnote),
                     title = it.getString(R.string.value_detail_contract_cusnote)))
+        }
+        return list
+    }
+
+    fun getListCable(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_cable_05_mm)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.type_cable_1FO)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.type_cable_2FO)))
+                add(SingleChoiceModel(id = 4, account = it.getString(R.string.type_cable_4FO)))
+            }
+        }
+        return list
+    }
+
+    fun getListOtherCable(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 100, account = it.getString(R.string.type_cable_utf_cat5)))
+                add(SingleChoiceModel(id = 199, account = it.getString(R.string.type_cable_other_cable)))
+            }
+        }
+        return list
+    }
+
+    fun getListRouter(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 122, account = it.getString(R.string.type_router_rb750)))
+                add(SingleChoiceModel(id = 132, account = it.getString(R.string.type_router_n302r)))
+                add(SingleChoiceModel(id = 142, account = it.getString(R.string.type_router_wr741nd)))
+                add(SingleChoiceModel(id = 222, account = it.getString(R.string.type_cable_other_cable)))
+            }
+        }
+        return list
+    }
+
+    fun getListModem(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 0, account = it.getString(R.string.item_modem_not_get_modem)))
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.item_modem_rent_modem)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.item_modem_gift_modem)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.item_modem_sale_modem)))
+            }
+        }
+        return list
+    }
+
+    fun getListTypeModem(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 0, account = it.getString(R.string.type_modem_not_modem)))
+                add(SingleChoiceModel(id = 52, account = it.getString(R.string.type_modem_wifi)))
+                add(SingleChoiceModel(id = 42, account = it.getString(R.string.type_modem_4port)))
+                add(SingleChoiceModel(id = 112, account = it.getString(R.string.type_modem_adsl2)))
+                add(SingleChoiceModel(id = 200, account = it.getString(R.string.type_modem_ftth)))
+                add(SingleChoiceModel(id = 300, account = it.getString(R.string.type_modem_ftth_wifi)))
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_modem_na)))
+            }
+        }
+        return list
+    }
+
+    fun getListStb(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 0, account = it.getString(R.string.item_stb_not_get_stb)))
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.item_stb_rent_stb)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.item_stb_gif_stb)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.item_stb_sale_stb)))
+            }
+        }
+        return list
+    }
+
+    fun getListTypeStb(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 0, account = it.getString(R.string.type_stb_not_stb)))
+                add(SingleChoiceModel(id = 100, account = it.getString(R.string.type_stb_coship)))
+                add(SingleChoiceModel(id = 200, account = it.getString(R.string.type_stb_comtrend)))
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_modem_na)))
+            }
+        }
+        return list
+    }
+
+    fun getListReason(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_delay_waiting)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_delay_customer_delay)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.reason_delay_over_cable)))
+                add(SingleChoiceModel(id = 4, account = it.getString(R.string.reason_delay_hung_up)))
+                add(SingleChoiceModel(id = 5, account = it.getString(R.string.reason_delay_customer_transfer)))
+                add(SingleChoiceModel(id = 6, account = it.getString(R.string.reason_delay_must_install)))
+                add (SingleChoiceModel(id =7, account = it.getString(R.string.reason_delay_survey_error)))
+                add(SingleChoiceModel(id = 8, account = it.getString(R.string.reason_delay_over_ring)))
+                add(SingleChoiceModel(id = 9, account = it.getString(R.string.reason_delay_group_point)))
+                add(SingleChoiceModel(id = 10, account = it.getString(R.string.reason_delay_lack_of_equipment)))
+                add(SingleChoiceModel(id = 11, account = it.getString(R.string.reason_delay_clash_various)))
+            }
+        }
+        return list
+    }
+
+    fun getListResult(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 0, account = it.getString(R.string.result_processing)))
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.result_complete)))
+            }
         }
         return list
     }

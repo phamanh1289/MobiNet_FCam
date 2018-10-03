@@ -12,7 +12,27 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragDetailContract_rvMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/fragDetailContract_tvUpdate"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginBottom="@dimen/_8dp"
+        android:background="@drawable/selector_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingStart="@dimen/_50dp"
+        android:paddingTop="@dimen/_12dp"
+        android:paddingEnd="@dimen/_50dp"
+        android:paddingBottom="@dimen/_12dp"
+        android:text="@string/update"
+        android:layout_marginTop="@dimen/_8dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_19dp"
+        />
 </LinearLayout>
