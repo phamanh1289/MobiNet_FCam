@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_result.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.SearchListContractModel
@@ -11,7 +12,9 @@ import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.list_result.ListResultFragment
+import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
+import vn.com.fpt.mobinet_fcam.utils.checkNoValue
 
 /**
  * *******************************************
@@ -60,14 +63,18 @@ class ResultFragment : BaseFragment() {
     }
 
     private fun initOnClick() {
-        fragResult_llRemaining.setOnClickListener { getListInfoContract(Constants.CONTRACT_REMAIN) }
-        fragResult_llVip.setOnClickListener { getListInfoContract(Constants.CONTRACT_VIP) }
-        fragResult_llComingContract.setOnClickListener { getListInfoContract(Constants.CONTRACT_COMING) }
-        fragResult_llLateContract.setOnClickListener { getListInfoContract(Constants.CONTRACT_LATE) }
+        fragResult_llRemaining.setOnClickListener { getListInfoContract(fragResult_tvRemaining, Constants.CONTRACT_REMAIN) }
+        fragResult_llVip.setOnClickListener { getListInfoContract(fragResult_tvVip, Constants.CONTRACT_VIP) }
+        fragResult_llComingContract.setOnClickListener { getListInfoContract(fragResult_tvComingContract, Constants.CONTRACT_COMING) }
+        fragResult_llLateContract.setOnClickListener { getListInfoContract(fragResult_tvLateContract, Constants.CONTRACT_LATE) }
+        fragResult_llHiOpenNet.setOnClickListener { getListInfoContract(fragResult_tvHiOpenNet, Constants.CONTRACT_LATE) }
     }
 
-    private fun getListInfoContract(type: Int) {
-        addFragment(ListResultFragment.newInstance(paramsJson, typeContract, type), true, true)
+    private fun getListInfoContract(textView: TextView, type: Int) {
+        if (textView.checkNoValue(null))
+            AppUtils.showDialog(fragmentManager, content = getString(R.string.not_found_contract), confirmDialogInterface = null)
+        else
+            addFragment(ListResultFragment.newInstance(paramsJson, typeContract, type), true, true)
     }
 
     private fun loadDataToView() {

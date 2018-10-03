@@ -20,7 +20,8 @@ class ViewImagePresenter @Inject constructor(private val apiService: ApiService)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ it ->
-                    view?.loadImage(it.toString())
+                    val base64 = it.string()
+                    view?.loadImage(base64)
                 }, {
                     view?.handleError(it.message.toString())
                 }))

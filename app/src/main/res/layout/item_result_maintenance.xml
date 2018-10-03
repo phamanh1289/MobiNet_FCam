@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
@@ -16,12 +16,12 @@
         android:layout_height="wrap_content"
         android:text="@string/item_result_contract"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemResultDeployment_tvContract"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemResultMaintenance_tvContract"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/itemResultDeployment_tvContract"/>
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvContract"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -30,108 +30,210 @@
         android:layout_height="wrap_content"
         android:text="@string/item_result_create_date"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemResultDeployment_tvCreateDate"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemResultMaintenance_tvCreateDate"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/itemResultDeployment_tvCreateDate"/>
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvCreateDate"/>
 
     <TextView
         android:id="@+id/textView3"
         fontPath="@string/Helvetica_Bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/item_result_assign_date"
+        android:text="@string/item_result_remain_hour"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemResultDeployment_tvAssignDate"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemResultMaintenance_tvRemainHour"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/itemResultDeployment_tvAssignDate"/>
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvRemainHour"/>
 
     <TextView
         android:id="@+id/textView4"
         fontPath="@string/Helvetica_Bold"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8dp"
-        android:text="@string/item_result_service_type"
+        android:layout_marginEnd="8dp"
+        android:text="@string/item_result_customer"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/itemResultDeployment_tvServiceType"/>
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvCustomer"/>
 
     <TextView
         android:id="@+id/textView5"
         fontPath="@string/Helvetica_Bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/item_result_priority"
+        android:text="@string/value_detail_contract_address"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemResultDeployment_tvPriority"
+        android:textSize="@dimen/_15dp"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/itemResultDeployment_tvPriority"/>
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvAddress"/>
 
     <TextView
-        android:id="@+id/itemResultDeployment_tvContract"
+        android:id="@+id/textView6"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/item_result_assign_date"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemResultMaintenance_tvAssignDate"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvAssignDate"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/item_result_priority"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemResultMaintenance_tvPriority"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvPriority"/>
+
+    <TextView
+        android:id="@+id/textView8"
         fontPath="@string/Helvetica_Bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8dp"
-        android:layout_marginTop="@dimen/_8dp"
+        android:text="@string/item_result_total_checklist"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemResultMaintenance_tvTotalChecklist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvTotalChecklist"/>
+
+    <TextView
+        android:id="@+id/textView9"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/_4dp"
+        android:text="@string/item_result_total_checklist_in_month"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toStartOf="@+id/itemResultMaintenance_tvTotalInMonth"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/itemResultMaintenance_tvTotalInMonth"/>
+
+    <TextView
+        android:id="@+id/itemResultMaintenance_tvContract"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_2dp"
         android:layout_marginEnd="@dimen/_8dp"
         android:textColor="@color/redMain"
-        android:textSize="@dimen/_17dp"
+        android:textSize="@dimen/_18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/itemResultDeployment_tvCreateDate"
+        android:id="@+id/itemResultMaintenance_tvCreateDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_2dp"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemResultDeployment_tvContract"
-        app:layout_constraintStart_toStartOf="@+id/itemResultDeployment_tvContract"
-        app:layout_constraintTop_toBottomOf="@+id/itemResultDeployment_tvContract"/>
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintStart_toStartOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvContract"/>
 
     <TextView
-        android:id="@+id/itemResultDeployment_tvAssignDate"
+        android:id="@+id/itemResultMaintenance_tvRemainHour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_2dp"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemResultDeployment_tvCreateDate"
-        app:layout_constraintStart_toStartOf="@+id/itemResultDeployment_tvCreateDate"
-        app:layout_constraintTop_toBottomOf="@+id/itemResultDeployment_tvCreateDate"/>
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvCreateDate"
+        app:layout_constraintStart_toStartOf="@+id/itemResultMaintenance_tvCreateDate"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvCreateDate"/>
 
     <TextView
-        android:id="@+id/itemResultDeployment_tvServiceType"
+        android:id="@+id/itemResultMaintenance_tvCustomer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_2dp"
         android:lineSpacingExtra="@dimen/_4dp"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemResultDeployment_tvAssignDate"
-        app:layout_constraintStart_toStartOf="@+id/itemResultDeployment_tvAssignDate"
-        app:layout_constraintTop_toBottomOf="@+id/itemResultDeployment_tvAssignDate"/>
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvRemainHour"
+        app:layout_constraintStart_toStartOf="@+id/itemResultMaintenance_tvRemainHour"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvRemainHour"/>
 
     <TextView
-        android:id="@+id/itemResultDeployment_tvPriority"
+        android:id="@+id/itemResultMaintenance_tvAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_2dp"
         android:textColor="@color/blueMain"
-        android:textSize="@dimen/_17dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemResultDeployment_tvServiceType"
-        app:layout_constraintStart_toStartOf="@+id/itemResultDeployment_tvServiceType"
-        app:layout_constraintTop_toBottomOf="@+id/itemResultDeployment_tvServiceType"/>
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvCustomer"
+        app:layout_constraintStart_toStartOf="@+id/itemResultMaintenance_tvCustomer"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvCustomer"/>
+
+    <TextView
+        android:id="@+id/itemResultMaintenance_tvAssignDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintStart_toStartOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvAddress"/>
+
+    <TextView
+        android:id="@+id/itemResultMaintenance_tvPriority"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintStart_toStartOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvAssignDate"/>
+
+    <TextView
+        android:id="@+id/itemResultMaintenance_tvTotalChecklist"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2dp"
+        android:textColor="@color/light_blue_300"
+        android:textSize="@dimen/_18dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintStart_toStartOf="@+id/itemResultMaintenance_tvTotalInMonth"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvPriority"/>
+
+    <TextView
+        android:id="@+id/itemResultMaintenance_tvTotalInMonth"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_2dp"
+        android:textColor="@color/light_blue_300"
+        android:textSize="@dimen/_18dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemResultMaintenance_tvContract"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/itemResultMaintenance_tvTotalChecklist"/>
 
     <View
         android:id="@+id/view"
@@ -140,6 +242,7 @@
         android:layout_marginTop="@dimen/_8dp"
         android:background="@color/silver"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemResultDeployment_tvPriority"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView9"/>
 </android.support.constraint.ConstraintLayout>

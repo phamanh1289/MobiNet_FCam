@@ -16,6 +16,7 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.detail.DetailContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.list_result.adapter.ListDeploymentAdapter
+import vn.com.fpt.mobinet_fcam.ui.contract.list_result.adapter.ListMaintenanceAdapter
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
@@ -32,7 +33,8 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
     lateinit var presenter: ListResultPresenter
 
     private var listDataContract = ArrayList<InfoContractModel>()
-    private lateinit var mAdapterDeployment: ListDeploymentAdapter
+    private var mAdapterDeployment: ListDeploymentAdapter? = null
+    private var mAdapterMaintenance: ListMaintenanceAdapter? = null
     private var paramsJson = ""
     private var typeInfo = 0
     private var typeContract = ""
@@ -89,17 +91,24 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
                 mAdapterDeployment = ListDeploymentAdapter {
                     addFragment(DetailContractFragment.newInstance(listDataContract[it].objid, listDataContract[it].contract), true, true)
                 }
-                mAdapterDeployment.submitList(listDataContract)
-                mAdapterDeployment.notifyDataSetChanged()
-                fragListResult_rvMain.apply {
-                    val layout = LinearLayoutManager(context)
-                    layoutManager = layout
-                    setHasFixedSize(true)
-                    adapter = mAdapterDeployment
+                mAdapterDeployment?.apply {
+                    submitList(listDataContract)
+                    notifyDataSetChanged()
                 }
             }
             else -> {
+                mAdapterMaintenance = ListMaintenanceAdapter { }
+                mAdapterMaintenance?.apply {
+                    submitList(listDataContract)
+                    notifyDataSetChanged()
+                }
             }
+        }
+        fragListResult_rvMain.apply {
+            val layout = LinearLayoutManager(context)
+            layoutManager = layout
+            setHasFixedSize(true)
+            adapter = mAdapterDeployment ?: mAdapterMaintenance
         }
         hideLoading()
     }

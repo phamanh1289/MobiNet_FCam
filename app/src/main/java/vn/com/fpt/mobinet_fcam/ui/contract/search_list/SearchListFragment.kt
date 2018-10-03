@@ -68,17 +68,16 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
         fragSearchList_tvFromDate.setOnClickListener { AppUtils.showPickTime(context, fragSearchList_tvFromDate, Constants.SET_CURRENT_IS_MAX_DATE) }
         fragSearchList_tvToDate.setOnClickListener { AppUtils.showPickTime(context, fragSearchList_tvToDate, Constants.SET_CURRENT_IS_MAX_DATE) }
         fragSearchList_tvView.setOnClickListener { initParams() }
-        fragSearchList_tvCancel.setOnClickListener { activity?.onBackPressed() }
     }
 
     private fun initParams() {
-        if (fragSearchList_tvFromDate.text.toString().isValidateDate(fragSearchList_tvToDate.text.toString()))
+        if (fragSearchList_tvFromDate.isValidateDate(fragSearchList_tvToDate.text.toString()))
             presenter.let {
                 showLoading()
                 val map = HashMap<String, Any>()
                 map[Constants.PARAM_USER_NAME_UPPER] = getDefaultUser()?.mobiaccount.toString()
-                map[Constants.PARAM_FROM_DATE_UPPER] = fragSearchList_tvFromDate.text.toString().convertToDateFormat("")
-                map[Constants.PARAM_TO_DATE] = fragSearchList_tvToDate.text.toString().convertToDateFormat("")
+                map[Constants.PARAM_FROM_DATE_UPPER] = fragSearchList_tvFromDate.convertToDateFormat("")
+                map[Constants.PARAM_TO_DATE] = fragSearchList_tvToDate.convertToDateFormat("")
                 map[Constants.PARAM_TYPE_UPPER] = listServiceType[positionServiceType].id
                 if (typeContract == Constants.CONTRACT_MAINTENANCE) {
                     map[Constants.PARAM_CHECK_LIST_TYPE_UPPER] = listCheckType[positionCheckType].id

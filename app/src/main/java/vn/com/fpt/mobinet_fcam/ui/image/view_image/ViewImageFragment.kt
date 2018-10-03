@@ -58,7 +58,6 @@ class ViewImageFragment : BaseFragment(), ViewImageContract.ViewImageView {
         arguments?.let {
             urlImage = it.getString(Constants.TYPE_IMAGE) ?: ""
         }
-        fragViewImageDetail_imgView.displayType = ImageViewTouchBase.DisplayType.FIT_IF_BIGGER
         val url = getString(R.string.url_get_image, urlImage)
         val converted = Base64.encodeToString(url.toByteArray(),
                 Base64.NO_WRAP)
@@ -66,21 +65,13 @@ class ViewImageFragment : BaseFragment(), ViewImageContract.ViewImageView {
         presenter.getImage(converted)
     }
 
-    override fun loadImage(response: String) {
-        val decode = Base64.decode(response.trim(), Base64.DEFAULT)
-        val decodedByte = BitmapFactory.decodeByteArray(decode, 0, decode.size)
-        fragViewImageDetail_imgView.setImageBitmap(decodedByte, null, MIN_ZOOM, MAX_ZOOM)
-//        context?.let {
-//            Glide.with(it)
-//                    .asBitmap()
-//                    .load(Base64.decode(response, Base64.DEFAULT))
-//                    .into(object : SimpleTarget<Bitmap>() {
-//                        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-//                            fragViewImageDetail_imgView.setImageBitmap(resource, null, MIN_ZOOM, MAX_ZOOM)
-//                            hideLoading()
-//                        }
-//                    })
-//        }
+    override fun loadImage(response: String?) {
+        response?.let {
+            val decode = Base64.decode(it.trim(), Base64.DEFAULT)
+            val decodedByte = BitmapFactory.decodeByteArray(decode, 0, decode.size)
+            fragViewImageDetail_imgView.displayType = ImageViewTouchBase.DisplayType.FIT_IF_BIGGER
+            fragViewImageDetail_imgView.setImageBitmap(decodedByte, null, MIN_ZOOM, MAX_ZOOM)
+        }
         hideLoading()
     }
 

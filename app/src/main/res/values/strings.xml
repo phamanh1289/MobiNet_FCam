@@ -11,7 +11,7 @@
     <string name="login_empty_user_name">User name is not null.</string>
     <string name="login_empty_password">Password is not null.</string>
     <string name="login_password">Password</string>
-    <string name="process_data">Processing, please wait…</string>
+    <string name="process_data">Please wait…</string>
     <string name="mess_assigned_user">This device is assigned to user \"%1$s\"</string>
     <string name="login">Login</string>
     <string name="login_show_password">Show password</string>
@@ -51,6 +51,10 @@
     <string name="item_result_assign_date">Assign date</string>
     <string name="item_result_service_type">Service type</string>
     <string name="item_result_priority">Priority</string>
+    <string name="item_result_remain_hour">Remain hour</string>
+    <string name="item_result_customer">Customer</string>
+    <string name="item_result_total_checklist">Total checklist</string>
+    <string name="item_result_total_checklist_in_month">Total checklist in month</string>
     <string name="key_detail_contract_contact">contact</string>
     <string name="key_detail_contract_fullname">fullname</string>
     <string name="key_detail_contract_accessname">accessname</string>
@@ -77,5 +81,6 @@
     <string name="value_detail_contract_createby">Create by</string>
     <string name="value_detail_contract_image">Survey</string>
     <string name="value_detail_contract_cusnote">Cus Note</string>
+    <string name="not_found_contract">Not found any contract!</string>
     <string name="url_get_image">http://storeglobal.kh.net/Images%1$s.gif</string>
 </resources>

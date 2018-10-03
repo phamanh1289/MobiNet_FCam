@@ -1,6 +1,7 @@
 package vn.com.fpt.mobinet_fcam.utils
 
 import android.annotation.SuppressLint
+import android.widget.TextView
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,8 +21,8 @@ infix fun <T> Boolean.then(param: T): T? = if (this) param else null
 
 //String
 @SuppressLint("SimpleDateFormat")
-infix fun String?.convertToDateFormat(value: String): String = if (this == null || this.isEmpty()) value else {
-    SimpleDateFormat(Constants.TIME_DATE_FORMAT_FROM_SERVER).format(SimpleDateFormat(Constants.TIME_DATE_FORMAT).parse(this))
+infix fun TextView?.convertToDateFormat(value: String): String = if (this == null || this.text.toString().isEmpty()) value else {
+    SimpleDateFormat(Constants.TIME_DATE_FORMAT_FROM_SERVER).format(SimpleDateFormat(Constants.TIME_DATE_FORMAT).parse(this.text.toString()))
 }
 
 @SuppressLint("SimpleDateFormat")
@@ -33,8 +34,22 @@ infix fun String?.convertToFullFormat(value: String): String = if (this == null 
 }
 
 @SuppressLint("SimpleDateFormat")
-infix fun String?.isValidateDate(value: String): Boolean {
-    val fromDate = SimpleDateFormat(Constants.TIME_DATE_FORMAT).parse(this)
+infix fun String?.addTimeToDate(value: String): String = if (this == null || this.isEmpty()) value else {
+    if (this.contains("T")) {
+        val result = this.replace("T", " ")
+        val date = SimpleDateFormat(if (this.contains(".")) Constants.TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_1 else Constants.TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_2).parse(result)
+        val preFix = SimpleDateFormat(Constants.TIME_DATE_FULL_FORMAT_SHORT).format(date).split(" ")
+        val calendar = Calendar.getInstance().apply {
+            time = date
+            add(Calendar.HOUR_OF_DAY, Constants.DELAY_HOUR)
+        }
+        "${SimpleDateFormat(Constants.TIME_DATE_FULL_FORMAT_SHORT).format(calendar.time)}-${preFix[Constants.SECOND_ITEM]}"
+    } else this
+}
+
+@SuppressLint("SimpleDateFormat")
+infix fun TextView?.isValidateDate(value: String): Boolean {
+    val fromDate = SimpleDateFormat(Constants.TIME_DATE_FORMAT).parse(this?.text.toString())
     val toDate = SimpleDateFormat(Constants.TIME_DATE_FORMAT).parse(value)
     return fromDate.before(toDate)
 }
@@ -46,3 +61,5 @@ infix fun String?.getCurrentDate(value: Int): String {
         c.add(Calendar.DATE, value)
     return SimpleDateFormat(Constants.TIME_DATE_FORMAT).format(c.time)
 }
+
+infix fun TextView?.checkNoValue(value: String?): Boolean = this?.text.toString().toInt() == Constants.NO_VALUE

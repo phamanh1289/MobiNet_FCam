@@ -11,7 +11,7 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseView
  */
 interface ViewImageContract {
     interface ViewImageView : BaseView {
-        fun loadImage(response: String)
+        fun loadImage(response: String?)
         fun handleError(response: String)
     }
 

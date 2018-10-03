@@ -27,8 +27,10 @@ object Constants {
     //End
     //=================
     const val REQUEST_UPDATE_APP = -2
+    const val DELAY_HOUR = -2
     const val LOGIN_FAILD = -1
     const val FIRST_ITEM = 0
+    const val SECOND_ITEM = 1
     const val REQUEST_SUCCESS = 1
     const val CURRENT_DATE = 0
     const val NO_VALUE = 0
@@ -60,6 +62,7 @@ object Constants {
     const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_1 = "yyyy-MM-dd HH:mm:ss.S"
     const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_2 = "yyyy-MM-dd HH:mm:ss"
     const val TIME_DATE_FULL_FORMAT = "dd-MM-yyyy HH:mm:ss"
+    const val TIME_DATE_FULL_FORMAT_SHORT = "dd-MM-yyyy HH:mm"
     const val CONTRACT_DEPLOYMENT = "deployment"
     const val CONTRACT_MAINTENANCE = "maintenance"
     const val TYPE_CONTRACT = "typeContract"
