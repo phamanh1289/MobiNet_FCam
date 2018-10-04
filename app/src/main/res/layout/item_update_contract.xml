@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_8dp"
+    android:layout_marginBottom="@dimen/_8dp"
+    android:orientation="horizontal"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        android:id="@+id/itemUpdateContract_tvTitle"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"/>
+
+    <EditText
+        android:id="@+id/itemUpdateContract_tvValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@drawable/shape_border_deep_orange_text_view"
+        android:gravity="center_horizontal"
+        android:hint="@string/no_value"
+        android:inputType="number"
+        android:padding="@dimen/_8dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        tools:ignore="Autofill"/>
+
+</LinearLayout>

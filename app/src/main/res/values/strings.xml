@@ -6,12 +6,15 @@
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
     <string name="mess_error_data">Error</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
     <string name="mess_success_data">Successfully</string>
     <string name="login_user_name">User name</string>
     <string name="login_empty_user_name">User name is not null.</string>
     <string name="login_empty_password">Password is not null.</string>
     <string name="login_password">Password</string>
     <string name="update">Update</string>
+    <string name="empty">…</string>
     <string name="process_data">Please wait…</string>
     <string name="mess_assigned_user">This device is assigned to user \"%1$s\"</string>
     <string name="login">Login</string>
@@ -156,4 +159,10 @@
     <string name="update_reason_delay">Reason delay</string>
     <string name="update_note_reason">Note reason delay</string>
     <string name="update_result">Result</string>
+    <string name="params_update_contract_boxlink">BoxLink</string>
+    <string name="params_update_contract_aluminumtag">AluminumTag</string>
+    <string name="params_update_contract_sticking">StickingPlaster</string>
+    <string name="params_update_contract_fast_connect">FastConnector</string>
+    <string name="params_update_contract_fast_connect_apc">FastConnectorAPC</string>
+    <string name="params_update_contract_optical_bedbug">OpticalBedbugs</string>
 </resources>

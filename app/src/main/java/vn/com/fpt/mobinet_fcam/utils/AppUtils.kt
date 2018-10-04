@@ -19,7 +19,7 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.dialog.ConfirmDialog
 import vn.com.fpt.mobinet_fcam.others.dialog.singleChoice.SingChoiceDialog
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
-import java.text.SimpleDateFormat
+import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
 import java.util.*
 
 /**
@@ -30,9 +30,6 @@ import java.util.*
  * *******************************************
  */
 object AppUtils {
-
-    @SuppressLint("SimpleDateFormat")
-    val formatter = SimpleDateFormat(Constants.TIME_DATE_FORMAT)
 
     fun getNetwork(context: Context?): Boolean {
         val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
@@ -108,6 +105,7 @@ object AppUtils {
             when (fragment) {
                 is SearchListFragment ->
                     fragment.setDefaultValueIndex(view.id, position)
+                is UpdateContractFragment -> fragment.setIndexSelected(view, position)
             }
             view.text = listData[position].account
             dialog.submitData(listData)

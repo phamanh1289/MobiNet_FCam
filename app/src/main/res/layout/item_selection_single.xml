@@ -6,18 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:gravity="center_horizontal|center_vertical"
-    android:paddingBottom="@dimen/_8dp"
-    android:paddingTop="@dimen/_8dp">
+    android:gravity="center_horizontal|center_vertical">
 
     <TextView
         android:id="@+id/itemSelection_tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16dp"
+        android:padding="@dimen/_12dp"
         android:layout_weight="1"
         android:textColor="@drawable/selector_red_main_text"
-        android:textSize="@dimen/_16dp"/>
+        android:textSize="@dimen/_15dp"/>
 
     <ImageView
         android:id="@+id/itemSelection_rbCheck"

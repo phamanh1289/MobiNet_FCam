@@ -46,6 +46,12 @@ object Constants {
     const val CONTRACT_VIP = 2
     const val CONTRACT_COMING = 3
     const val CONTRACT_LATE = 4
+    const val STEP_UPDATE_CABLE = 1
+    const val STEP_UPDATE_CABLE_INFO = 2
+    const val STEP_UPDATE_MODEM_STB = 3
+    const val STEP_UPDATE_REASON_RESULT = 4
+    const val NEXT_STEP_UPDATE = 1
+    const val BACK_STEP_UPDATE = -1
     const val SET_CURRENT_IS_MAX_DATE = true
     const val SET_CURRENT_IS_MIN_DATE = false
     const val SUCCESSFUL = "Successful"

@@ -1,6 +1,9 @@
 package vn.com.fpt.mobinet_fcam.utils
 
 import android.annotation.SuppressLint
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.TextView
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import java.text.SimpleDateFormat
@@ -15,9 +18,9 @@ import java.util.*
  */
 
 //Boolean
-inline fun <T> Boolean.then(param: () -> T): T? = if (this) param() else null
-
-infix fun <T> Boolean.then(param: T): T? = if (this) param else null
+//inline fun <T> Boolean.then(param: () -> T): T? = if (this) param() else null
+//
+//infix fun <T> Boolean.then(param: T): T? = if (this) param else null
 
 //String
 @SuppressLint("SimpleDateFormat")
@@ -34,7 +37,7 @@ infix fun String?.convertToFullFormat(value: String): String = if (this == null 
 }
 
 @SuppressLint("SimpleDateFormat")
-infix fun String?.addTimeToDate(value: String): String = if (this == null || this.isEmpty()) value else {
+infix fun String?.addTimeToDate(value: String): String = if (this == null || this.isNullOrEmpty()) value else {
     if (this.contains("T")) {
         val result = this.replace("T", " ")
         val date = SimpleDateFormat(if (this.contains(".")) Constants.TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_1 else Constants.TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_2).parse(result)
@@ -63,3 +66,13 @@ infix fun String?.getCurrentDate(value: Int): String {
 }
 
 infix fun TextView?.checkNoValue(value: String?): Boolean = this?.text.toString().toInt() == Constants.NO_VALUE
+
+infix fun TextView?.onChange(view: View) {
+    this?.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            view.visibility = if (s.toString().isNotBlank()) View.VISIBLE else View.GONE
+        }
+    })
+}

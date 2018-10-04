@@ -53,32 +53,56 @@ object DataCore {
     fun getListDetailContract(context: Context?): ArrayList<DetailContractKeyValueModel> {
         val list = ArrayList<DetailContractKeyValueModel>()
         context?.let {
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.item_result_contract),
-                    title = it.getString(R.string.item_result_contract)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_fullname),
-                    title = it.getString(R.string.value_detail_contract_fullname)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_address),
-                    title = it.getString(R.string.value_detail_contract_address)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_accessname),
-                    title = it.getString(R.string.value_detail_contract_accessname)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_assigndate),
-                    title = it.getString(R.string.value_detail_contract_assigndate)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_contact),
-                    title = it.getString(R.string.value_detail_contract_contract)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_macaddress),
-                    title = it.getString(R.string.value_detail_contract_macaddress)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_servicetype),
-                    title = it.getString(R.string.value_detail_contract_servicetype)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_area),
-                    title = it.getString(R.string.value_detail_contract_area)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_createat),
-                    title = it.getString(R.string.value_detail_contract_createat)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_createby),
-                    title = it.getString(R.string.value_detail_contract_createby)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_image),
-                    title = it.getString(R.string.value_detail_contract_image)))
-            list.add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_cusnote),
-                    title = it.getString(R.string.value_detail_contract_cusnote)))
+            list.run {
+                add(DetailContractKeyValueModel(key = it.getString(R.string.item_result_contract),
+                        title = it.getString(R.string.item_result_contract)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_fullname),
+                        title = it.getString(R.string.value_detail_contract_fullname)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_address),
+                        title = it.getString(R.string.value_detail_contract_address)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_accessname),
+                        title = it.getString(R.string.value_detail_contract_accessname)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_assigndate),
+                        title = it.getString(R.string.value_detail_contract_assigndate)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_contact),
+                        title = it.getString(R.string.value_detail_contract_contract)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_macaddress),
+                        title = it.getString(R.string.value_detail_contract_macaddress)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_servicetype),
+                        title = it.getString(R.string.value_detail_contract_servicetype)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_area),
+                        title = it.getString(R.string.value_detail_contract_area)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_createat),
+                        title = it.getString(R.string.value_detail_contract_createat)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_createby),
+                        title = it.getString(R.string.value_detail_contract_createby)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_image),
+                        title = it.getString(R.string.value_detail_contract_image)))
+                add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_cusnote),
+                        title = it.getString(R.string.value_detail_contract_cusnote)))
+            }
+        }
+        return list
+    }
+
+    fun getListCableInfo(context: Context?): ArrayList<DetailContractKeyValueModel> {
+        val list = ArrayList<DetailContractKeyValueModel>()
+        context?.let {
+            list.run {
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_rj11), key = it.getString(R.string.params_update_contract_boxlink)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_wire), key = it.getString(R.string.update_wire)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_mang_xoong), key = it.getString(R.string.params_update_contract_aluminumtag)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_button), key = it.getString(R.string.update_button)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_jumper), key = it.getString(R.string.update_jumper).trim()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_onu), key = it.getString(R.string.update_onu)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_box_ftth), key = it.getString(R.string.update_box_ftth).trim()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tie_wire), key = it.getString(R.string.params_update_contract_sticking)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_sc_sc), key = it.getString(R.string.update_sc_sc)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_sc), key = it.getString(R.string.params_update_contract_fast_connect)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_apc), key = it.getString(R.string.params_update_contract_fast_connect_apc)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_optical_fiber), key = it.getString(R.string.params_update_contract_optical_bedbug)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tube), key = it.getString(R.string.update_tube)))
+            }
         }
         return list
     }
@@ -185,7 +209,7 @@ object DataCore {
                 add(SingleChoiceModel(id = 4, account = it.getString(R.string.reason_delay_hung_up)))
                 add(SingleChoiceModel(id = 5, account = it.getString(R.string.reason_delay_customer_transfer)))
                 add(SingleChoiceModel(id = 6, account = it.getString(R.string.reason_delay_must_install)))
-                add (SingleChoiceModel(id =7, account = it.getString(R.string.reason_delay_survey_error)))
+                add(SingleChoiceModel(id = 7, account = it.getString(R.string.reason_delay_survey_error)))
                 add(SingleChoiceModel(id = 8, account = it.getString(R.string.reason_delay_over_ring)))
                 add(SingleChoiceModel(id = 9, account = it.getString(R.string.reason_delay_group_point)))
                 add(SingleChoiceModel(id = 10, account = it.getString(R.string.reason_delay_lack_of_equipment)))
@@ -202,6 +226,14 @@ object DataCore {
                 add(SingleChoiceModel(id = 0, account = it.getString(R.string.result_processing)))
                 add(SingleChoiceModel(id = 1, account = it.getString(R.string.result_complete)))
             }
+        }
+        return list
+    }
+
+    fun getListHour(): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        for (i in 0 until 24) {
+            list.add(SingleChoiceModel(id = i + 1, account = "${i + 1}"))
         }
         return list
     }
