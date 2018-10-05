@@ -8,6 +8,7 @@ import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
 import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.ui.base.BaseActivity
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.FunctionsFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.StartActivityUtils
@@ -80,10 +81,15 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
                 }
             })
             else -> {
-                super.onBackPressed()
-                mCountBack--
-                handleTitleMain()
-                handleShowMenu()
+                val fragment = getCurrentFragment()
+                if (fragment is UpdateContractFragment && !fragment.exitUpdate)
+                    fragment.confirmExitUpdate()
+                else {
+                    super.onBackPressed()
+                    mCountBack--
+                    handleTitleMain()
+                    handleShowMenu()
+                }
             }
         }
     }

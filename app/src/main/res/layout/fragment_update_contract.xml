@@ -8,36 +8,50 @@
     android:orientation="vertical"
     android:padding="@dimen/_8dp">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <TextView
+        android:id="@+id/fragUpdateContract_tvStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_circle_red_main"
+        android:paddingStart="@dimen/_20dp"
+        android:paddingTop="@dimen/_10dp"
+        android:paddingEnd="@dimen/_20dp"
+        android:paddingBottom="@dimen/_10dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15dp"/>
 
-        <include
-            android:id="@+id/fragUpdateContract_llCable"
-            layout="@layout/item_cable"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <include
-            android:id="@+id/fragUpdateContract_llCableInfo"
-            layout="@layout/item_cable_info"
-            android:visibility="gone"/>
+            <include
+                android:id="@+id/fragUpdateContract_llCable"
+                layout="@layout/item_cable"
+                android:visibility="gone"/>
 
-        <include
-            android:id="@+id/fragUpdateContract_llModemStb"
-            layout="@layout/item_modem_stb"
-            android:visibility="gone"/>
+            <include
+                android:id="@+id/fragUpdateContract_llCableInfo"
+                layout="@layout/item_cable_info"
+                android:visibility="gone"/>
 
-        <include
-            android:id="@+id/fragUpdateContract_llReasonResult"
-            layout="@layout/item_reason_result"
-            android:visibility="gone"/>
-    </FrameLayout>
+            <include
+                android:id="@+id/fragUpdateContract_llModemStb"
+                layout="@layout/item_modem_stb"
+                android:visibility="gone"/>
+
+            <include
+                android:id="@+id/fragUpdateContract_llReasonResult"
+                layout="@layout/item_reason_result"
+                android:visibility="gone"/>
+        </FrameLayout>
 
     <View
         android:layout_width="@dimen/_150dp"
         android:layout_height="@dimen/_5dp"
-        android:layout_marginTop="@dimen/_4dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_4dp"
         android:background="@color/silver"/>
 
     <LinearLayout

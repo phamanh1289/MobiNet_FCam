@@ -14,7 +14,9 @@
     <string name="login_empty_password">Password is not null.</string>
     <string name="login_password">Password</string>
     <string name="update">Update</string>
+    <string name="mess_update_contract">Do you want to update this contract?</string>
     <string name="empty">…</string>
+    <string name="hint_date">dd-MM-yyyy</string>
     <string name="process_data">Please wait…</string>
     <string name="mess_assigned_user">This device is assigned to user \"%1$s\"</string>
     <string name="login">Login</string>
@@ -88,7 +90,9 @@
     <string name="not_found_contract">Not found any contract!</string>
     <string name="url_get_image">http://storeglobal.kh.net/Images%1$s.gif</string>
     <string name="update_contract">Update Contract</string>
+    <string name="mess_exit_update_contract">Do you want to close update contract?</string>
     <string name="no_value">0</string>
+    <string name="step_update">%1$d/%2$d</string>
     <string name="type_cable_05_mm">0.5 mm</string>
     <string name="type_cable_1FO">1FO</string>
     <string name="type_cable_2FO">2FO</string>

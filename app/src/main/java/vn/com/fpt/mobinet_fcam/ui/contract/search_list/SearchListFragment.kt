@@ -76,8 +76,8 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
                 showLoading()
                 val map = HashMap<String, Any>()
                 map[Constants.PARAM_USER_NAME_UPPER] = getDefaultUser()?.mobiaccount.toString()
-                map[Constants.PARAM_FROM_DATE_UPPER] = fragSearchList_tvFromDate.convertToDateFormat("")
-                map[Constants.PARAM_TO_DATE] = fragSearchList_tvToDate.convertToDateFormat("")
+                map[Constants.PARAM_FROM_DATE_UPPER] = fragSearchList_tvFromDate.text.toString().convertToDateFormat("")
+                map[Constants.PARAM_TO_DATE] = fragSearchList_tvToDate.text.toString().convertToDateFormat("")
                 map[Constants.PARAM_TYPE_UPPER] = listServiceType[positionServiceType].id
                 if (typeContract == Constants.CONTRACT_MAINTENANCE) {
                     map[Constants.PARAM_CHECK_LIST_TYPE_UPPER] = listCheckType[positionCheckType].id

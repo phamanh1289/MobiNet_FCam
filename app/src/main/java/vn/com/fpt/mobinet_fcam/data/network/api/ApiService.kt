@@ -47,4 +47,8 @@ interface ApiService {
     @GET("GetImage/{id}")
     fun getImage(@Path("id") id: String): Observable<ResponseBody>
 
+    @GET("GetDeploymentObject/{userName}/{passWord}/{DeployID}/{ObjID}")
+    fun getDetailContract(@Path("userName") userName: String, @Path("passWord") passWord: String, @Path("DeployID") deplId: Int, @Path("ObjID") objId: Int): Observable<ResponseBody>
+
+
 }

@@ -7,4 +7,4 @@ package vn.com.fpt.mobinet_fcam.data.network.model
  * * All rights reserved                    **
  * *******************************************
  */
-data class DetailContractKeyValueModel(var key: String = "", var value: String = "", var title: String = "") : BaseModel()
+data class DetailContractKeyValueModel(var key: String = "", var value: String = "", var title: String = "", var property: String = "") : BaseModel()

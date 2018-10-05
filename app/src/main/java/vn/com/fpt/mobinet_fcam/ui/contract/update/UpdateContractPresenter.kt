@@ -1,5 +1,7 @@
 package vn.com.fpt.mobinet_fcam.ui.contract.update
 
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import vn.com.fpt.mobinet_fcam.data.network.api.ApiService
 import vn.com.fpt.mobinet_fcam.ui.base.BasePresenter
 import javax.inject.Inject
@@ -18,9 +20,20 @@ class UpdateContractPresenter @Inject constructor(private val apiService: ApiSer
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe({ it ->
-//                    view?.loadLogin(it)
+//                    view?.loadUpdateContract(it)
 //                }, {
 //                    view?.handleError(it.message.toString())
 //                }))
+    }
+
+    override fun getDetailUpdate(userName: String, passWord: String, deplId: Int, objId: Int) {
+        addSubscribe(apiService.getDetailContract(userName, passWord, deplId, objId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ it ->
+                    view?.loadDetailUpdate(it)
+                }, {
+                    view?.handleError(it.message.toString())
+                }))
     }
 }

@@ -103,8 +103,7 @@ object AppUtils {
             listData[position].status = true
             val fragment = fragmentManager?.findFragmentById(android.R.id.tabcontent)
             when (fragment) {
-                is SearchListFragment ->
-                    fragment.setDefaultValueIndex(view.id, position)
+                is SearchListFragment -> fragment.setDefaultValueIndex(view.id, position)
                 is UpdateContractFragment -> fragment.setIndexSelected(view, position)
             }
             view.text = listData[position].account

@@ -24,8 +24,9 @@ import java.util.*
 
 //String
 @SuppressLint("SimpleDateFormat")
-infix fun TextView?.convertToDateFormat(value: String): String = if (this == null || this.text.toString().isEmpty()) value else {
-    SimpleDateFormat(Constants.TIME_DATE_FORMAT_FROM_SERVER).format(SimpleDateFormat(Constants.TIME_DATE_FORMAT).parse(this.text.toString()))
+infix fun String?.convertToDateFormat(value: String): String = if (this == null || this.isEmpty()) value else {
+    val result = if (this.contains("/")) this.replace("/", "-") else this
+    SimpleDateFormat(Constants.TIME_DATE_FORMAT_FROM_SERVER).format(SimpleDateFormat(Constants.TIME_DATE_FORMAT).parse(result))
 }
 
 @SuppressLint("SimpleDateFormat")

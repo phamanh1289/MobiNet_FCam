@@ -1,24 +1,27 @@
 package vn.com.fpt.mobinet_fcam.ui.contract.update
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_update_contract.*
 import kotlinx.android.synthetic.main.item_cable.*
 import kotlinx.android.synthetic.main.item_cable_info.*
 import kotlinx.android.synthetic.main.item_modem_stb.*
 import kotlinx.android.synthetic.main.item_reason_result.*
+import okhttp3.ResponseBody
 import vn.com.fpt.mobinet_fcam.R
-import vn.com.fpt.mobinet_fcam.data.network.model.*
+import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
+import vn.com.fpt.mobinet_fcam.data.network.model.DetailContractModel
+import vn.com.fpt.mobinet_fcam.data.network.model.ResponseModel
+import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
+import vn.com.fpt.mobinet_fcam.data.network.model.UpdateContractModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
-import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.update.adapter.UpdateContractAdapter
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
+import vn.com.fpt.mobinet_fcam.utils.convertToDateFormat
 import vn.com.fpt.mobinet_fcam.utils.onChange
 import javax.inject.Inject
 
@@ -33,35 +36,8 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
     @Inject
     lateinit var presenter: UpdateContractPresenter
 
-    private lateinit var infoContract: DetailContractModel
-    private var listInDoor = ArrayList<SingleChoiceModel>()
-    private var listOutDoor = ArrayList<SingleChoiceModel>()
-    private var listOtherCable = ArrayList<SingleChoiceModel>()
-    private var listRouter = ArrayList<SingleChoiceModel>()
-    private var listModem = ArrayList<SingleChoiceModel>()
-    private var listTypeModem = ArrayList<SingleChoiceModel>()
-    private var listStb = ArrayList<SingleChoiceModel>()
-    private var listTypeStb = ArrayList<SingleChoiceModel>()
-    private var listToHour = ArrayList<SingleChoiceModel>()
-    private var listFromHour = ArrayList<SingleChoiceModel>()
-    private var listReasonDelay = ArrayList<SingleChoiceModel>()
-    private var listResult = ArrayList<SingleChoiceModel>()
-    private var listContractKeyValue = ArrayList<DetailContractKeyValueModel>()
-    private var adapterCableInfo = UpdateContractAdapter()
-    private var indexModem = 0
-    private var indexTypeModem = 0
-    private var indexStb = 0
-    private var indexTypeStb = 0
-    private var indexInDoor = 0
-    private var indexOutDoor = 0
-    private var indexOtherCable = 0
-    private var indexRouter = 0
-    private var indexReasonDelay = 0
-    private var indexToHour = 0
-    private var indexResult = 0
-    private var indexFromHour = 0
-    private var serviceType = 0
-    private var stepUpdate = Constants.STEP_UPDATE_CABLE
+    private lateinit var dataCore: DataCoreUpdateContract
+    var exitUpdate = false
 
     companion object {
         fun newInstance(item: DetailContractModel, serviceType: Int): UpdateContractFragment {
@@ -88,24 +64,76 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
 
     private fun initView() {
         setTitle(TitleAndMenuModel(title = getString(R.string.update_contract)))
-
+        dataCore = DataCoreUpdateContract(context)
+        dataCore.getDefaultDataList()
         arguments?.let {
-            infoContract = it.getParcelable(Constants.MODEL)
-            serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
+            dataCore.infoContract = it.getParcelable(Constants.MODEL)
+            dataCore.serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
         }
+        handleStepUpdate(Constants.STEP_1_UPDATE_CABLE)
         getDefaultDataList()
         initSingleDialog()
         initOnClick()
-        initCableInfoView()
+        initParamGetDetailUpdate()
+    }
+
+    private fun getDefaultDataList() {
+        dataCore.setDefaultFirstItem(dataCore.listInDoor, fragUpdateContract_tvInDoor)
+        dataCore.setDefaultFirstItem(dataCore.listOutDoor, fragUpdateContract_tvOutDoor)
+        dataCore.setDefaultFirstItem(dataCore.listOtherCable, fragUpdateContract_tvOtherCable)
+        dataCore.setDefaultFirstItem(dataCore.listRouter, fragUpdateContract_tvRouter)
+        dataCore.setDefaultFirstItem(dataCore.listModem, fragUpdateContract_tvModem)
+        dataCore.setDefaultFirstItem(dataCore.listTypeModem, fragUpdateContract_tvTypeModem)
+        dataCore.setDefaultFirstItem(dataCore.listStb, fragUpdateContract_tvStb)
+        dataCore.setDefaultFirstItem(dataCore.listTypeStb, fragUpdateContract_tvTypeStb)
+        dataCore.setDefaultFirstItem(dataCore.listToHour, fragUpdateContract_tvToHour)
+        dataCore.setDefaultFirstItem(dataCore.listFromHour, fragUpdateContract_tvFromHour)
+        dataCore.setDefaultFirstItem(dataCore.listReasonDelay, fragUpdateContract_tvReasonDelay)
+        dataCore.setDefaultFirstItem(dataCore.listResult, fragUpdateContract_tvResult)
+    }
+
+    fun confirmExitUpdate() {
+        AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_exit_update_contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+            override fun onClickOk() {
+                exitUpdate = true
+                activity?.onBackPressed()
+            }
+
+            override fun onClickCancel() {
+                exitUpdate = false
+            }
+        })
+    }
+
+    private fun initParamGetDetailUpdate() {
+        showLoading()
+        getDefaultUser()?.let {
+            //            presenter.getDetailUpdate(it.mobiaccount, it.password, 1532322, 1534282)
+            presenter.getDetailUpdate(it.mobiaccount, it.password, dataCore.infoContract.deployid, dataCore.infoContract.objid)
+        }
     }
 
     private fun initOnClick() {
         fragUpdateContract_tvNext.setOnClickListener {
-            if (stepUpdate < Constants.STEP_UPDATE_REASON_RESULT)
+            if (dataCore.stepUpdate < Constants.STEP_4_UPDATE_REASON_RESULT)
                 handleStepUpdate(Constants.NEXT_STEP_UPDATE)
+            else AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_update_contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+                override fun onClickOk() {
+                    presenter.let { pre ->
+                        showLoading()
+                        val map = HashMap<String, Any>()
+                        addPramsToUpdate(map)
+                        pre.postUpdateContract(map)
+                    }
+                }
+
+                override fun onClickCancel() {
+
+                }
+            })
         }
         fragUpdateContract_tvBack.setOnClickListener {
-            if (stepUpdate > Constants.STEP_UPDATE_CABLE)
+            if (dataCore.stepUpdate > Constants.STEP_1_UPDATE_CABLE)
                 handleStepUpdate(Constants.BACK_STEP_UPDATE)
         }
         fragUpdateContract_tvTo.setOnClickListener { AppUtils.showPickTime(context, fragUpdateContract_tvTo, Constants.SET_CURRENT_IS_MIN_DATE) }
@@ -116,37 +144,30 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
         fragUpdateContract_tvFrom.onChange(fragUpdateContract_imgDeleteFrom)
     }
 
+    private fun addPramsToUpdate(map: HashMap<String, Any>) {
+        dataCore.addParams(map)
+    }
+
     private fun handleStepUpdate(step: Int) {
         hideAllView()
-        stepUpdate += step
-        when (stepUpdate) {
-            Constants.STEP_UPDATE_CABLE -> {
+        dataCore.stepUpdate += step
+        when (dataCore.stepUpdate) {
+            Constants.STEP_1_UPDATE_CABLE -> {
                 fragUpdateContract_llCable.visibility = View.VISIBLE
             }
-            Constants.STEP_UPDATE_CABLE_INFO -> {
+            Constants.STEP_2_UPDATE_CABLE_INFO -> {
                 fragUpdateContract_llCableInfo.visibility = View.VISIBLE
             }
-            Constants.STEP_UPDATE_MODEM_STB -> {
+            Constants.STEP_3_UPDATE_MODEM_STB -> {
                 fragUpdateContract_llModemStb.visibility = View.VISIBLE
             }
-            Constants.STEP_UPDATE_REASON_RESULT -> {
+            Constants.STEP_4_UPDATE_REASON_RESULT -> {
                 fragUpdateContract_llReasonResult.visibility = View.VISIBLE
             }
         }
-        fragUpdateContract_tvBack.visibility = if (stepUpdate == Constants.STEP_UPDATE_CABLE) View.GONE else View.VISIBLE
-        fragUpdateContract_tvNext.text = getString(if (stepUpdate == Constants.STEP_UPDATE_REASON_RESULT) R.string.update else R.string.next)
-    }
-
-    private fun initCableInfoView() {
-        listContractKeyValue = DataCore.getListCableInfo(context)
-        adapterCableInfo.submitList(listContractKeyValue)
-        fragUpdateContract_rvMain.apply {
-            val layout = LinearLayoutManager(context)
-            layoutManager = layout
-            setHasFixedSize(true)
-            adapter = adapterCableInfo
-        }
-        adapterCableInfo.notifyDataSetChanged()
+        fragUpdateContract_tvStep.text = getString(R.string.step_update, dataCore.stepUpdate, Constants.STEP_4_UPDATE_REASON_RESULT)
+        fragUpdateContract_tvBack.visibility = if (dataCore.stepUpdate == Constants.STEP_1_UPDATE_CABLE) View.GONE else View.VISIBLE
+        fragUpdateContract_tvNext.text = getString(if (dataCore.stepUpdate == Constants.STEP_4_UPDATE_REASON_RESULT) R.string.update else R.string.next)
     }
 
     private fun hideAllView() {
@@ -158,73 +179,167 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
 
     private fun initSingleDialog() {
         //thêm dữ liêu Cable
-        fragUpdateContract_tvInDoor.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_indoor), view = fragUpdateContract_tvInDoor, listData = listInDoor, itemSelected = indexInDoor) }
-        fragUpdateContract_tvOutDoor.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_outdoor), view = fragUpdateContract_tvOutDoor, listData = listOutDoor, itemSelected = indexOutDoor) }
-        fragUpdateContract_tvOtherCable.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.type_cable_other_cable), view = fragUpdateContract_tvOtherCable, listData = listOtherCable, itemSelected = indexOtherCable) }
-        fragUpdateContract_tvRouter.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_router_amount), view = fragUpdateContract_tvRouter, listData = listRouter, itemSelected = indexRouter) }
+        fragUpdateContract_tvInDoor.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_indoor),
+                    view = fragUpdateContract_tvInDoor, listData = dataCore.listInDoor,
+                    itemSelected = dataCore.indexInDoor)
+        }
+        fragUpdateContract_tvOutDoor.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_outdoor),
+                    view = fragUpdateContract_tvOutDoor, listData = dataCore.listOutDoor,
+                    itemSelected = dataCore.indexOutDoor)
+        }
+        fragUpdateContract_tvOtherCable.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.type_cable_other_cable),
+                    view = fragUpdateContract_tvOtherCable, listData = dataCore.listOtherCable,
+                    itemSelected = dataCore.indexOtherCable)
+        }
+        fragUpdateContract_tvRouter.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_router_amount),
+                    view = fragUpdateContract_tvRouter, listData = dataCore.listRouter,
+                    itemSelected = dataCore.indexRouter)
+        }
         //thêm dữ liệu Modem & Stb
-        fragUpdateContract_tvModem.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_modem), view = fragUpdateContract_tvModem, listData = listModem, itemSelected = indexModem) }
-        fragUpdateContract_tvTypeModem.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_type), view = fragUpdateContract_tvTypeModem, listData = listTypeModem, itemSelected = indexTypeModem) }
-        fragUpdateContract_tvStb.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_stb), view = fragUpdateContract_tvStb, listData = listStb, itemSelected = indexStb) }
-        fragUpdateContract_tvTypeStb.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_type), view = fragUpdateContract_tvTypeStb, listData = listTypeStb, itemSelected = indexTypeStb) }
+        fragUpdateContract_tvModem.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_modem),
+                    view = fragUpdateContract_tvModem, listData = dataCore.listModem,
+                    itemSelected = dataCore.indexModem)
+        }
+        fragUpdateContract_tvTypeModem.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_type),
+                    view = fragUpdateContract_tvTypeModem, listData = dataCore.listTypeModem,
+                    itemSelected = dataCore.indexTypeModem)
+        }
+        fragUpdateContract_tvStb.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_stb),
+                    view = fragUpdateContract_tvStb, listData = dataCore.listStb,
+                    itemSelected = dataCore.indexStb)
+        }
+        fragUpdateContract_tvTypeStb.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_type),
+                    view = fragUpdateContract_tvTypeStb, listData = dataCore.listTypeStb,
+                    itemSelected = dataCore.indexTypeStb)
+        }
         //thêm dữ liệu other
-        fragUpdateContract_tvToHour.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_to_hour), view = fragUpdateContract_tvToHour, listData = listToHour, itemSelected = indexToHour) }
-        fragUpdateContract_tvFromHour.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_from_hour), view = fragUpdateContract_tvFromHour, listData = listFromHour, itemSelected = indexFromHour) }
-        fragUpdateContract_tvReasonDelay.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_reason_delay), view = fragUpdateContract_tvReasonDelay, listData = listReasonDelay, itemSelected = indexReasonDelay) }
-        fragUpdateContract_tvResult.setOnClickListener { AppUtils.showDialogSingChoice(fragmentManager = fragmentManager, title = getString(R.string.update_result), view = fragUpdateContract_tvResult, listData = listResult, itemSelected = indexResult) }
-    }
-
-    fun setIndexSelected(view: View, position: Int) {
-        when (view.id) {
-            R.id.fragUpdateContract_tvInDoor -> indexInDoor = position
-            R.id.fragUpdateContract_tvOutDoor -> indexOutDoor = position
-            R.id.fragUpdateContract_tvOtherCable -> indexOtherCable = position
-            R.id.fragUpdateContract_tvRouter -> indexRouter = position
-            R.id.fragUpdateContract_tvModem -> indexModem = position
-            R.id.fragUpdateContract_tvTypeModem -> indexTypeModem = position
-            R.id.fragUpdateContract_tvStb -> indexStb = position
-            R.id.fragUpdateContract_tvTypeStb -> indexTypeStb = position
-            R.id.fragUpdateContract_tvToHour -> indexToHour = position
-            R.id.fragUpdateContract_tvFromHour -> indexFromHour = position
-            R.id.fragUpdateContract_tvReasonDelay -> indexReasonDelay = position
-            R.id.fragUpdateContract_tvResult -> indexResult = position
+        fragUpdateContract_tvToHour.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_to_hour),
+                    view = fragUpdateContract_tvToHour, listData = dataCore.listToHour,
+                    itemSelected = dataCore.indexToHour)
+        }
+        fragUpdateContract_tvFromHour.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_from_hour),
+                    view = fragUpdateContract_tvFromHour, listData = dataCore.listFromHour,
+                    itemSelected = dataCore.indexFromHour)
+        }
+        fragUpdateContract_tvReasonDelay.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_reason_delay),
+                    view = fragUpdateContract_tvReasonDelay, listData = dataCore.listReasonDelay,
+                    itemSelected = dataCore.indexReasonDelay)
+        }
+        fragUpdateContract_tvResult.setOnClickListener {
+            AppUtils.showDialogSingChoice(
+                    fragmentManager = fragmentManager, title = getString(R.string.update_result), view = fragUpdateContract_tvResult, listData = dataCore.listResult,
+                    itemSelected = dataCore.indexResult)
         }
     }
 
-    private fun getDefaultDataList() {
-        listInDoor = DataCore.getListCable(context)
-        setDefaultFirstItem(listInDoor, fragUpdateContract_tvInDoor)
-        listOutDoor = DataCore.getListCable(context)
-        setDefaultFirstItem(listOutDoor, fragUpdateContract_tvOutDoor)
-        listOtherCable = DataCore.getListOtherCable(context)
-        setDefaultFirstItem(listOtherCable, fragUpdateContract_tvOtherCable)
-        listRouter = DataCore.getListRouter(context)
-        setDefaultFirstItem(listRouter, fragUpdateContract_tvRouter)
-        listModem = DataCore.getListModem(context)
-        setDefaultFirstItem(listModem, fragUpdateContract_tvModem)
-        listTypeModem = DataCore.getListTypeModem(context)
-        setDefaultFirstItem(listTypeModem, fragUpdateContract_tvTypeModem)
-        listStb = DataCore.getListStb(context)
-        setDefaultFirstItem(listStb, fragUpdateContract_tvStb)
-        listTypeStb = DataCore.getListTypeStb(context)
-        setDefaultFirstItem(listTypeStb, fragUpdateContract_tvTypeStb)
-        listToHour = DataCore.getListHour()
-        setDefaultFirstItem(listToHour, fragUpdateContract_tvToHour)
-        listFromHour = DataCore.getListHour()
-        setDefaultFirstItem(listFromHour, fragUpdateContract_tvFromHour)
-        listReasonDelay = DataCore.getListReason(context)
-        setDefaultFirstItem(listReasonDelay, fragUpdateContract_tvReasonDelay)
-        listResult = DataCore.getListResult(context)
-        setDefaultFirstItem(listResult, fragUpdateContract_tvResult)
+    fun setIndexSelected(view: View, position: Int) {
+        dataCore.setIndexSelected(view, position)
     }
 
-    private fun setDefaultFirstItem(list: ArrayList<SingleChoiceModel>, textView: TextView) {
-        list[Constants.FIRST_ITEM].status = true
-        textView.text = list[Constants.FIRST_ITEM].account
+    private fun setDataToDialog() {
+        dataCore.updateContractModel.let {
+            dataCore.getObjectSingleCable(it.indtype, dataCore.listInDoor, fragUpdateContract_tvInDoor)
+            dataCore.getObjectSingleCable(it.outdtype, dataCore.listOutDoor, fragUpdateContract_tvOutDoor)
+            dataCore.getObjectSingleCable(it.cabletype, dataCore.listOtherCable, fragUpdateContract_tvOtherCable)
+            dataCore.getObjectSingleCable(it.router, dataCore.listRouter, fragUpdateContract_tvRouter)
+            dataCore.getObjectSingleCable(it.modem, dataCore.listModem, fragUpdateContract_tvModem)
+            dataCore.getObjectSingleCable(it.modemtype, dataCore.listTypeModem, fragUpdateContract_tvTypeModem)
+            dataCore.getObjectSingleCable(it.stb, dataCore.listStb, fragUpdateContract_tvStb)
+            dataCore.getObjectSingleCable(it.stbtype, dataCore.listTypeStb, fragUpdateContract_tvTypeStb)
+            dataCore.getObjectSingleCable(it.reasondelay, dataCore.listReasonDelay, fragUpdateContract_tvReasonDelay)
+            dataCore.getObjectSingleCable(it.status, dataCore.listResult, fragUpdateContract_tvResult)
+        }
+    }
+
+    private fun setDetailUpdateToView() {
+        dataCore.updateContractModel.let {
+            fragUpdateContract_etInDoor.setText(it.indoor.toString())
+            fragUpdateContract_etOutDoor.setText(it.outdoor.toString())
+            fragUpdateContract_etOtherCable.setText(it.box.toString())
+            fragUpdateContract_etRouter.setText(it.routeramount.toString())
+            fragUpdateContract_etAmountModem.setText(it.modemamount.toString())
+            fragUpdateContract_etAmountStb.setText(it.stbamount.toString())
+            fragUpdateContract_tvOdcCable.text = it.odccabletype
+            fragUpdateContract_tvOldNote.text = it.note
+            fragUpdateContract_tvFrom.text = it.assigndate.convertToDateFormat("")
+            fragUpdateContract_tvTo.text = it.assigndate1.convertToDateFormat("")
+            dataCore.initCableInfoView(fragUpdateContract_rvMain)
+        }
+    }
+
+    private fun handleSetDataToView() {
+//        setDataDemo()
+        setDataToDialog()
+        setDetailUpdateToView()
+        hideLoading()
+    }
+
+    private fun setDataDemo() {
+        dataCore.updateContractModel.let {
+            it.indtype = 2
+            it.outdtype = 4
+            it.cabletype = 199
+            it.router = 142
+            it.modemtype = 200
+            it.modem = 2
+            it.stb = 3
+            it.stbtype = 200
+            it.reasondelay = 9
+            it.status = 1
+            it.indoor = 12
+            it.outdoor = 13
+            it.box = 14
+            it.routeramount = 15
+            it.modemamount = 16
+            it.stbamount = 17
+            it.assigndate = "1"
+            it.assigndate1 = "2"
+            it.boxlink = 20
+            it.wire = 21
+            it.aluminumtag = 22
+            it.mangxoong01fo = 23
+            it.button = 24
+            it.jumperwire = 25
+            it.onu = 27
+            it.boxftth = 28
+            it.stickingplaster = 26
+            it.tube = 29
+            it.opticalfiber = 33
+            it.fastconnector = 31
+            it.fastconnectorapc = 32
+            it.scsc = 34
+        }
     }
 
     override fun loadUpdateContract(response: ResponseModel) {
-//        http@ //wsfcam.fpt.vn/FCAM.svc/GetDeploymentObject/SIR3-Pitou.Pich/306017/2169492/1157182
+//        http://wsfcam.fpt.vn/FCAM.svc/GetDeploymentObject/SIR3-Pitou.Pich/306017/2169492/1157182
+    }
+
+    override fun loadDetailUpdate(response: ResponseBody) {
+        dataCore.updateContractModel = Gson().fromJson(response.string(), UpdateContractModel::class.java)
+        handleSetDataToView()
     }
 
     override fun handleError(response: String) {

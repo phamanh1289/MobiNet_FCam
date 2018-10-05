@@ -89,19 +89,19 @@ object DataCore {
         val list = ArrayList<DetailContractKeyValueModel>()
         context?.let {
             list.run {
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_rj11), key = it.getString(R.string.params_update_contract_boxlink)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_wire), key = it.getString(R.string.update_wire)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_mang_xoong), key = it.getString(R.string.params_update_contract_aluminumtag)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_button), key = it.getString(R.string.update_button)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_jumper), key = it.getString(R.string.update_jumper).trim()))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_onu), key = it.getString(R.string.update_onu)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_box_ftth), key = it.getString(R.string.update_box_ftth).trim()))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tie_wire), key = it.getString(R.string.params_update_contract_sticking)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_sc_sc), key = it.getString(R.string.update_sc_sc)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_sc), key = it.getString(R.string.params_update_contract_fast_connect)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_apc), key = it.getString(R.string.params_update_contract_fast_connect_apc)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_optical_fiber), key = it.getString(R.string.params_update_contract_optical_bedbug)))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tube), key = it.getString(R.string.update_tube)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_rj11), key = it.getString(R.string.params_update_contract_boxlink), property = it.getString(R.string.params_update_contract_boxlink).toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_wire), key = it.getString(R.string.update_wire), property = it.getString(R.string.update_wire).toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_mang_xoong), key = it.getString(R.string.params_update_contract_aluminumtag), property = it.getString(R.string.update_mang_xoong).replace(" ", "").toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_button), key = it.getString(R.string.update_button), property = it.getString(R.string.update_button).toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_jumper), key = it.getString(R.string.update_jumper).replace(" ", ""), property = it.getString(R.string.update_jumper).replace(" ", "").toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_onu), key = it.getString(R.string.update_onu), property = it.getString(R.string.update_onu).toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_box_ftth), key = it.getString(R.string.update_box_ftth).replace(" ", ""), property = it.getString(R.string.update_box_ftth).replace(" ", "").toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tie_wire), key = it.getString(R.string.params_update_contract_sticking), property = it.getString(R.string.params_update_contract_sticking).toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_sc_sc), key = it.getString(R.string.update_sc_sc), property = it.getString(R.string.update_sc_sc).replace("-", "").toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_sc), key = it.getString(R.string.params_update_contract_fast_connect), property = it.getString(R.string.params_update_contract_fast_connect).toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_apc), key = it.getString(R.string.params_update_contract_fast_connect_apc), property = it.getString(R.string.params_update_contract_fast_connect_apc).toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_optical_fiber), key = it.getString(R.string.params_update_contract_optical_bedbug), property = it.getString(R.string.update_optical_fiber).replace(" ", "").toLowerCase()))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tube), key = it.getString(R.string.update_tube), property = it.getString(R.string.update_tube).toLowerCase()))
             }
         }
         return list
