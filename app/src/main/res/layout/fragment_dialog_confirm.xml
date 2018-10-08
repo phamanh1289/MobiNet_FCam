@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/action_cancel"
-            android:textColor="@color/blueMain"
+            android:textColor="@color/light_blue_300"
             android:textSize="@dimen/_17dp"
             android:visibility="gone"/>
 

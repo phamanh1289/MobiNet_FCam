@@ -19,10 +19,7 @@ import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.data.network.model.UpdateContractModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
-import vn.com.fpt.mobinet_fcam.utils.AppUtils
-import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
-import vn.com.fpt.mobinet_fcam.utils.convertToDateFormat
-import vn.com.fpt.mobinet_fcam.utils.onChange
+import vn.com.fpt.mobinet_fcam.utils.*
 import javax.inject.Inject
 
 /**
@@ -108,7 +105,7 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
     private fun initParamGetDetailUpdate() {
         showLoading()
         getDefaultUser()?.let {
-            //            presenter.getDetailUpdate(it.mobiaccount, it.password, 1532322, 1534282)
+            //            presenter.getDetailUpdate(it.mobiaccount, it.password, 2171722, 1614502)
             presenter.getDetailUpdate(it.mobiaccount, it.password, dataCore.infoContract.deployid, dataCore.infoContract.objid)
         }
     }
@@ -123,7 +120,7 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
                         showLoading()
                         val map = HashMap<String, Any>()
                         addPramsToUpdate(map)
-                        pre.postUpdateContract(map)
+                        pre.postUpdateContractDeployment(map)
                     }
                 }
 
@@ -146,6 +143,33 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
 
     private fun addPramsToUpdate(map: HashMap<String, Any>) {
         dataCore.addParams(map)
+        getDefaultUser()?.let {
+            map[Constants.PARAM_USER_NAME_UPPER] = it.mobiaccount
+            map[Constants.PARAM_PASSWORD_UPPER] = it.password
+        }
+        dataCore.let {
+            map[Constants.PARAM_OBJ_ID] = it.updateContractModel.objid
+            map[Constants.PARAM_SERVICE_TYPE] = it.serviceType
+            map[Constants.PARAM_SUP_INF_ID] = it.updateContractModel.deployid
+            map[Constants.PARAM_CREATE_BY] = it.infoContract.createby
+            map[Constants.PARAM_OUTDOOR] = fragUpdateContract_etOutDoor.text.toString()
+            map[Constants.PARAM_OUTDOOR_TYPE] = it.listOutDoor[it.indexOutDoor].id
+            map[Constants.PARAM_INDOOR] = fragUpdateContract_etInDoor.text.toString()
+            map[Constants.PARAM_INDOOR_TYPE] = it.listInDoor[it.indexInDoor].id
+            map[Constants.PARAM_ROUTER] = it.listRouter[it.indexRouter].id
+            map[Constants.PARAM_ROUTER_AMOUNT] = fragUpdateContract_etRouter.text.toString()
+            map[Constants.PARAM_CABLE_TYPE] = it.listOtherCable[it.indexOtherCable].id
+            map[Constants.PARAM_ASSIGN_DATE] = fragUpdateContract_tvFrom.text.toString().convertToDateFormat("")
+            map[Constants.PARAM_TO_ASSIGN_DATE] = fragUpdateContract_tvTo.text.toString().convertToDateFormat("")
+            map[Constants.PARAM_APPOINTMENT] = it.updateContractModel.assigndate.getHourFromDate("")
+            map[Constants.PARAM_DESCRIPTION] = fragUpdateContract_etNewNote.text.toString().getNotes(fragUpdateContract_tvOldNote.text.toString())
+            map[Constants.PARAM_CUS_TYPE] = it.updateContractModel.custype
+            map[Constants.PARAM_STATUS] = it.listResult[it.indexResult].id
+            map[Constants.PARAM_DESCRIPTION_RD] = fragUpdateContract_etNoteReasonDelay.text.toString()
+            map[Constants.PARAM_REASON_DELAY] = it.listReasonDelay[it.indexReasonDelay].id
+            map[Constants.PARAM_IP_USER] = getSharePreferences().ipAddress
+            map[Constants.PARAM_OPTICAL_JUMP] = map[Constants.PARAM_JUMPER_WIRE].toString()
+        }
     }
 
     private fun handleStepUpdate(step: Int) {
@@ -285,55 +309,19 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
             fragUpdateContract_tvOldNote.text = it.note
             fragUpdateContract_tvFrom.text = it.assigndate.convertToDateFormat("")
             fragUpdateContract_tvTo.text = it.assigndate1.convertToDateFormat("")
+            dataCore.getHourFromDate(it.assigndate,fragUpdateContract_tvFromHour,true)
+            dataCore.getHourFromDate(it.assigndate1,fragUpdateContract_tvToHour,false)
             dataCore.initCableInfoView(fragUpdateContract_rvMain)
         }
     }
 
     private fun handleSetDataToView() {
-//        setDataDemo()
         setDataToDialog()
         setDetailUpdateToView()
         hideLoading()
     }
 
-    private fun setDataDemo() {
-        dataCore.updateContractModel.let {
-            it.indtype = 2
-            it.outdtype = 4
-            it.cabletype = 199
-            it.router = 142
-            it.modemtype = 200
-            it.modem = 2
-            it.stb = 3
-            it.stbtype = 200
-            it.reasondelay = 9
-            it.status = 1
-            it.indoor = 12
-            it.outdoor = 13
-            it.box = 14
-            it.routeramount = 15
-            it.modemamount = 16
-            it.stbamount = 17
-            it.assigndate = "1"
-            it.assigndate1 = "2"
-            it.boxlink = 20
-            it.wire = 21
-            it.aluminumtag = 22
-            it.mangxoong01fo = 23
-            it.button = 24
-            it.jumperwire = 25
-            it.onu = 27
-            it.boxftth = 28
-            it.stickingplaster = 26
-            it.tube = 29
-            it.opticalfiber = 33
-            it.fastconnector = 31
-            it.fastconnectorapc = 32
-            it.scsc = 34
-        }
-    }
-
-    override fun loadUpdateContract(response: ResponseModel) {
+    override fun loadUpdateContractDeployment(response: ResponseModel) {
 //        http://wsfcam.fpt.vn/FCAM.svc/GetDeploymentObject/SIR3-Pitou.Pich/306017/2169492/1157182
     }
 

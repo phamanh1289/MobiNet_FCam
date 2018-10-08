@@ -47,6 +47,8 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
             }
         }
         addFragment(FunctionsFragment(), false, false)
+        showLoading()
+        presenter.getIpAddress()
     }
 
     fun setTitleMain(model: TitleAndMenuModel?) {
@@ -92,6 +94,12 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
                 }
             }
         }
+    }
+
+    override fun loadIpAddress(data: String) {
+        if (data.isNotBlank())
+            getSharePreferences().ipAddress = data
+        hideLoading()
     }
 
     override fun onDestroy() {

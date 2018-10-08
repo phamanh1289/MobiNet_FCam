@@ -44,6 +44,9 @@ interface ApiService {
     @POST("GetDetailContractMain")
     fun getDetailContractMain(@Body map: HashMap<String, Any>): Observable<DetailContractModel>
 
+    @POST("UpdateDeploymentObjectV2")
+    fun postUpdateContractDeployment(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
     @GET("GetImage/{id}")
     fun getImage(@Path("id") id: String): Observable<ResponseBody>
 

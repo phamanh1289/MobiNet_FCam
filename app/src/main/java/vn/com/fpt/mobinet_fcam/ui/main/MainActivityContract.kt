@@ -11,9 +11,11 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseView
  */
 interface MainActivityContract {
     interface MainView : BaseView {
+        fun loadIpAddress(data: String)
         fun handleError(error: String)
     }
 
     interface MainPresenter {
+        fun getIpAddress()
     }
 }

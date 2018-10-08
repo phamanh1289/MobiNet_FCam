@@ -15,6 +15,7 @@ import vn.com.fpt.mobinet_fcam.data.network.model.UpdateContractModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.contract.update.adapter.UpdateContractAdapter
+import vn.com.fpt.mobinet_fcam.utils.getHourFromDate
 
 /**
  * *******************************************
@@ -94,7 +95,6 @@ class DataCoreUpdateContract(val context: Context?) {
         }
     }
 
-
     fun setIndexSelected(view: View, position: Int) {
         when (view.id) {
             R.id.fragUpdateContract_tvInDoor -> indexInDoor = position
@@ -109,6 +109,20 @@ class DataCoreUpdateContract(val context: Context?) {
             R.id.fragUpdateContract_tvFromHour -> indexFromHour = position
             R.id.fragUpdateContract_tvReasonDelay -> indexReasonDelay = position
             R.id.fragUpdateContract_tvResult -> indexResult = position
+        }
+    }
+
+    fun getHourFromDate(date: String, textView: TextView, typeList: Boolean) {
+        if (date.isNotBlank()) {
+            var fromHour = date.getHourFromDate("").toInt()
+            val indexList = if (fromHour == Constants.FULL_HOUR) Constants.LAST_INDEX_HOUR else --fromHour
+            indexList.let { index ->
+                val list = if (typeList) listFromHour else listToHour
+                if (typeList) indexFromHour = index else indexToHour = index
+                list[Constants.FIRST_ITEM].status = false
+                list[index].status = true
+                textView.text = list[index].account
+            }
         }
     }
 

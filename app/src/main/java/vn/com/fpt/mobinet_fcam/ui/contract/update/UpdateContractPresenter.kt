@@ -15,12 +15,12 @@ import javax.inject.Inject
  */
 class UpdateContractPresenter @Inject constructor(private val apiService: ApiService) : BasePresenter<UpdateContractContract.UpdateContractView>(), UpdateContractContract.UpdateContractPresenter {
 
-    override fun postUpdateContract(map: HashMap<String, Any>) {
-//        addSubscribe(apiService.postLogin(map)
+    override fun postUpdateContractDeployment(map: HashMap<String, Any>) {
+//        addSubscribe(apiService.postUpdateContractDeployment(map)
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe({ it ->
-//                    view?.loadUpdateContract(it)
+//                    view?.loadUpdateContractDeployment(it)
 //                }, {
 //                    view?.handleError(it.message.toString())
 //                }))

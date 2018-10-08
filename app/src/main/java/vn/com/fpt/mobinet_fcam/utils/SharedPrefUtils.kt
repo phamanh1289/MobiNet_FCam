@@ -19,8 +19,12 @@ class SharedPrefUtils constructor(app: Context?) {
         private const val DAY_LOGIN = "day_login"
         private const val IMEI_DEVICE = "imeiDevice"
         private const val USER_NAME = "userName"
+        private const val IP_ADDRESS = "ipAddress"
     }
 
+    var ipAddress: String
+        get() = sharedPreferences?.getString(IP_ADDRESS, "")!!
+        set(value) = sharedPreferences?.put { putString(IP_ADDRESS, value) }!!
     var imeiDevice: String
         get() = sharedPreferences?.getString(IMEI_DEVICE, "")!!
         set(value) = sharedPreferences?.put { putString(IMEI_DEVICE, value) }!!

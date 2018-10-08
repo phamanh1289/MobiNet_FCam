@@ -9,8 +9,8 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="@dimen/_100dp"
-        android:layout_height="@dimen/_100dp"
+        android:layout_width="@dimen/_110dp"
+        android:layout_height="@dimen/_110dp"
         android:background="@drawable/shape_circle_red_menu"
         android:layout_gravity="center_horizontal"
         tools:ignore="UselessParent">

@@ -1,7 +1,11 @@
 package vn.com.fpt.mobinet_fcam.ui.main
 
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import vn.com.fpt.mobinet_fcam.data.network.api.ApiService
 import vn.com.fpt.mobinet_fcam.ui.base.BasePresenter
+import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import javax.inject.Inject
 
 /**
@@ -12,14 +16,14 @@ import javax.inject.Inject
  * *******************************************
  */
 class MainActivityPresenter @Inject constructor(private val apiService: ApiService) : BasePresenter<MainActivityContract.MainView>(), MainActivityContract.MainPresenter {
-//    override fun getAssetToken(map: HashMap<String, Any>) {
-//        addSubscribe(apiService.getAccessToken(map)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({
-//                    view?.loadAssetToken(it)
-//                }, {
-//                    view?.handleError(it.message.toString())
-//                }))
-//    }
+    override fun getIpAddress() {
+        addSubscribe(Observable.just("")
+                .map { AppUtils.getExternalIp() }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    view?.loadIpAddress(it)
+                }
+        )
+    }
 }

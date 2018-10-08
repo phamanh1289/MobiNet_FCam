@@ -7,4 +7,4 @@ package vn.com.fpt.mobinet_fcam.data.network.model
  * * All rights reserved                    **
  * *******************************************
  */
-class ResponseModel(val Code: Int, val Description: String, val Data: Any, val list : Any) : BaseModel()
+class ResponseModel(val Code: Int, val Description: String, val Data: Any, val list: Any, val result: String) : BaseModel()

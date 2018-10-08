@@ -13,13 +13,13 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseView
  */
 interface UpdateContractContract {
     interface UpdateContractView : BaseView {
-        fun loadUpdateContract(response: ResponseModel)
+        fun loadUpdateContractDeployment(response: ResponseModel)
         fun loadDetailUpdate(response: ResponseBody)
         fun handleError(response: String)
     }
 
     interface UpdateContractPresenter {
-        fun postUpdateContract(map: HashMap<String, Any>)
+        fun postUpdateContractDeployment(map: HashMap<String, Any>)
         fun getDetailUpdate(userName: String, passWord: String, deplId: Int, objId: Int)
     }
 }

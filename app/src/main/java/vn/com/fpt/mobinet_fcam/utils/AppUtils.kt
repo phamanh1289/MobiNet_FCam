@@ -12,6 +12,8 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.FragmentManager
 import android.telephony.TelephonyManager
 import android.widget.TextView
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
 import vn.com.fpt.mobinet_fcam.data.network.model.SingleChoiceModel
@@ -20,6 +22,7 @@ import vn.com.fpt.mobinet_fcam.others.dialog.ConfirmDialog
 import vn.com.fpt.mobinet_fcam.others.dialog.singleChoice.SingChoiceDialog
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
+import java.io.IOException
 import java.util.*
 
 /**
@@ -134,6 +137,21 @@ object AppUtils {
 
     private fun toConvertMonth(month: Int): String {
         return if (month < 10) "0$month" else month.toString()
+    }
+
+    fun getExternalIp(): String {
+        var ipWan = ""
+        val client = OkHttpClient()
+        try {
+            val url = Constants.URL_CHECK_IP
+            val request = Request.Builder().url(url).build()
+            val response = client.newCall(request).execute()
+            val responseBody = response.body()
+            if (responseBody != null) ipWan = responseBody.string()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return ipWan
     }
 
 }
