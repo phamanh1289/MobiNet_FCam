@@ -50,7 +50,7 @@ object DataCore {
         return list
     }
 
-    fun getListDetailContract(context: Context?): ArrayList<DetailContractKeyValueModel> {
+    fun getListDetailContractDeployment(context: Context?): ArrayList<DetailContractKeyValueModel> {
         val list = ArrayList<DetailContractKeyValueModel>()
         context?.let {
             list.run {
@@ -80,6 +80,43 @@ object DataCore {
                         title = it.getString(R.string.value_detail_contract_image)))
                 add(DetailContractKeyValueModel(key = it.getString(R.string.key_detail_contract_cusnote),
                         title = it.getString(R.string.value_detail_contract_cusnote)))
+            }
+        }
+        return list
+    }
+
+    fun getListDetailContractMaintenance(context: Context?): ArrayList<DetailContractKeyValueModel> {
+        val list = ArrayList<DetailContractKeyValueModel>()
+        context?.let {
+            list.run {
+                add(DetailContractKeyValueModel(title = it.getString(R.string.item_result_contract),
+                        key = it.getString(R.string.item_result_contract)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_accessname),
+                        key = it.getString(R.string.key_detail_contract_name)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_fullname),
+                        key = it.getString(R.string.key_detail_contract_fullname)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_phone),
+                        key = it.getString(R.string.key_detail_contract_location_phone)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_address),
+                        key = it.getString(R.string.key_detail_contract_address)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_odc_cable),
+                        key = it.getString(R.string.key_detail_contract_odc_cable_type)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_first_status),
+                        key = it.getString(R.string.key_detail_contract_first_status)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_servicetype),
+                        key = it.getString(R.string.key_detail_contract_servicetype)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.item_result_create_date),
+                        key = it.getString(R.string.key_detail_contract_date)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_cable_outdoor),
+                        key = it.getString(R.string.key_detail_contract_od_cable)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_cable_indoor),
+                        key = it.getString(R.string.key_detail_contract_id_cable)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_call_note),
+                        key = it.getString(R.string.key_detail_contract_init_desc)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_checklist),
+                        key = it.getString(R.string.key_detail_contract_total_checklist)))
+                add(DetailContractKeyValueModel(title = it.getString(R.string.value_detail_contract_description),
+                        key = it.getString(R.string.key_detail_contract_description)))
             }
         }
         return list

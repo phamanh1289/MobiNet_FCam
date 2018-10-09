@@ -16,9 +16,12 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
+import vn.com.fpt.mobinet_fcam.data.interfaces.MenuMaintenanceDialogInterface
+import vn.com.fpt.mobinet_fcam.data.network.model.EmployeeModel
 import vn.com.fpt.mobinet_fcam.data.network.model.SingleChoiceModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.dialog.ConfirmDialog
+import vn.com.fpt.mobinet_fcam.others.dialog.MenuMaintenanceDialog
 import vn.com.fpt.mobinet_fcam.others.dialog.singleChoice.SingChoiceDialog
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
@@ -63,6 +66,15 @@ object AppUtils {
             dialog.setDataDialog(title = title, content = content, actionCancel = actionCancel, confirmDialogInterface = confirmDialogInterface)
             if (!it.isStateSaved)
                 dialog.show(it, ConfirmDialog::class.java.simpleName)
+        }
+    }
+
+    fun showDialogMenuMaintenance(fragmentManager: FragmentManager?, title: String, listMember: ArrayList<EmployeeModel>, listener: MenuMaintenanceDialogInterface) {
+        fragmentManager?.let {
+            val dialogMenu = MenuMaintenanceDialog()
+            dialogMenu.setListener(listener, listMember.size != 0, title)
+            if (!it.isStateSaved)
+                dialogMenu.show(fragmentManager, MenuMaintenanceDialog::class.java.simpleName)
         }
     }
 

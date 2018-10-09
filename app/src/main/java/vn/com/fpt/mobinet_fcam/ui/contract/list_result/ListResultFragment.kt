@@ -9,6 +9,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_list_result.*
 import vn.com.fpt.mobinet_fcam.R
+import vn.com.fpt.mobinet_fcam.data.interfaces.MenuMaintenanceDialogInterface
+import vn.com.fpt.mobinet_fcam.data.network.model.EmployeeModel
 import vn.com.fpt.mobinet_fcam.data.network.model.InfoContractModel
 import vn.com.fpt.mobinet_fcam.data.network.model.ResponseModel
 import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
@@ -33,6 +35,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
     lateinit var presenter: ListResultPresenter
 
     private var listDataContract = ArrayList<InfoContractModel>()
+    private var listEmployee = ArrayList<EmployeeModel>()
     private var mAdapterDeployment: ListDeploymentAdapter? = null
     private var mAdapterMaintenance: ListMaintenanceAdapter? = null
     private var paramsJson = ""
@@ -66,15 +69,18 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
     }
 
     private fun initView() {
-        showLoading()
         arguments?.let {
             paramsJson = it.getString(Constants.PARAMS_JSON) ?: ""
             typeContract = it.getString(Constants.TYPE_CONTRACT)
             typeInfo = it.getInt(Constants.TYPE_INFO)
             serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
+            //paramsJson ={"ChecklistType":1,"Type":2,"Username":"SIR3-Pitou.Pich","Todate":"10-09-2018","Fromdate":"10-02-2018"}
+            //typeContract = maintenance
+            //typeInfo = 1
+            //serviceType = 2
         }
         setTitle(TitleAndMenuModel(title = getString(R.string.info_contract)))
-        initParams()
+        getListMemberOfTeam()
     }
 
     private fun initParams() {
@@ -87,12 +93,23 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
         }
     }
 
+    private fun getListMemberOfTeam() {
+        presenter.let {
+            showLoading()
+            val map = HashMap<String, Any>()
+            map[Constants.PARAM_USER_NAME_UPPER_FULL] = getDefaultUser()?.mobiaccount.toString()
+            map[Constants.PARAM_IMEI] = getSharePreferences().imeiDevice
+            it.getListMemberOfTeam(map)
+        }
+    }
+
     private fun handleDataListContract(list: Any) {
         listDataContract = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<InfoContractModel>>() {}.type)
+//        listDataContract.add(demoObj)
         when (typeContract) {
             Constants.CONTRACT_DEPLOYMENT -> {
                 mAdapterDeployment = ListDeploymentAdapter {
-                    addFragment(DetailContractFragment.newInstance(listDataContract[it].objid, listDataContract[it].contract,serviceType), true, true)
+                    addFragment(DetailContractFragment.newInstance(listDataContract[it].objid, Constants.CONTRACT_DEPLOYMENT, listDataContract[it].contract, serviceType), true, true)
                 }
                 mAdapterDeployment?.apply {
                     submitList(listDataContract)
@@ -100,7 +117,21 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
                 }
             }
             else -> {
-                mAdapterMaintenance = ListMaintenanceAdapter { }
+                mAdapterMaintenance = ListMaintenanceAdapter {
+                    AppUtils.showDialogMenuMaintenance(fragmentManager, listDataContract[it].contract, listEmployee, object : MenuMaintenanceDialogInterface {
+                        override fun actionAssign() {
+
+                        }
+
+                        override fun actionAccept() {
+
+                        }
+
+                        override fun actionNext() {
+                            addFragment(DetailContractFragment.newInstance(listDataContract[it].objid, Constants.CONTRACT_MAINTENANCE, listDataContract[it].contract, serviceType), true, true)
+                        }
+                    })
+                }
                 mAdapterMaintenance?.apply {
                     submitList(listDataContract)
                     notifyDataSetChanged()
@@ -116,6 +147,15 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
         hideLoading()
     }
 
+    private fun handleDataMemberOfTeam(list: Any) {
+        listEmployee = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<EmployeeModel>>() {}.type)
+        initParams()
+    }
+
+    override fun loadMemberOfTeam(response: ResponseModel) {
+        handleDataMemberOfTeam(response.list)
+    }
+
     override fun loadListContract(response: ResponseModel) {
         handleDataListContract(response.list)
     }
@@ -129,4 +169,21 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
         super.onDestroy()
         presenter.onDetach()
     }
+
+    val demoObj = InfoContractModel(
+            id = 6906582,
+            objid = 573312,
+            contract = "PPDD22006",
+            datecreate = "2018-10-09T10:52:34.857",
+            dateassign = "",
+            typecus = "",
+            priority = "",
+            fullname = "Chan Huy Chem",
+            address = "133 St.217, Sangkat Orussey 3, Khan 7Makara, Phnom Penh",
+            appointmentdate = "2018-10-09T12:00:00",
+            totalchecklist = 48,
+            totalchecklistinmonth = 2,
+            hourremain = "1:0:3060"
+    )
+
 }

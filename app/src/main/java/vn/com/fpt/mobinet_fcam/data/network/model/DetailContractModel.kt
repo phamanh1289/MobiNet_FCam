@@ -21,5 +21,17 @@ data class DetailContractModel(
         val createat: String,
         val createby: String,
         val image: String,
-        val cusnote: String
+        val cusnote: String,
+        val idmain: String,
+        val contract: String,
+        val name: String,
+        val odccabletype: String,
+        val date: String,
+        val description: String,
+        val totalchecklist: String,
+        val initdesc: String,
+        val locationphone: String,
+        val idcable: String,
+        val odcable: String,
+        val firststatus: String
 ) : BaseModel()

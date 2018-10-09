@@ -10,6 +10,7 @@ package vn.com.fpt.mobinet_fcam.others.constant
 object Constants {
     //Start : Param đẩy lên server
     const val PARAM_SIM_IMEI = "SimIMEI"
+    const val PARAM_IMEI = "Imei"
     const val PARAM_DEVICE_IMEI = "DeviceIMEI"
     const val PARAM_OS_VERSION = "OSVersion"
     const val PARAM_DEVICE_MODEL = "DeviceModel"
@@ -18,6 +19,7 @@ object Constants {
     const val PARAM_DEVICE_IMEI_LOW = "deviceimei"
     const val PARAM_VERSION_APP_LOW = "versionapp"
     const val PARAM_USER_NAME_UPPER = "Username"
+    const val PARAM_USER_NAME_UPPER_FULL = "UserName"
     const val PARAM_PASSWORD_UPPER = "Password"
     const val PARAM_FROM_DATE_UPPER = "Fromdate"
     const val PARAM_TO_DATE = "Todate"
@@ -98,6 +100,7 @@ object Constants {
     const val CONTRACT_DEPLOYMENT = "deployment"
     const val CONTRACT_MAINTENANCE = "maintenance"
     const val TYPE_CONTRACT = "typeContract"
+    const val NUMBER_CONTRACT = "contractNumber"
     const val TYPE_IMAGE = "typeImage"
     const val TYPE_INFO = "info"
     const val PARAMS_JSON = "paramsJson"

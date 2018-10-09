@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_circle_dialog_while"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/_8dp">
+
+        <TextView
+            android:id="@+id/fragDialogMenuMaintenance_tvTitle"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8dp"
+            android:text="@string/assign"
+            android:textColor="@color/redMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/silver"/>
+
+        <TextView
+            android:id="@+id/fragDialogMenuMaintenance_tvAssign"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8dp"
+            android:text="@string/assign"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <View
+            android:id="@+id/fragDialogMenuMaintenance_viewAssign"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/silver"/>
+
+        <TextView
+            android:id="@+id/fragDialogMenuMaintenance_tvAccept"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:padding="@dimen/_8dp"
+            android:text="@string/accept"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <View
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/silver"/>
+
+        <TextView
+            android:id="@+id/fragDialogMenuMaintenance_tvNext"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:padding="@dimen/_8dp"
+            android:text="@string/next"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragDialogMenuMaintenance_tvCancel"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/shape_circle_dialog_while_half"
+        android:gravity="center"
+        android:padding="@dimen/_12dp"
+        android:text="@string/action_cancel"
+        android:textColor="@color/light_blue_300"
+        android:textSize="@dimen/_17dp"/>
+</LinearLayout>

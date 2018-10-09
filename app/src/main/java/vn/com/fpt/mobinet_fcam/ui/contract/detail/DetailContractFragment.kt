@@ -36,14 +36,16 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
     private var objId = 0
     private var serviceType = 0
     private var contractNumber = ""
+    private var typeContract = ""
     private var listDetailKeyValue = ArrayList<DetailContractKeyValueModel>()
     private lateinit var adapterDetail: DetailContractAdapter
 
     companion object {
-        fun newInstance(objId: Int, contract: String,serviceType: Int): DetailContractFragment {
+        fun newInstance(objId: Int, typeContract: String, numberContract: String, serviceType: Int): DetailContractFragment {
             val args = Bundle()
             args.putInt(Constants.PARAM_OBJ_ID, objId)
-            args.putString(Constants.TYPE_CONTRACT, contract)
+            args.putString(Constants.TYPE_CONTRACT, typeContract)
+            args.putString(Constants.NUMBER_CONTRACT, numberContract)
             args.putInt(Constants.PARAM_SERVICE_TYPE, serviceType)
             val fragment = DetailContractFragment()
             fragment.arguments = args
@@ -66,7 +68,8 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
     private fun initView() {
         arguments?.let {
             objId = it.getInt(Constants.PARAM_OBJ_ID)
-            contractNumber = it.getString(Constants.TYPE_CONTRACT)
+            typeContract = it.getString(Constants.TYPE_CONTRACT)
+            contractNumber = it.getString(Constants.NUMBER_CONTRACT)
             serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
         }
         setTitle(TitleAndMenuModel(title = getString(R.string.info_contract)))
@@ -78,12 +81,13 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
             showLoading()
             val map = HashMap<String, Any>()
             map[Constants.PARAM_OBJ_ID] = objId
-            it.getDetailDeployment(map)
+            if (typeContract == Constants.CONTRACT_DEPLOYMENT) it.getDetailDeployment(map)
+            else it.getDetailMaintenance(map)
         }
     }
 
-    override fun loadDetailContract(response: DetailContractModel) {
-        listDetailKeyValue = DataCore.getListDetailContract(context)
+    private fun setDataToView(response: DetailContractModel) {
+        listDetailKeyValue = if (typeContract == Constants.CONTRACT_DEPLOYMENT) DataCore.getListDetailContractDeployment(context) else DataCore.getListDetailContractMaintenance(context)
         listDetailKeyValue[Constants.FIRST_ITEM].value = contractNumber
         val map: HashMap<String, Any> = Gson().fromJson(Gson().toJson(response), object : TypeToken<HashMap<String, Any>>() {}.type)
         listDetailKeyValue.forEach { itemDetail ->
@@ -102,12 +106,28 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
             adapter = adapterDetail
         }
         hideLoading()
-        fragDetailContract_tvUpdate.setOnClickListener { addFragment(UpdateContractFragment.newInstance(response,serviceType),true,true) }
+        fragDetailContract_tvUpdate.setOnClickListener { addFragment(UpdateContractFragment.newInstance(response, serviceType), true, true) }
+    }
+
+    override fun loadDetailContractDeployment(response: DetailContractModel) {
+        setDataToView(response)
     }
 
     override fun handleError(response: String) {
         hideLoading()
         AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_error_data), content = response, confirmDialogInterface = null)
+    }
+
+    override fun loadDetailContractMaintenance(response: DetailContractModel) {
+        setDataToView(response)
+        //supID = MaintenanceID = 6906452
+        //contract = con = PPDD45726
+        //serviceType = 2
+        //objID = 746162
+//        i.putExtra("MaintenanceID", MaintenanceID)
+//        i.putExtra("ObjID", objID)
+//        i.putExtra("Contract", con)
+//        i.putExtra("ServiceType", serviceType)
     }
 
     override fun onDestroy() {

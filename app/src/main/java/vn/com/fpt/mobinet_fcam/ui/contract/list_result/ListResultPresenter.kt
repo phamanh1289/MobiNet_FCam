@@ -25,12 +25,24 @@ class ListResultPresenter @Inject constructor(private val apiService: ApiService
                     view?.handleError(it.message.toString())
                 }))
     }
+
     override fun getListInfoContractMain(map: HashMap<String, Any>) {
         addSubscribe(apiService.getListContractMain(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ it ->
                     view?.loadListContract(it)
+                }, {
+                    view?.handleError(it.message.toString())
+                }))
+    }
+
+    override fun getListMemberOfTeam(map: HashMap<String, Any>) {
+        addSubscribe(apiService.getListMemberOfTeam(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ it ->
+                    view?.loadMemberOfTeam(it)
                 }, {
                     view?.handleError(it.message.toString())
                 }))

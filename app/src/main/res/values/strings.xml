@@ -6,6 +6,8 @@
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
     <string name="mess_error_data">Error</string>
+    <string name="assign">Assign</string>
+    <string name="accept">Accept</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="mess_success_data">Successfully</string>
@@ -61,6 +63,7 @@
     <string name="item_result_customer">Customer</string>
     <string name="item_result_total_checklist">Total checklist</string>
     <string name="item_result_total_checklist_in_month">Total checklist in month</string>
+
     <string name="key_detail_contract_contact">contact</string>
     <string name="key_detail_contract_fullname">fullname</string>
     <string name="key_detail_contract_accessname">accessname</string>
@@ -73,8 +76,18 @@
     <string name="key_detail_contract_createby">createby</string>
     <string name="key_detail_contract_image">image</string>
     <string name="key_detail_contract_cusnote">cusnote</string>
-    <string name="value_detail_contract_deployid">deployid</string>
-    <string name="value_detail_contract_objid">objid</string>
+    <string name="key_detail_contract_id_main">idmain</string>
+    <string name="key_detail_contract_name">name</string>
+    <string name="key_detail_contract_odc_cable_type">odccabletype</string>
+    <string name="key_detail_contract_date">date</string>
+    <string name="key_detail_contract_description">description</string>
+    <string name="key_detail_contract_total_checklist">totalchecklist</string>
+    <string name="key_detail_contract_init_desc">initdesc</string>
+    <string name="key_detail_contract_location_phone">locationphone</string>
+    <string name="key_detail_contract_id_cable">idcable</string>
+    <string name="key_detail_contract_od_cable">odcable</string>
+    <string name="key_detail_contract_first_status">firststatus</string>
+
     <string name="value_detail_contract_fullname">Full name</string>
     <string name="value_detail_contract_address">Address</string>
     <string name="value_detail_contract_accessname">Access name</string>
@@ -87,6 +100,16 @@
     <string name="value_detail_contract_createby">Create by</string>
     <string name="value_detail_contract_image">Survey</string>
     <string name="value_detail_contract_cusnote">Cus Note</string>
+
+    <string name="value_detail_contract_access_name">Access name</string>
+    <string name="value_detail_contract_phone">Phone</string>
+    <string name="value_detail_contract_odc_cable">ODC Cable</string>
+    <string name="value_detail_contract_first_status">First status</string>
+    <string name="value_detail_contract_cable_outdoor">Cable outdoor</string>
+    <string name="value_detail_contract_cable_indoor">Cable indoor</string>
+    <string name="value_detail_contract_call_note">Call note</string>
+    <string name="value_detail_contract_checklist">Checklist</string>
+    <string name="value_detail_contract_description">Description</string>
     <string name="not_found_contract">Not found any contract!</string>
     <string name="url_get_image">http://storeglobal.kh.net/Images%1$s.gif</string>
     <string name="update_contract">Update Contract</string>

@@ -19,7 +19,7 @@ import vn.com.fpt.mobinet_fcam.data.network.model.SearchListContractModel
  * *******************************************
  */
 interface ApiService {
-
+    //=====POST=====
     @POST("CheckIMEI")
     fun checkIMEI(@Body map: HashMap<String, Any>): Observable<ResponseModel>
 
@@ -47,6 +47,17 @@ interface ApiService {
     @POST("UpdateDeploymentObjectV2")
     fun postUpdateContractDeployment(@Body map: HashMap<String, Any>): Observable<ResponseModel>
 
+    @POST("GetListMemberOfTeam")
+    fun getListMemberOfTeam(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
+    @POST("DivisionStaffMain")
+    fun postDivisionStaffMain(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
+    @POST("DivisionMember")
+    fun postDivisionMember(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
+
+    //=====GET=====
     @GET("GetImage/{id}")
     fun getImage(@Path("id") id: String): Observable<ResponseBody>
 

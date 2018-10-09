@@ -12,11 +12,13 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseView
  */
 interface ListResultContract {
     interface DetailResultView : BaseView {
+        fun loadMemberOfTeam(response: ResponseModel)
         fun loadListContract(response: ResponseModel)
         fun handleError(response: String)
     }
 
     interface DetailResultPresenter {
+        fun getListMemberOfTeam(map: HashMap<String, Any>)
         fun getListContractDepl(map: HashMap<String, Any>)
         fun getListInfoContractMain(map: HashMap<String, Any>)
     }

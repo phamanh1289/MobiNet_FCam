@@ -12,7 +12,8 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseView
  */
 interface DetailContractContract {
     interface DetailContractView : BaseView {
-        fun loadDetailContract(response: DetailContractModel)
+        fun loadDetailContractDeployment(response: DetailContractModel)
+        fun loadDetailContractMaintenance(response: DetailContractModel)
         fun handleError(response: String)
     }
 

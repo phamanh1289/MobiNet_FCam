@@ -42,7 +42,6 @@ class InfoFragment : BaseFragment() {
     }
 
     private fun initView() {
-
     }
 
 //    override fun loadLogin(response: ResponseModel) {

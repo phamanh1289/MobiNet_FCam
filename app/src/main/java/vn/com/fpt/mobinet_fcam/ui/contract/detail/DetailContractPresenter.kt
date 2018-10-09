@@ -20,7 +20,7 @@ class DetailContractPresenter @Inject constructor(private val apiService: ApiSer
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ it ->
-                    view?.loadDetailContract(it)
+                    view?.loadDetailContractDeployment(it)
                 }, {
                     view?.handleError(it.message.toString())
                 }))
@@ -31,7 +31,7 @@ class DetailContractPresenter @Inject constructor(private val apiService: ApiSer
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ it ->
-                    view?.loadDetailContract(it)
+                    view?.loadDetailContractMaintenance(it)
                 }, {
                     view?.handleError(it.message.toString())
                 }))
