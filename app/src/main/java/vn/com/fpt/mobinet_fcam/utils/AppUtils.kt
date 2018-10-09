@@ -21,6 +21,7 @@ import vn.com.fpt.mobinet_fcam.data.network.model.EmployeeModel
 import vn.com.fpt.mobinet_fcam.data.network.model.SingleChoiceModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.dialog.ConfirmDialog
+import vn.com.fpt.mobinet_fcam.others.dialog.EmployeeDialog
 import vn.com.fpt.mobinet_fcam.others.dialog.MenuMaintenanceDialog
 import vn.com.fpt.mobinet_fcam.others.dialog.singleChoice.SingChoiceDialog
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
@@ -75,6 +76,15 @@ object AppUtils {
             dialogMenu.setListener(listener, listMember.size != 0, title)
             if (!it.isStateSaved)
                 dialogMenu.show(fragmentManager, MenuMaintenanceDialog::class.java.simpleName)
+        }
+    }
+
+    fun showDialogEmployee(fragmentManager: FragmentManager?, title: String, list: ArrayList<EmployeeModel>, onClick: (EmployeeModel) -> Unit) {
+        fragmentManager?.let {
+            val dialog = EmployeeDialog()
+            dialog.setDataDialog(title = title, listEmployee = list, onClick = onClick)
+            if (!it.isStateSaved)
+                dialog.show(it, EmployeeDialog::class.java.simpleName)
         }
     }
 

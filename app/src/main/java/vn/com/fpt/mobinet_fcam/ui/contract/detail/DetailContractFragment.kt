@@ -20,6 +20,7 @@ import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
 import vn.com.fpt.mobinet_fcam.ui.image.view_image.ViewImageFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
+import vn.com.fpt.mobinet_fcam.utils.convertToFullFormat
 import javax.inject.Inject
 
 /**
@@ -93,7 +94,7 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
         listDetailKeyValue.forEach { itemDetail ->
             map.forEach {
                 if (itemDetail.key == it.key)
-                    itemDetail.value = it.value.toString()
+                    itemDetail.value = if (it.key == getString(R.string.key_detail_contract_date)) it.value.toString().convertToFullFormat("") else it.value.toString()
             }
         }
         adapterDetail = DetailContractAdapter { addFragment(ViewImageFragment.newInstance(listDetailKeyValue[it].value), true, true) }

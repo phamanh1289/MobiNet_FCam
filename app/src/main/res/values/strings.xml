@@ -10,6 +10,10 @@
     <string name="accept">Accept</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="dialog_employee_choose_employee">Choose Employee \"%1$s\'</string>
+    <string name="dialog_employee_id">ID</string>
+    <string name="dialog_employee_code">Code</string>
+    <string name="dialog_employee_name">Name</string>
     <string name="mess_success_data">Successfully</string>
     <string name="login_user_name">User name</string>
     <string name="login_empty_user_name">User name is not null.</string>
@@ -192,4 +196,8 @@
     <string name="params_update_contract_fast_connect">FastConnector</string>
     <string name="params_update_contract_fast_connect_apc">FastConnectorAPC</string>
     <string name="params_update_contract_optical_bedbug">OpticalBedbugs</string>
+    <string name="success">Success!</string>
+    <string name="mess_accept_exits">This checklist was accepted by another.</string>
+    <string name="mess_accept_checklist">Do you want to accept this checklist \"%1$s\"?</string>
+    <string name="mess_assign">Do you want to assign to \"%1$s\"?</string>
 </resources>

@@ -47,4 +47,26 @@ class ListResultPresenter @Inject constructor(private val apiService: ApiService
                     view?.handleError(it.message.toString())
                 }))
     }
+
+    override fun postDivisionMember(map: HashMap<String, Any>) {
+        addSubscribe(apiService.postDivisionMember(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ it ->
+                    view?.loadDivisionMember(it)
+                }, {
+                    view?.handleError(it.message.toString())
+                }))
+    }
+
+    override fun postDivisionStaffMain(map: HashMap<String, Any>) {
+        addSubscribe(apiService.postDivisionStaffMain(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ it ->
+                    view?.loadDivisionStaffMain(it)
+                }, {
+                    view?.handleError(it.message.toString())
+                }))
+    }
 }

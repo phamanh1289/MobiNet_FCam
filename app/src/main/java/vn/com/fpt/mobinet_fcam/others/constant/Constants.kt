@@ -29,6 +29,7 @@ object Constants {
     const val PARAM_OBJ_ID = "ObjID"
     const val PARAM_SERVICE_TYPE = "ServiceType"
     const val PARAM_SUP_INF_ID = "SupINFID"
+    const val PARAM_SUP_ID = "SupID"
     const val PARAM_CREATE_BY = "CreateBy"
     const val PARAM_OUTDOOR = "OutDoor"
     const val PARAM_OUTDOOR_TYPE = "OutDType"
@@ -48,6 +49,10 @@ object Constants {
     const val PARAM_IP_USER = "IpUser"
     const val PARAM_OPTICAL_JUMP = "OpticalJump"
     const val PARAM_JUMPER_WIRE = "JumperWire"
+    const val PARAM_CODE_EMPLOYEE = "CodeEmployee"
+    const val PARAM_HRID = "HRID"
+    const val ACCEPT_SUCCESSFUL = "1"
+    const val ACCEPT_EXITS = "2"
     //End
     //=================
     const val FULL_HOUR = 0
@@ -79,10 +84,12 @@ object Constants {
     const val BACK_STEP_UPDATE = -1
     const val SET_CURRENT_IS_MAX_DATE = true
     const val SET_CURRENT_IS_MIN_DATE = false
+    const val TYPE_ACCEPT = false
+    const val TYPE_ASSIGN = true
     const val URL_CHECK_IP = "http://checkip.amazonaws.com/"
     const val SUCCESSFUL = "Successful"
     const val ERROR_NETWORK = "No connection on device. Please turn on wifi/3G!"
-    const val TITLE_DIALOG = "Warning"
+    const val TITLE_DIALOG = "Message"
     const val DEFAULT_IMEI_1 = "980020001037136"
     const val DEFAULT_IMEI_2 = "357867067062183"
     const val DEFAULT_IMEI_3 = "352111083547082"

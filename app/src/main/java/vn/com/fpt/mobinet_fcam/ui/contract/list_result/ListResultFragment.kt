@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_list_result.*
 import vn.com.fpt.mobinet_fcam.R
+import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
 import vn.com.fpt.mobinet_fcam.data.interfaces.MenuMaintenanceDialogInterface
 import vn.com.fpt.mobinet_fcam.data.network.model.EmployeeModel
 import vn.com.fpt.mobinet_fcam.data.network.model.InfoContractModel
@@ -105,7 +106,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
 
     private fun handleDataListContract(list: Any) {
         listDataContract = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<InfoContractModel>>() {}.type)
-//        listDataContract.add(demoObj)
+        listDataContract.add(demoObj)
         when (typeContract) {
             Constants.CONTRACT_DEPLOYMENT -> {
                 mAdapterDeployment = ListDeploymentAdapter {
@@ -120,11 +121,23 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
                 mAdapterMaintenance = ListMaintenanceAdapter {
                     AppUtils.showDialogMenuMaintenance(fragmentManager, listDataContract[it].contract, listEmployee, object : MenuMaintenanceDialogInterface {
                         override fun actionAssign() {
-
+                            listDataContract[it].let { item ->
+                                initParamsAssignEmployee(item.contract, item.id)
+                            }
                         }
 
                         override fun actionAccept() {
+                            listDataContract[it].let { item ->
+                                AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_accept_checklist, item.contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+                                    override fun onClickOk() {
+                                        initParamsAcceptContract(item.objid, item.id)
+                                    }
 
+                                    override fun onClickCancel() {
+
+                                    }
+                                })
+                            }
                         }
 
                         override fun actionNext() {
@@ -147,9 +160,93 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
         hideLoading()
     }
 
+    private fun initParamsAssignEmployee(contract: String, subId: Int) {
+        AppUtils.showDialogEmployee(fragmentManager, getString(R.string.dialog_employee_choose_employee, contract), listEmployee) { item ->
+            AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_assign, item.name), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+                override fun onClickOk() {
+                    presenter.let {
+                        showLoading()
+                        val map = HashMap<String, Any>()
+                        map[Constants.PARAM_USER_NAME_UPPER_FULL] = getDefaultUser()?.mobiaccount.toString()
+                        map[Constants.PARAM_CODE_EMPLOYEE] = item.codeemployee
+                        map[Constants.PARAM_SUP_ID] = subId
+                        map[Constants.PARAM_HRID] = item.id
+                        it.postDivisionMember(map)
+                    }
+                }
+
+                override fun onClickCancel() {
+
+                }
+            })
+        }
+    }
+
+    private fun initParamsAcceptContract(obj: Int, supId: Int) {
+        presenter.let {
+            showLoading()
+            val map = HashMap<String, Any>()
+            map[Constants.PARAM_USER_NAME_UPPER_FULL] = getDefaultUser()?.mobiaccount.toString()
+            map[Constants.PARAM_IMEI] = getSharePreferences().imeiDevice
+            map[Constants.PARAM_OBJ_ID] = obj
+            map[Constants.PARAM_SUP_ID] = supId
+            it.postDivisionStaffMain(map)
+        }
+    }
+
     private fun handleDataMemberOfTeam(list: Any) {
-        listEmployee = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<EmployeeModel>>() {}.type)
+        val s = "[\n" +
+                "    {\n" +
+                "      \"codeemployee\": \"105412\",\n" +
+                "      \"id\": \"1662\",\n" +
+                "      \"name\": \"Sum Sopheak\",\n" +
+                "      \"account\": \"SIR3-sopheak.Sum\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"codeemployee\": \"105370\",\n" +
+                "      \"id\": \"1572\",\n" +
+                "      \"name\": \"Pich Pitou\",\n" +
+                "      \"account\": \"SIR3-Pitou.Pich\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"codeemployee\": \"105648\",\n" +
+                "      \"id\": \"10762\",\n" +
+                "      \"name\": \"Chab Tich\",\n" +
+                "      \"account\": \"SIR3-Tith.Chab\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"codeemployee\": \"137420\",\n" +
+                "      \"id\": \"10332\",\n" +
+                "      \"name\": \"Seyha Pin\",\n" +
+                "      \"account\": \"SIR3-Seyha.Pin\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"codeemployee\": \"130260\",\n" +
+                "      \"id\": \"8952\",\n" +
+                "      \"name\": \"Bun Lareachseymeta\",\n" +
+                "      \"account\": \"SIR3-meta.bunlareach\"\n" +
+                "    }\n" +
+                "  ]\n"
+        listEmployee = Gson().fromJson(s, object : TypeToken<ArrayList<EmployeeModel>>() {}.type)
+//        listEmployee = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<EmployeeModel>>() {}.type)
         initParams()
+    }
+
+    private fun handleDataAssignAndAccept(response: String, type: Boolean) {
+        val result = when (response) {
+            Constants.ACCEPT_SUCCESSFUL -> getString(if (!type) R.string.success else R.string.mess_error_data)
+            Constants.ACCEPT_EXITS -> getString(if (!type) R.string.mess_accept_exits else R.string.success)
+            else -> getString(if (!type) R.string.mess_error_data else R.string.mess_error_data)
+        }
+        AppUtils.showDialog(fragmentManager, title = getString(R.string.key_detail_contract_id_cable), content = result, confirmDialogInterface = null)
+    }
+
+    override fun loadDivisionStaffMain(response: ResponseModel) {
+        handleDataAssignAndAccept(response.toString(), Constants.TYPE_ACCEPT)
+    }
+
+    override fun loadDivisionMember(response: ResponseModel) {
+        handleDataAssignAndAccept(response.toString(), Constants.TYPE_ASSIGN)
     }
 
     override fun loadMemberOfTeam(response: ResponseModel) {

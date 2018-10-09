@@ -35,7 +35,8 @@
         <TextView
             android:id="@+id/fragDialogMenuMaintenance_tvAssign"
             fontPath="@string/Helvetica_Bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:padding="@dimen/_8dp"
             android:text="@string/assign"
@@ -52,7 +53,8 @@
         <TextView
             android:id="@+id/fragDialogMenuMaintenance_tvAccept"
             fontPath="@string/Helvetica_Bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8dp"
             android:padding="@dimen/_8dp"
@@ -69,7 +71,8 @@
         <TextView
             android:id="@+id/fragDialogMenuMaintenance_tvNext"
             fontPath="@string/Helvetica_Bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8dp"
             android:padding="@dimen/_8dp"

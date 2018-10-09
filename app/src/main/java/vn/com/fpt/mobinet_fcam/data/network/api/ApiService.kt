@@ -56,7 +56,6 @@ interface ApiService {
     @POST("DivisionMember")
     fun postDivisionMember(@Body map: HashMap<String, Any>): Observable<ResponseModel>
 
-
     //=====GET=====
     @GET("GetImage/{id}")
     fun getImage(@Path("id") id: String): Observable<ResponseBody>

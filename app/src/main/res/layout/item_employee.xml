@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:id="@+id/itemEmployee_rootView"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/_8dp"
+    android:paddingBottom="@dimen/_8dp"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        android:id="@+id/itemEmployee_tvID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:text="@string/dialog_employee_id"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"/>
+
+    <TextView
+        android:id="@+id/itemEmployee_tvCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:text="@string/dialog_employee_code"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"/>
+
+    <TextView
+        android:id="@+id/itemEmployee_tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="@string/dialog_employee_name"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"/>
+</LinearLayout>
