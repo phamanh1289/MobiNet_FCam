@@ -52,6 +52,10 @@ infix fun String?.addTimeToDate(value: String): String = if (this == null || thi
     } else this
 }
 
+infix fun String?.convertToShortFormat(value: String): String = if (this == null || this.isEmpty()) value else {
+    SimpleDateFormat(Constants.TIME_DATE_FULL_FORMAT_SHORT, Locale.getDefault()).format(SimpleDateFormat(if (this.contains(".")) Constants.TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_3 else Constants.TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_4, Locale.getDefault()).parse(this))
+}
+
 infix fun TextView?.isValidateDate(value: String): Boolean {
     val fromDate = SimpleDateFormat(Constants.TIME_DATE_FORMAT, Locale.getDefault()).parse(this?.text.toString())
     val toDate = SimpleDateFormat(Constants.TIME_DATE_FORMAT, Locale.getDefault()).parse(value)

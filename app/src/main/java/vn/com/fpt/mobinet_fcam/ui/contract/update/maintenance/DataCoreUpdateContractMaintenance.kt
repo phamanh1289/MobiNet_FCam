@@ -1,4 +1,4 @@
-package vn.com.fpt.mobinet_fcam.ui.contract.update
+package vn.com.fpt.mobinet_fcam.ui.contract.update.maintenance
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -15,7 +15,6 @@ import vn.com.fpt.mobinet_fcam.data.network.model.UpdateContractModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.contract.update.adapter.UpdateContractAdapter
-import vn.com.fpt.mobinet_fcam.utils.getHourFromDate
 
 /**
  * *******************************************
@@ -24,51 +23,61 @@ import vn.com.fpt.mobinet_fcam.utils.getHourFromDate
  * * All rights reserved                    **
  * *******************************************
  */
-class DataCoreUpdateContract(val context: Context?) {
+class DataCoreUpdateContractMaintenance(val context: Context?) {
+
+    companion object {
+        const val TYPE_ADSL = 1
+    }
+
     lateinit var infoContract: DetailContractModel
-    lateinit var updateContractModel: UpdateContractModel
+    var updateContractModel: UpdateContractModel? = null
+    var listContractModel = ArrayList<UpdateContractModel>()
+    var listHappenReason = ArrayList<SingleChoiceModel>()
+    var listReasonType = ArrayList<SingleChoiceModel>()
+    var listReasonDescription = ArrayList<SingleChoiceModel>()
     var listInDoor = ArrayList<SingleChoiceModel>()
     var listOutDoor = ArrayList<SingleChoiceModel>()
+    var listOutDoorGP = ArrayList<SingleChoiceModel>()
+    var listInDoorGP = ArrayList<SingleChoiceModel>()
     var listOtherCable = ArrayList<SingleChoiceModel>()
-    var listRouter = ArrayList<SingleChoiceModel>()
-    var listModem = ArrayList<SingleChoiceModel>()
-    var listTypeModem = ArrayList<SingleChoiceModel>()
-    var listStb = ArrayList<SingleChoiceModel>()
-    var listTypeStb = ArrayList<SingleChoiceModel>()
-    var listToHour = ArrayList<SingleChoiceModel>()
-    var listFromHour = ArrayList<SingleChoiceModel>()
-    var listReasonDelay = ArrayList<SingleChoiceModel>()
     var listResult = ArrayList<SingleChoiceModel>()
+    var listRouter = ArrayList<SingleChoiceModel>()
     var listContractKeyValue = ArrayList<DetailContractKeyValueModel>()
     var adapterCableInfo = UpdateContractAdapter()
-    var indexModem = 0
-    var indexTypeModem = 0
-    var indexStb = 0
-    var indexTypeStb = 0
     var indexInDoor = 0
+    var indexInDoorGP = 0
     var indexOutDoor = 0
+    var indexOutDoorGP = 0
     var indexOtherCable = 0
     var indexRouter = 0
-    var indexReasonDelay = 0
-    var indexToHour = 0
     var indexResult = 0
-    var indexFromHour = 0
+    var indexHappenReason = 0
+    var indexReasonType = 0
+    var indexReasonDescription = 0
     var serviceType = 0
     var stepUpdate = 0
 
     fun getDefaultDataList() {
-        listInDoor = DataCore.getListCable(context)
-        listOutDoor = DataCore.getListCable(context)
+        listInDoor = DataCore.getListCableMaintenance(context)
+        listOutDoor = DataCore.getListCableMaintenance(context)
+        listOutDoorGP = DataCore.getListCableMaintenance(context)
+        listInDoorGP = DataCore.getListCableMaintenance(context)
         listOtherCable = DataCore.getListOtherCable(context)
         listRouter = DataCore.getListRouter(context)
-        listModem = DataCore.getListModem(context)
-        listTypeModem = DataCore.getListTypeModem(context)
-        listStb = DataCore.getListStb(context)
-        listTypeStb = DataCore.getListTypeStb(context)
-        listToHour = DataCore.getListHour()
-        listFromHour = DataCore.getListHour()
-        listReasonDelay = DataCore.getListReason(context)
         listResult = DataCore.getListResult(context)
+        listHappenReason = if (serviceType == TYPE_ADSL) DataCore.getListHappenADSL(context) else DataCore.getListHappenFTTH(context)
+    }
+
+    fun getListReason(textView: TextView) {
+        indexReasonType = 0
+        listReasonType = DataCore.getListReasonType(context, listHappenReason[indexHappenReason].id)
+        setDefaultFirstItem(listReasonType, textView)
+    }
+
+    fun getListReasonDescription(textView: TextView) {
+        indexReasonDescription = 0
+        listReasonDescription = DataCore.getListReasonDescription(context, listReasonType[indexReasonType].id)
+        setDefaultFirstItem(listReasonDescription, textView)
     }
 
     fun setDefaultFirstItem(list: ArrayList<SingleChoiceModel>, textView: TextView) {
@@ -76,53 +85,40 @@ class DataCoreUpdateContract(val context: Context?) {
         textView.text = list[Constants.FIRST_ITEM].account
     }
 
-    fun getObjectSingleCable(id: Int, list: ArrayList<SingleChoiceModel>, textView: TextView) {
-        var item = list[Constants.FIRST_ITEM]
-        list.forEach {
+    fun getObjectSingleCable(id: Int, list: ArrayList<SingleChoiceModel>, textView: TextView): Int {
+        var result = Constants.FIRST_ITEM
+        var item = list[result]
+        for (i in 0 until list.size) {
+            val it = list[i]
             if (it.id == id) {
                 item.status = false
                 it.status = true
                 item = it
+                result = i
             }
         }
         textView.text = item.account
+        return result
     }
-
 
     fun addParams(map: HashMap<String, Any>) {
         listContractKeyValue.forEach {
-            map[it.key] = it.value
+            map[it.key.toLowerCase()] = it.value
         }
     }
 
     fun setIndexSelected(view: View, position: Int) {
         when (view.id) {
-            R.id.fragUpdateContract_tvInDoor -> indexInDoor = position
-            R.id.fragUpdateContract_tvOutDoor -> indexOutDoor = position
-            R.id.fragUpdateContract_tvOtherCable -> indexOtherCable = position
-            R.id.fragUpdateContract_tvRouter -> indexRouter = position
-            R.id.fragUpdateContract_tvModem -> indexModem = position
-            R.id.fragUpdateContract_tvTypeModem -> indexTypeModem = position
-            R.id.fragUpdateContract_tvStb -> indexStb = position
-            R.id.fragUpdateContract_tvTypeStb -> indexTypeStb = position
-            R.id.fragUpdateContract_tvToHour -> indexToHour = position
-            R.id.fragUpdateContract_tvFromHour -> indexFromHour = position
-            R.id.fragUpdateContract_tvReasonDelay -> indexReasonDelay = position
-            R.id.fragUpdateContract_tvResult -> indexResult = position
-        }
-    }
-
-    fun getHourFromDate(date: String, textView: TextView, typeList: Boolean) {
-        if (date.isNotBlank()) {
-            var fromHour = date.getHourFromDate("").toInt()
-            val indexList = if (fromHour == Constants.FULL_HOUR) Constants.LAST_INDEX_HOUR else --fromHour
-            indexList.let { index ->
-                val list = if (typeList) listFromHour else listToHour
-                if (typeList) indexFromHour = index else indexToHour = index
-                list[Constants.FIRST_ITEM].status = false
-                list[index].status = true
-                textView.text = list[index].account
-            }
+            R.id.fragUpdateContractMaintenance_tvInDoor -> indexInDoor = position
+            R.id.fragUpdateContractMaintenance_tvInDoorGp -> indexInDoorGP = position
+            R.id.fragUpdateContractMaintenance_tvOutDoor -> indexOutDoor = position
+            R.id.fragUpdateContractMaintenance_tvOutDoorGp -> indexOutDoorGP = position
+            R.id.fragUpdateContractMaintenance_tvOtherCable -> indexOtherCable = position
+            R.id.fragUpdateContractMaintenance_tvRouterAmount -> indexRouter = position
+            R.id.fragUpdateContractMaintenance_tvResult -> indexResult = position
+            R.id.fragUpdateContractMaintenance_tvHappenPosition -> indexHappenReason = position
+            R.id.fragUpdateContractMaintenance_tvReason -> indexReasonType = position
+            R.id.fragUpdateContractMaintenance_tvReasonDescription -> indexReasonDescription = position
         }
     }
 
@@ -143,7 +139,7 @@ class DataCoreUpdateContract(val context: Context?) {
         val map: HashMap<String, Any> = Gson().fromJson(Gson().toJson(updateContractModel), object : TypeToken<HashMap<String, Any>>() {}.type)
         listContractKeyValue.forEach { item ->
             map.forEach {
-                if (it.key == item.property)
+                if (it.key == item.property || (it.key == Constants.KEY_WISTICKINGER && item.property == Constants.KEY_WISTICKING))
                     item.value = (it.value as Double).toInt().toString()
             }
         }

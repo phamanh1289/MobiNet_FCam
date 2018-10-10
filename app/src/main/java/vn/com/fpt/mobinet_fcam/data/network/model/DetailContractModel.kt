@@ -22,7 +22,7 @@ data class DetailContractModel(
         val createby: String,
         val image: String,
         val cusnote: String,
-        val idmain: String,
+        val idmain: Int,
         val contract: String,
         val name: String,
         val odccabletype: String,

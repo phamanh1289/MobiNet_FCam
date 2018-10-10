@@ -1,11 +1,11 @@
-package vn.com.fpt.mobinet_fcam.ui.contract.update
+package vn.com.fpt.mobinet_fcam.ui.contract.update.deployment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_update_contract.*
+import kotlinx.android.synthetic.main.fragment_update_contract_deployment.*
 import kotlinx.android.synthetic.main.item_cable.*
 import kotlinx.android.synthetic.main.item_cable_info.*
 import kotlinx.android.synthetic.main.item_modem_stb.*
@@ -29,26 +29,26 @@ import javax.inject.Inject
  * * All rights reserved                    **
  * *******************************************
  */
-class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateContractView {
+class UpdateDeploymentFragment : BaseFragment(), UpdateDeploymentContract.UpdateContractView {
     @Inject
-    lateinit var presenter: UpdateContractPresenter
+    lateinit var presenter: UpdateDeploymentPresenter
 
     private lateinit var dataCore: DataCoreUpdateContract
     var exitUpdate = false
 
     companion object {
-        fun newInstance(item: DetailContractModel, serviceType: Int): UpdateContractFragment {
+        fun newInstance(item: DetailContractModel, serviceType: Int): UpdateDeploymentFragment {
             val args = Bundle()
             args.putParcelable(Constants.MODEL, item)
             args.putInt(Constants.PARAM_SERVICE_TYPE, serviceType)
-            val fragment = UpdateContractFragment()
+            val fragment = UpdateDeploymentFragment()
             fragment.arguments = args
             return fragment
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_update_contract, container, false)
+        return inflater.inflate(R.layout.fragment_update_contract_deployment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -103,10 +103,16 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
     }
 
     private fun initParamGetDetailUpdate() {
-        showLoading()
         getDefaultUser()?.let {
-            //            presenter.getDetailUpdate(it.mobiaccount, it.password, 2171722, 1614502)
-            presenter.getDetailUpdate(it.mobiaccount, it.password, dataCore.infoContract.deployid, dataCore.infoContract.objid)
+            showLoading()
+            dataCore.infoContract.let { item ->
+                if (item.objid != 0)
+                    presenter.getDetailUpdate(it.mobiaccount, it.password, item.deployid, item.objid)
+                //            presenter.getDetailUpdate(it.mobiaccount, it.password, 2171722, 1614502)
+                else
+                    presenter.getMaintenanceObject(it.mobiaccount, it.password, item.deployid, item.idmain)
+                //            presenter.getMaintenanceObject(it.mobiaccount, it.password, 6906452, 746162)
+            }
         }
     }
 
@@ -309,8 +315,8 @@ class UpdateContractFragment : BaseFragment(), UpdateContractContract.UpdateCont
             fragUpdateContract_tvOldNote.text = it.note
             fragUpdateContract_tvFrom.text = it.assigndate.convertToDateFormat("")
             fragUpdateContract_tvTo.text = it.assigndate1.convertToDateFormat("")
-            dataCore.getHourFromDate(it.assigndate,fragUpdateContract_tvFromHour,true)
-            dataCore.getHourFromDate(it.assigndate1,fragUpdateContract_tvToHour,false)
+            dataCore.getHourFromDate(it.assigndate, fragUpdateContract_tvFromHour, true)
+            dataCore.getHourFromDate(it.assigndate1, fragUpdateContract_tvToHour, false)
             dataCore.initCableInfoView(fragUpdateContract_rvMain)
         }
     }

@@ -16,7 +16,8 @@ import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.detail.adpater.DetailContractAdapter
-import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.update.deployment.UpdateDeploymentFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.update.maintenance.UpdateMaintenanceFragment
 import vn.com.fpt.mobinet_fcam.ui.image.view_image.ViewImageFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
@@ -98,8 +99,10 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
             }
         }
         adapterDetail = DetailContractAdapter { addFragment(ViewImageFragment.newInstance(listDetailKeyValue[it].value), true, true) }
-        adapterDetail.submitList(listDetailKeyValue)
-        adapterDetail.notifyDataSetChanged()
+        adapterDetail.run {
+            submitList(listDetailKeyValue)
+            notifyDataSetChanged()
+        }
         fragDetailContract_rvMain.apply {
             val layout = LinearLayoutManager(context)
             layoutManager = layout
@@ -107,7 +110,11 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
             adapter = adapterDetail
         }
         hideLoading()
-        fragDetailContract_tvUpdate.setOnClickListener { addFragment(UpdateContractFragment.newInstance(response, serviceType), true, true) }
+        fragDetailContract_tvUpdate.setOnClickListener {
+            if (typeContract == Constants.CONTRACT_DEPLOYMENT)
+                addFragment(UpdateDeploymentFragment.newInstance(response, serviceType), true, true)
+            else addFragment(UpdateMaintenanceFragment.newInstance(response, serviceType), true, true)
+        }
     }
 
     override fun loadDetailContractDeployment(response: DetailContractModel) {

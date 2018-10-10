@@ -157,6 +157,244 @@ object DataCore {
         return list
     }
 
+    fun getListCableMaintenance(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 32, account = it.getString(R.string.type_cable_cable5)))
+                add(SingleChoiceModel(id = 202, account = it.getString(R.string.type_cable_fo_1)))
+                add(SingleChoiceModel(id = 212, account = it.getString(R.string.type_cable_fo_2)))
+                add(SingleChoiceModel(id = 222, account = it.getString(R.string.type_cable_fo_4)))
+                add(SingleChoiceModel(id = 232, account = it.getString(R.string.type_cable_fo_8)))
+                add(SingleChoiceModel(id = 242, account = it.getString(R.string.type_cable_fo_16)))
+            }
+        }
+        return list
+    }
+
+    fun getListHappenFTTH(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.happen_ftth_in_customer)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.happen_ftth_infrastructure)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.happen_ftth_group_point)))
+                add(SingleChoiceModel(id = 4, account = it.getString(R.string.happen_ftth_wire_from)))
+                add(SingleChoiceModel(id = 5, account = it.getString(R.string.happen_ftth_in_odf)))
+                add(SingleChoiceModel(id = 6, account = it.getString(R.string.happen_ftth_system_error)))
+                add(SingleChoiceModel(id = 7, account = it.getString(R.string.happen_ftth_module_fiber)))
+                add(SingleChoiceModel(id = 8, account = it.getString(R.string.happen_ftth_switch)))
+                add(SingleChoiceModel(id = 9, account = it.getString(R.string.happen_ftth_noc)))
+                add(SingleChoiceModel(id = 10, account = it.getString(R.string.happen_ftth_not_fix)))
+                add(SingleChoiceModel(id = 11, account = it.getString(R.string.happen_ftth_other_reason)))
+                add(SingleChoiceModel(id = 12, account = it.getString(R.string.happen_ftth_pop)))
+                add(SingleChoiceModel(id = 13, account = it.getString(R.string.happen_ftth_error_onu)))
+                add(SingleChoiceModel(id = 14, account = it.getString(R.string.happen_ftth_rain)))
+            }
+        }
+        return list
+    }
+
+    fun getListHappenADSL(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.happen_ftth_in_customer)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.happen_adsl_wire_between)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.happen_ftth_group_point)))
+                add(SingleChoiceModel(id = 4, account = it.getString(R.string.happen_ftth_infrastructure)))
+                add(SingleChoiceModel(id = 5, account = it.getString(R.string.happen_ftth_not_fix)))
+                add(SingleChoiceModel(id = 6, account = it.getString(R.string.happen_ftth_system_error)))
+                add(SingleChoiceModel(id = 7, account = it.getString(R.string.happen_ftth_other_reason)))
+                add(SingleChoiceModel(id = 8, account = it.getString(R.string.happen_adsl_cancel_error)))
+                add(SingleChoiceModel(id = 9, account = it.getString(R.string.happen_adsl_customer_appointment)))
+                add(SingleChoiceModel(id = 12, account = it.getString(R.string.happen_ftth_pop)))
+                add(SingleChoiceModel(id = 14, account = it.getString(R.string.happen_adsl_error_cable)))
+                add(SingleChoiceModel(id = 16, account = it.getString(R.string.happen_adsl_error_infrastructure)))
+                add(SingleChoiceModel(id = 18, account = it.getString(R.string.happen_adsl_burn_metal)))
+                add(SingleChoiceModel(id = 19, account = it.getString(R.string.happen_adsl_cable_infrastructure)))
+                add(SingleChoiceModel(id = 20, account = it.getString(R.string.happen_adsl_cable_underground)))
+                add(SingleChoiceModel(id = 21, account = it.getString(R.string.happen_adsl_cable_control)))
+                add(SingleChoiceModel(id = 22, account = it.getString(R.string.happen_adsl_standardize_database)))
+                add(SingleChoiceModel(id = 23, account = it.getString(R.string.happen_ftth_rain)))
+            }
+        }
+        return list
+    }
+
+    fun getListReasonType(context: Context?, type: Int): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                when (type) {
+                    Constants.REASON_LIST_BY_ID_1 -> addDataReasonType1(it, this)
+                    Constants.REASON_LIST_BY_ID_2 -> addDataReasonType2(it, this)
+                    Constants.REASON_LIST_BY_ID_3 -> addDataReasonType3(it, this)
+                    Constants.REASON_LIST_BY_ID_4 -> addDataReasonType4(it, this)
+                    Constants.REASON_LIST_BY_ID_6 -> addDataReasonType6(it, this)
+                    Constants.REASON_LIST_BY_ID_14 -> addDataReasonType14(it, this)
+                    else -> add(SingleChoiceModel(id = 0, account = ""))
+                }
+            }
+        }
+        return list
+    }
+
+    private fun addDataReasonType1(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 40, account = it.getString(R.string.reason_breaking_wire_house)))
+                add(SingleChoiceModel(id = 41, account = it.getString(R.string.reason_box_link)))
+                add(SingleChoiceModel(id = 42, account = it.getString(R.string.reason_modem_error)))
+                add(SingleChoiceModel(id = 43, account = it.getString(R.string.reason_equipment_error)))
+                add(SingleChoiceModel(id = 44, account = it.getString(R.string.reason_lan_network)))
+                add(SingleChoiceModel(id = 45, account = it.getString(R.string.reason_error_line)))
+                add(SingleChoiceModel(id = 46, account = it.getString(R.string.reason_error_lan)))
+                add(SingleChoiceModel(id = 47, account = it.getString(R.string.reason_break_indoor)))
+                add(SingleChoiceModel(id = 48, account = it.getString(R.string.reason_voltage_weak)))
+                add(SingleChoiceModel(id = 49, account = it.getString(R.string.reason_error_computer)))
+                add(SingleChoiceModel(id = 50, account = it.getString(R.string.reason_concern)))
+            }
+        }
+    }
+
+    private fun addDataReasonType2(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_breaking_electric)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_breaking_reason)))
+            }
+        }
+    }
+
+    private fun addDataReasonType3(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 35, account = it.getString(R.string.reason_jump_wire)))
+                add(SingleChoiceModel(id = 36, account = it.getString(R.string.reason_coordinator)))
+                add(SingleChoiceModel(id = 37, account = it.getString(R.string.reason_port_error)))
+                add(SingleChoiceModel(id = 38, account = it.getString(R.string.reason_error_connect)))
+            }
+        }
+    }
+
+    private fun addDataReasonType4(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_breaking_wire)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_pop_off)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.reason_card_error)))
+            }
+        }
+    }
+
+    private fun addDataReasonType6(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 103, account = it.getString(R.string.reason_error_pop)))
+                add(SingleChoiceModel(id = 104, account = it.getString(R.string.reason_full_traffic)))
+                add(SingleChoiceModel(id = 105, account = it.getString(R.string.reason_error_metro)))
+                add(SingleChoiceModel(id = 107, account = it.getString(R.string.reason_error_signal)))
+            }
+        }
+    }
+
+    private fun addDataReasonType14(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 30, account = it.getString(R.string.reason_breaking_outdoor)))
+                add(SingleChoiceModel(id = 31, account = it.getString(R.string.reason_cable)))
+                add(SingleChoiceModel(id = 32, account = it.getString(R.string.reason_error_open)))
+            }
+        }
+    }
+
+    fun getListReasonDescription(context: Context?, type: Int): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                when (type) {
+                    Constants.REASON_DESCRIPTION_LIST_BY_ID_30 -> addDataReasonDescription30(it, this)
+                    Constants.REASON_DESCRIPTION_LIST_BY_ID_37 -> addDataReasonDescription37(it, this)
+                    Constants.REASON_DESCRIPTION_LIST_BY_ID_38 -> addDataReasonDescription38(it, this)
+                    Constants.REASON_DESCRIPTION_LIST_BY_ID_42 -> addDataReasonDescription42(it, this)
+                    Constants.REASON_DESCRIPTION_LIST_BY_ID_49 -> addDataReasonDescription49(it, this)
+                    Constants.REASON_DESCRIPTION_LIST_BY_ID_103 -> addDataReasonDescription103(it, this)
+                    Constants.REASON_DESCRIPTION_LIST_BY_ID_107 -> addDataReasonDescription107(it, this)
+                    else -> add(SingleChoiceModel(id = 0, account = ""))
+                }
+            }
+        }
+        return list
+    }
+
+    private fun addDataReasonDescription30(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_description_electricity)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_description_lower_underground)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.reason_description_break_other)))
+            }
+        }
+    }
+
+    private fun addDataReasonDescription37(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_description_port_cabenit)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_description_port_error)))
+            }
+        }
+    }
+
+    private fun addDataReasonDescription38(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_description_wire)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_description_lost)))
+            }
+        }
+    }
+
+    private fun addDataReasonDescription42(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_description_modem_die)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_description_modem_not)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.reason_description_modem_hanged)))
+                add(SingleChoiceModel(id = 4, account = it.getString(R.string.reason_description_modem_lose)))
+                add(SingleChoiceModel(id = 5, account = it.getString(R.string.reason_description_modem_error)))
+            }
+        }
+    }
+
+    private fun addDataReasonDescription49(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_description_hardware)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_description_software)))
+            }
+        }
+    }
+
+    private fun addDataReasonDescription103(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_description_error_dslam)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_description_error_card)))
+            }
+        }
+    }
+
+    private fun addDataReasonDescription107(context: Context?, arrayList: ArrayList<SingleChoiceModel>) {
+        context?.let {
+            arrayList.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.reason_description_error_lack)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.reason_description_error_gate)))
+            }
+        }
+    }
+
     fun getListOtherCable(context: Context?): ArrayList<SingleChoiceModel> {
         val list = ArrayList<SingleChoiceModel>()
         context?.let {

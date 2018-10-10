@@ -1,4 +1,4 @@
-package vn.com.fpt.mobinet_fcam.ui.contract.update
+package vn.com.fpt.mobinet_fcam.ui.contract.update.deployment
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -13,7 +13,7 @@ import javax.inject.Inject
  * * All rights reserved                    **
  * *******************************************
  */
-class UpdateContractPresenter @Inject constructor(private val apiService: ApiService) : BasePresenter<UpdateContractContract.UpdateContractView>(), UpdateContractContract.UpdateContractPresenter {
+class UpdateDeploymentPresenter @Inject constructor(private val apiService: ApiService) : BasePresenter<UpdateDeploymentContract.UpdateContractView>(), UpdateDeploymentContract.UpdateContractPresenter {
 
     override fun postUpdateContractDeployment(map: HashMap<String, Any>) {
 //        addSubscribe(apiService.postUpdateContractDeployment(map)
@@ -28,6 +28,17 @@ class UpdateContractPresenter @Inject constructor(private val apiService: ApiSer
 
     override fun getDetailUpdate(userName: String, passWord: String, deplId: Int, objId: Int) {
         addSubscribe(apiService.getDetailContract(userName, passWord, deplId, objId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ it ->
+                    view?.loadDetailUpdate(it)
+                }, {
+                    view?.handleError(it.message.toString())
+                }))
+    }
+
+    override fun getMaintenanceObject(userName: String, passWord: String, mainId: Int, objId: Int) {
+        addSubscribe(apiService.getMaintenanceObject(userName, passWord, mainId, objId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ it ->

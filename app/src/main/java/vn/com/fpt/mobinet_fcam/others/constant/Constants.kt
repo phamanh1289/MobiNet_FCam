@@ -82,6 +82,19 @@ object Constants {
     const val STEP_4_UPDATE_REASON_RESULT = 4
     const val NEXT_STEP_UPDATE = 1
     const val BACK_STEP_UPDATE = -1
+    const val REASON_LIST_BY_ID_1 = 1
+    const val REASON_LIST_BY_ID_2 = 2
+    const val REASON_LIST_BY_ID_3 = 3
+    const val REASON_LIST_BY_ID_4 = 4
+    const val REASON_LIST_BY_ID_6 = 6
+    const val REASON_LIST_BY_ID_14 = 14
+    const val REASON_DESCRIPTION_LIST_BY_ID_30 = 30
+    const val REASON_DESCRIPTION_LIST_BY_ID_37 = 37
+    const val REASON_DESCRIPTION_LIST_BY_ID_38 = 38
+    const val REASON_DESCRIPTION_LIST_BY_ID_42 = 42
+    const val REASON_DESCRIPTION_LIST_BY_ID_49 = 49
+    const val REASON_DESCRIPTION_LIST_BY_ID_103 = 103
+    const val REASON_DESCRIPTION_LIST_BY_ID_107 = 107
     const val SET_CURRENT_IS_MAX_DATE = true
     const val SET_CURRENT_IS_MIN_DATE = false
     const val TYPE_ACCEPT = false
@@ -90,6 +103,8 @@ object Constants {
     const val SUCCESSFUL = "Successful"
     const val ERROR_NETWORK = "No connection on device. Please turn on wifi/3G!"
     const val TITLE_DIALOG = "Message"
+    const val KEY_WISTICKINGER = "wistickingplastere"
+    const val KEY_WISTICKING = "stickingplaster"
     const val DEFAULT_IMEI_1 = "980020001037136"
     const val DEFAULT_IMEI_2 = "357867067062183"
     const val DEFAULT_IMEI_3 = "352111083547082"
@@ -101,6 +116,8 @@ object Constants {
     const val TIME_DATE_FORMAT_FROM_SERVER = "MM-dd-yyyy"
     const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_1 = "yyyy-MM-dd HH:mm:ss.S"
     const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_2 = "yyyy-MM-dd HH:mm:ss"
+    const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_3 = "dd/MM/yyyy HH:mm:ss.S a"
+    const val TIME_DATE_FULL_FORMAT_FROM_SERVER_TYPE_4 = "dd/MM/yyyy HH:mm:ss a"
     const val TIME_DATE_FORMAT_HOUR = "HH"
     const val TIME_DATE_FULL_FORMAT = "dd-MM-yyyy HH:mm:ss"
     const val TIME_DATE_FULL_FORMAT_SHORT = "dd-MM-yyyy HH:mm"

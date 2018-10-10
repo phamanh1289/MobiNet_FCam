@@ -25,7 +25,8 @@ import vn.com.fpt.mobinet_fcam.others.dialog.EmployeeDialog
 import vn.com.fpt.mobinet_fcam.others.dialog.MenuMaintenanceDialog
 import vn.com.fpt.mobinet_fcam.others.dialog.singleChoice.SingChoiceDialog
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.update.UpdateContractFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.update.deployment.UpdateDeploymentFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.update.maintenance.UpdateMaintenanceFragment
 import java.io.IOException
 import java.util.*
 
@@ -129,7 +130,8 @@ object AppUtils {
             val fragment = fragmentManager?.findFragmentById(android.R.id.tabcontent)
             when (fragment) {
                 is SearchListFragment -> fragment.setDefaultValueIndex(view.id, position)
-                is UpdateContractFragment -> fragment.setIndexSelected(view, position)
+                is UpdateDeploymentFragment -> fragment.setIndexSelected(view, position)
+                is UpdateMaintenanceFragment -> fragment.setIndexSelected(view, position)
             }
             view.text = listData[position].account
             dialog.submitData(listData)

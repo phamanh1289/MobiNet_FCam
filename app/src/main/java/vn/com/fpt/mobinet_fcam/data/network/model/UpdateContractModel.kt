@@ -47,5 +47,17 @@ data class UpdateContractModel(
         var status: Int,
         var scsc: Int,
         var custype: Int,
-        var appointment: Int
+        var appointment: Int,
+
+        var maintenanceid: Int = 0,
+        var happenposition: Int = 0,
+        var reason: Int = 0,
+        var reasondescription: Int = 0,
+        var indoorl: Int = 0,
+        var outdoorl: Int = 0,
+        var indtypel: Int = 0,
+        var outdtypel: Int = 0,
+        var wistickingplastere: Int = 0,
+        var appointmentdate: String? = null
+
 ) : BaseModel()

@@ -268,9 +268,9 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
     }
 
     val demoObj = InfoContractModel(
-            id = 6906582,
-            objid = 573312,
-            contract = "PPDD22006",
+            id = 6907302,
+            objid = 196872,
+            contract = "PPDB52030",
             datecreate = "2018-10-09T10:52:34.857",
             dateassign = "",
             typecus = "",

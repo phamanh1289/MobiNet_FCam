@@ -63,5 +63,8 @@ interface ApiService {
     @GET("GetDeploymentObject/{userName}/{passWord}/{DeployID}/{ObjID}")
     fun getDetailContract(@Path("userName") userName: String, @Path("passWord") passWord: String, @Path("DeployID") deplId: Int, @Path("ObjID") objId: Int): Observable<ResponseBody>
 
+    @GET("GetMaintenanceObject/{userName}/{passWord}/{MaintenanceID}/{ObjID}")
+    fun getMaintenanceObject(@Path("userName") userName: String, @Path("passWord") passWord: String, @Path("MaintenanceID") mainId: Int, @Path("ObjID") objId: Int): Observable<ResponseBody>
+
 
 }
