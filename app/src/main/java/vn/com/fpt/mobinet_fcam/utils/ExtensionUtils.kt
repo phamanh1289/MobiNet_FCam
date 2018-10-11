@@ -62,21 +62,25 @@ infix fun TextView?.isValidateDate(value: String): Boolean {
     return fromDate.before(toDate)
 }
 
-infix fun String?.getNotes(value: String): String {
-    this?.let {
-        return if (it.isNotBlank()) "$value,$this" else value
-    }
-    return ""
+infix fun String.getNotes(value: String) = when {
+    this.isNotBlank() && value.isNotBlank() -> "$this,$value"
+    this.isNotBlank() -> this
+    value.isNotBlank() -> value
+    else -> ""
 }
 
-infix fun String?.getCurrentDate(value: Int): String {
+
+infix fun String?.getCurrentDate(value: Int)
+        : String {
     val c = Calendar.getInstance()
     if (value != 0)
         c.add(Calendar.DATE, value)
     return SimpleDateFormat(Constants.TIME_DATE_FORMAT, Locale.getDefault()).format(c.time)
 }
 
-infix fun TextView?.checkNoValue(value: String?): Boolean = this?.text.toString().toInt() == Constants.NO_VALUE
+infix fun TextView?.checkNoValue(value: String?
+)
+        : Boolean = this?.text.toString().toInt() == Constants.NO_VALUE
 
 infix fun TextView?.onChange(view: View) {
     this?.addTextChangedListener(object : TextWatcher {

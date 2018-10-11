@@ -58,6 +58,7 @@ object AppUtils {
             Constants.DEFAULT_IMEI_5 -> true
             "868222039057725" -> true
             "358099073026072" -> true
+            "358240051111110" -> true
             else -> false
         }
     }

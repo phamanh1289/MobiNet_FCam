@@ -16,14 +16,14 @@ import javax.inject.Inject
 class UpdateDeploymentPresenter @Inject constructor(private val apiService: ApiService) : BasePresenter<UpdateDeploymentContract.UpdateContractView>(), UpdateDeploymentContract.UpdateContractPresenter {
 
     override fun postUpdateContractDeployment(map: HashMap<String, Any>) {
-//        addSubscribe(apiService.postUpdateContractDeployment(map)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({ it ->
-//                    view?.loadUpdateContractDeployment(it)
-//                }, {
-//                    view?.handleError(it.message.toString())
-//                }))
+        addSubscribe(apiService.postUpdateContractDeployment(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ it ->
+                    view?.loadUpdateContractDeployment(it)
+                }, {
+                    view?.handleError(it.message.toString())
+                }))
     }
 
     override fun getDetailUpdate(userName: String, passWord: String, deplId: Int, objId: Int) {

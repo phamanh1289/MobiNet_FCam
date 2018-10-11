@@ -47,6 +47,9 @@ interface ApiService {
     @POST("UpdateDeploymentObjectV2")
     fun postUpdateContractDeployment(@Body map: HashMap<String, Any>): Observable<ResponseModel>
 
+    @POST("UpdateMaintenanceObject")
+    fun postUpdateContractMaintenance(@Body map: HashMap<String, Any>): Observable<ResponseModel>
+
     @POST("GetListMemberOfTeam")
     fun getListMemberOfTeam(@Body map: HashMap<String, Any>): Observable<ResponseModel>
 

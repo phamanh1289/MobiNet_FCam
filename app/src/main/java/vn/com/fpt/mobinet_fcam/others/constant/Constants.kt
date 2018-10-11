@@ -14,8 +14,6 @@ object Constants {
     const val PARAM_DEVICE_IMEI = "DeviceIMEI"
     const val PARAM_OS_VERSION = "OSVersion"
     const val PARAM_DEVICE_MODEL = "DeviceModel"
-    const val PARAM_USER_NAME_LOW = "username"
-    const val PARAM_PASSWORD_LOW = "password"
     const val PARAM_DEVICE_IMEI_LOW = "deviceimei"
     const val PARAM_VERSION_APP_LOW = "versionapp"
     const val PARAM_USER_NAME_UPPER = "Username"
@@ -50,7 +48,18 @@ object Constants {
     const val PARAM_OPTICAL_JUMP = "OpticalJump"
     const val PARAM_JUMPER_WIRE = "JumperWire"
     const val PARAM_CODE_EMPLOYEE = "CodeEmployee"
+    const val PARAM_SUP_LIST_ID = "supplistid"
+    const val PARAM_FINAL_DES = "final_desc"
+    const val PARAM_UPDATE_BY = "updateby"
+    const val PARAM_APPOINTMENT_DATE = "appointmentdate"
+    const val PARAM_RESULT = "result"
+    const val PARAM_HAPPEN_POSITION = "happenposition"
+    const val PARAM_REASON = "reason"
+    const val PARAM_OFTEN_ERROR = "oftenerror"
+    const val PARAM_BOX = "Box"
+    const val PARAM_HI_OPEN_NET = "hiopennetreason"
     const val PARAM_HRID = "HRID"
+    const val PARAM_CONTRACT_NO = "contractNo"
     const val ACCEPT_SUCCESSFUL = "1"
     const val ACCEPT_EXITS = "2"
     //End
@@ -61,6 +70,7 @@ object Constants {
     const val DELAY_HOUR = -2
     const val LOGIN_FAILD = -1
     const val FIRST_ITEM = 0
+    const val HI_OPEN_NET_NOT_YET = 0
     const val SECOND_ITEM = 1
     const val REQUEST_SUCCESS = 1
     const val CURRENT_DATE = 0
@@ -103,8 +113,6 @@ object Constants {
     const val SUCCESSFUL = "Successful"
     const val ERROR_NETWORK = "No connection on device. Please turn on wifi/3G!"
     const val TITLE_DIALOG = "Message"
-    const val KEY_WISTICKINGER = "wistickingplastere"
-    const val KEY_WISTICKING = "stickingplaster"
     const val DEFAULT_IMEI_1 = "980020001037136"
     const val DEFAULT_IMEI_2 = "357867067062183"
     const val DEFAULT_IMEI_3 = "352111083547082"

@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import vn.com.fpt.mobinet_fcam.dagger.connect.ApiConfig
 import vn.com.fpt.mobinet_fcam.dagger.connect.ApiConfigType
 import vn.com.fpt.mobinet_fcam.dagger.scope.AppScope
+import vn.com.fpt.mobinet_fcam.data.network.api.ApiHiOpennetService
 import vn.com.fpt.mobinet_fcam.data.network.api.ApiService
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -59,6 +60,19 @@ class NetworkModule(private val mType: ApiConfigType) {
                         .create()))
                 .build()
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    fun provideApiHiOpennetService(): ApiHiOpennetService {
+        val retrofit = Retrofit.Builder()
+                .baseUrl(ApiConfig.createConnectionDetail(mType).baseURLHiApi)
+                .client(httpClient.build())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(GsonBuilder()
+                        .setLenient()
+                        .create()))
+                .build()
+        return retrofit.create(ApiHiOpennetService::class.java)
     }
 
 }

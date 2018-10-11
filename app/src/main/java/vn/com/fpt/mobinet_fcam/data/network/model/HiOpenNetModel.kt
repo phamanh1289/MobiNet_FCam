@@ -1,10 +1,10 @@
-package vn.com.fpt.mobinet_fcam.dagger.connect
+package vn.com.fpt.mobinet_fcam.data.network.model
 
 /**
  * *******************************************
- * * Created by AnhPT76 on 26/09/2018.      **
+ * * Created by AnhPT76 on 11/10/2018.      **
  * * Copyright (c)  by FPT Telecom          **
  * * All rights reserved                    **
  * *******************************************
  */
-data class ApiConfigDetail(val baseURL: String,val baseURLHiApi: String)
+data class HiOpenNetModel(val statusCode: Int, val data: Int, val message: String) : BaseModel()

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="@dimen/_20dp"
+    android:layout_marginEnd="@dimen/_20dp"
+    android:background="@drawable/shape_circle_dialog_while"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="@dimen/_4dp"
+        android:padding="@dimen/_4dp"
+        android:text="@string/hiopennet_title"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_15dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:background="@color/silver"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragDialogHiOpenNet_rvMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:background="@color/silver"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/fragDialogHiOpenNet_tvCancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginStart="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/action_cancel"
+            android:textColor="@color/light_blue_300"
+            android:textSize="@dimen/_17dp"/>
+
+        <View
+            android:layout_width="@dimen/_1dp"
+            android:layout_height="match_parent"
+            android:background="@color/silver"/>
+
+        <TextView
+            android:id="@+id/fragDialogHiOpenNet_tvOK"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginStart="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/action_ok"
+            android:textColor="@color/redMain"
+            android:textSize="@dimen/_17dp"/>
+    </LinearLayout>
+</LinearLayout>

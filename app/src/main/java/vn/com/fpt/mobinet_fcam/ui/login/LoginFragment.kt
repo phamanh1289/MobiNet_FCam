@@ -86,8 +86,8 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
                 presenter.let { api ->
                     showLoading()
                     val map = HashMap<String, Any>()
-                    map[Constants.PARAM_USER_NAME_LOW] = fragLogin_tvUser.text.toString()
-                    map[Constants.PARAM_PASSWORD_LOW] = fragLogin_tvPass.text.toString()
+                    map[Constants.PARAM_USER_NAME_UPPER_FULL.toLowerCase()] = fragLogin_tvUser.text.toString()
+                    map[Constants.PARAM_PASSWORD_UPPER.toLowerCase()] = fragLogin_tvPass.text.toString()
                     map[Constants.PARAM_DEVICE_IMEI_LOW] = getSharePreferences().imeiDevice
                     map[Constants.PARAM_VERSION_APP_LOW] = BuildConfig.VERSION_CODE
 //                    map[Constants.PARAM_VERSION_APP_LOW] = "2"

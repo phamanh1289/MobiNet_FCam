@@ -122,7 +122,7 @@ object DataCore {
         return list
     }
 
-    fun getListCableInfo(context: Context?): ArrayList<DetailContractKeyValueModel> {
+    fun getListCableInfo(context: Context?, typeContract: Boolean): ArrayList<DetailContractKeyValueModel> {
         val list = ArrayList<DetailContractKeyValueModel>()
         context?.let {
             list.run {
@@ -133,7 +133,9 @@ object DataCore {
                 add(DetailContractKeyValueModel(title = it.getString(R.string.update_jumper), key = it.getString(R.string.update_jumper).replace(" ", ""), property = it.getString(R.string.update_jumper).replace(" ", "").toLowerCase()))
                 add(DetailContractKeyValueModel(title = it.getString(R.string.update_onu), key = it.getString(R.string.update_onu), property = it.getString(R.string.update_onu).toLowerCase()))
                 add(DetailContractKeyValueModel(title = it.getString(R.string.update_box_ftth), key = it.getString(R.string.update_box_ftth).replace(" ", ""), property = it.getString(R.string.update_box_ftth).replace(" ", "").toLowerCase()))
-                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tie_wire), key = it.getString(R.string.params_update_contract_sticking), property = it.getString(R.string.params_update_contract_sticking).toLowerCase()))
+                //true : property theo Deployment contract
+                //false : property theo Maintenance contract
+                add(DetailContractKeyValueModel(title = it.getString(R.string.update_tie_wire), key = it.getString(R.string.params_update_contract_sticking), property = it.getString(if (typeContract) R.string.params_update_contract_sticking else R.string.params_update_contract_wisticking).toLowerCase()))
                 add(DetailContractKeyValueModel(title = it.getString(R.string.update_sc_sc), key = it.getString(R.string.update_sc_sc), property = it.getString(R.string.update_sc_sc).replace("-", "").toLowerCase()))
                 add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_sc), key = it.getString(R.string.params_update_contract_fast_connect), property = it.getString(R.string.params_update_contract_fast_connect).toLowerCase()))
                 add(DetailContractKeyValueModel(title = it.getString(R.string.update_fc_sc_apc), key = it.getString(R.string.params_update_contract_fast_connect_apc), property = it.getString(R.string.params_update_contract_fast_connect_apc).toLowerCase()))
@@ -500,6 +502,21 @@ object DataCore {
             list.run {
                 add(SingleChoiceModel(id = 0, account = it.getString(R.string.result_processing)))
                 add(SingleChoiceModel(id = 1, account = it.getString(R.string.result_complete)))
+            }
+        }
+        return list
+    }
+
+    fun getListHiOpenNet(context: Context?): ArrayList<SingleChoiceModel> {
+        val list = ArrayList<SingleChoiceModel>()
+        context?.let {
+            list.run {
+                add(SingleChoiceModel(id = 1, account = it.getString(R.string.hiopennet_reason1)))
+                add(SingleChoiceModel(id = 2, account = it.getString(R.string.hiopennet_reason2)))
+                add(SingleChoiceModel(id = 3, account = it.getString(R.string.hiopennet_reason3)))
+                add(SingleChoiceModel(id = 4, account = it.getString(R.string.hiopennet_reason4)))
+                add(SingleChoiceModel(id = 5, account = it.getString(R.string.hiopennet_reason5)))
+                add(SingleChoiceModel(id = 0, account = it.getString(R.string.hiopennet_reason0)))
             }
         }
         return list

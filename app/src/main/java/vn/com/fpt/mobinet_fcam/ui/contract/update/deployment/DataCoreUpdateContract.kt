@@ -127,7 +127,7 @@ class DataCoreUpdateContract(val context: Context?) {
     }
 
     fun initCableInfoView(recyclerView: RecyclerView) {
-        listContractKeyValue = DataCore.getListCableInfo(context)
+        listContractKeyValue = DataCore.getListCableInfo(context, true)
         recyclerView.apply {
             val layout = LinearLayoutManager(context)
             layoutManager = layout

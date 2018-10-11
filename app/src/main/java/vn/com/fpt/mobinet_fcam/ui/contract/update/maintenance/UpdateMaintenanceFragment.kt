@@ -7,22 +7,20 @@ import android.view.ViewGroup
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_update_contract_maintenance.*
-import kotlinx.android.synthetic.main.item_cable.*
 import kotlinx.android.synthetic.main.item_cable_info.*
 import kotlinx.android.synthetic.main.item_reason_cable_maintenance.*
 import kotlinx.android.synthetic.main.item_reason_maintenance.*
 import kotlinx.android.synthetic.main.item_reason_note_maintenance.*
-import kotlinx.android.synthetic.main.item_reason_result.*
 import okhttp3.ResponseBody
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
-import vn.com.fpt.mobinet_fcam.data.network.model.DetailContractModel
-import vn.com.fpt.mobinet_fcam.data.network.model.ResponseModel
-import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
-import vn.com.fpt.mobinet_fcam.data.network.model.UpdateContractModel
+import vn.com.fpt.mobinet_fcam.data.network.model.*
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
-import vn.com.fpt.mobinet_fcam.utils.*
+import vn.com.fpt.mobinet_fcam.utils.AppUtils
+import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
+import vn.com.fpt.mobinet_fcam.utils.convertToShortFormat
+import vn.com.fpt.mobinet_fcam.utils.getNotes
 import javax.inject.Inject
 
 /**
@@ -109,8 +107,8 @@ class UpdateMaintenanceFragment : BaseFragment(), UpdateMaintenanceContract.Upda
         getDefaultUser()?.let {
             showLoading()
             dataCore.infoContract.let { item ->
-//                                presenter.getMaintenanceObject(it.mobiaccount, it.password, item.idmain, item.objid)
-                presenter.getMaintenanceObject(it.mobiaccount, it.password, 6907302, 196872)
+                presenter.getMaintenanceObject(it.mobiaccount, it.password, item.idmain, item.objid)
+//                presenter.getMaintenanceObject(it.mobiaccount, it.password, 6910282, 0)
             }
         }
     }
@@ -121,11 +119,16 @@ class UpdateMaintenanceFragment : BaseFragment(), UpdateMaintenanceContract.Upda
                 handleStepUpdate(Constants.NEXT_STEP_UPDATE)
             else AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_update_contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
                 override fun onClickOk() {
-                    presenter.let { pre ->
+                    if (dataCore.indexResult == Constants.REQUEST_SUCCESS)
+                        presenter.let { pre ->
+                            showLoading()
+                            val map = HashMap<String, Any>()
+                            map[Constants.PARAM_CONTRACT_NO] = dataCore.infoContract.contract
+                            pre.checkContractHiOpennet(map)
+                        }
+                    else {
                         showLoading()
-                        val map = HashMap<String, Any>()
-                        addPramsToUpdate(map)
-                        pre.postUpdateContractDeployment(map)
+                        initParamUpdateContract()
                     }
                 }
 
@@ -141,32 +144,33 @@ class UpdateMaintenanceFragment : BaseFragment(), UpdateMaintenanceContract.Upda
     }
 
     private fun addPramsToUpdate(map: HashMap<String, Any>) {
-        dataCore.addParams(map)
-        getDefaultUser()?.let {
-            map[Constants.PARAM_USER_NAME_UPPER] = it.mobiaccount
-            map[Constants.PARAM_PASSWORD_UPPER] = it.password
+        getDefaultUser()?.run {
+            map[Constants.PARAM_USER_NAME_UPPER_FULL.toLowerCase()] = mobiaccount
+            map[Constants.PARAM_PASSWORD_UPPER.toLowerCase()] = password
+            map[vn.com.fpt.mobinet_fcam.others.constant.Constants.PARAM_UPDATE_BY] = mobiaccount
         }
         dataCore.run {
-            map[Constants.PARAM_OBJ_ID] = updateContractModel?.objid.toString()
-            map[Constants.PARAM_SERVICE_TYPE] = serviceType
-            map[Constants.PARAM_SUP_INF_ID] = updateContractModel?.deployid.toString()
-            map[Constants.PARAM_CREATE_BY] = infoContract.createby
-            map[Constants.PARAM_OUTDOOR] = fragUpdateContract_etOutDoor.text.toString()
-            map[Constants.PARAM_OUTDOOR_TYPE] = listOutDoor[indexOutDoor].id
-            map[Constants.PARAM_INDOOR] = fragUpdateContract_etInDoor.text.toString()
-            map[Constants.PARAM_INDOOR_TYPE] = listInDoor[indexInDoor].id
-            map[Constants.PARAM_ROUTER] = listRouter[indexRouter].id
-            map[Constants.PARAM_ROUTER_AMOUNT] = fragUpdateContract_etRouter.text.toString()
-            map[Constants.PARAM_CABLE_TYPE] = listOtherCable[indexOtherCable].id
-            map[Constants.PARAM_ASSIGN_DATE] = fragUpdateContract_tvFrom.text.toString().convertToDateFormat("")
-            map[Constants.PARAM_TO_ASSIGN_DATE] = fragUpdateContract_tvTo.text.toString().convertToDateFormat("")
-            map[Constants.PARAM_APPOINTMENT] = updateContractModel?.assigndate.getHourFromDate("")
-            map[Constants.PARAM_DESCRIPTION] = fragUpdateContract_etNewNote.text.toString().getNotes(fragUpdateContract_tvOldNote.text.toString())
-            map[Constants.PARAM_CUS_TYPE] = updateContractModel?.custype.toString()
-            map[Constants.PARAM_STATUS] = listResult[indexResult].id
-            map[Constants.PARAM_DESCRIPTION_RD] = fragUpdateContract_etNoteReasonDelay.text.toString()
-            map[Constants.PARAM_IP_USER] = getSharePreferences().ipAddress
-            map[Constants.PARAM_OPTICAL_JUMP] = map[Constants.PARAM_JUMPER_WIRE].toString()
+            addParams(map)
+            updateContractModel?.run {
+                map[Constants.PARAM_OBJ_ID.toLowerCase()] = objid.toString()
+                map[Constants.PARAM_SUP_LIST_ID] = maintenanceid.toString()
+                map[Constants.PARAM_FINAL_DES] = fragUpdateContractMaintenance_tvGeneralNote.text.toString().getNotes(fragUpdateContractMaintenance_etNewNote.text.toString())
+                map[Constants.PARAM_SERVICE_TYPE.toLowerCase()] = serviceType
+                map[Constants.PARAM_IP_USER.toLowerCase()] = getSharePreferences().ipAddress
+                map[Constants.PARAM_APPOINTMENT_DATE] = appointment
+                map[Constants.PARAM_RESULT] = listResult[indexResult].id
+                map[Constants.PARAM_HAPPEN_POSITION] = listHappenReason[indexHappenReason].id
+                map[Constants.PARAM_REASON] = listReasonType[indexReasonType].id
+                map[Constants.PARAM_INDOOR_TYPE.toLowerCase()] = listInDoor[indexInDoor].id
+                map[Constants.PARAM_INDOOR.toLowerCase()] = fragUpdateContractMaintenance_etInDoor.text.toString()
+                map[Constants.PARAM_OUTDOOR_TYPE.toLowerCase()] = listOutDoor[indexOutDoor].id
+                map[Constants.PARAM_OUTDOOR.toLowerCase()] = fragUpdateContractMaintenance_etOutDoor.text.toString()
+                map[Constants.PARAM_CABLE_TYPE.toLowerCase()] = listOtherCable[indexOtherCable].id
+                map[Constants.PARAM_BOX.toLowerCase()] = fragUpdateContractMaintenance_etOtherCable.text.toString()
+                map[Constants.PARAM_OFTEN_ERROR] = listReasonDescription[indexReasonDescription].id
+                map[Constants.PARAM_ROUTER_AMOUNT.toLowerCase()] = fragUpdateContractMaintenance_etRouterAmount.text.toString()
+                map[Constants.PARAM_HI_OPEN_NET] = hiOpenNetContract
+            }
         }
     }
 
@@ -279,42 +283,7 @@ class UpdateMaintenanceFragment : BaseFragment(), UpdateMaintenanceContract.Upda
 
     private fun setDataToDialog() {
         dataCore.run {
-            updateContractModel = Gson().fromJson("{\n" +
-                    "    \"maintenanceid\": 6907302,\n" +
-                    "    \"objid\": 196872,\n" +
-                    "    \"happenposition\": 14,\n" +
-                    "    \"reason\": 30,\n" +
-                    "    \"reasondescription\": 1,\n" +
-                    "    \"indtype\": 202,\n" +
-                    "    \"indoor\": 202,\n" +
-                    "    \"outdtype\": 212,\n" +
-                    "    \"outdoor\": 212,\n" +
-                    "    \"indoorl\": 232,\n" +
-                    "    \"outdoorl\": 242,\n" +
-                    "    \"indtypel\": 232,\n" +
-                    "    \"outdtypel\": 242,\n" +
-                    "    \"cabletype\": 199,\n" +
-                    "    \"box\": 199,\n" +
-                    "    \"router\": 142,\n" +
-                    "    \"routeramount\": 142,\n" +
-                    "    \"boxlink\": 1,\n" +
-                    "    \"wire\": 2,\n" +
-                    "    \"button\": 3,\n" +
-                    "    \"aluminumtag\": 4,\n" +
-                    "    \"mangxoong01fo\": 5,\n" +
-                    "    \"jumperwire\": 6,\n" +
-                    "    \"wistickingplastere\": 7,\n" +
-                    "    \"onu\": 8,\n" +
-                    "    \"boxftth\": 9,\n" +
-                    "    \"tube\": 10,\n" +
-                    "    \"scsc\": 11,\n" +
-                    "    \"opticalfiber\": 12,\n" +
-                    "    \"fastconnector\": 13,\n" +
-                    "    \"fastconnectorapc\": 14,\n" +
-                    "    \"appointmentdate\": \"10/10/2018 12:00:00 PM\",\n" +
-                    "    \"note\": \"> >reaksame.liv(2018-10-10 09:11:37):>>problem error cable and homes customers fix cable news now internet ok\\r\\nMs.  Ier Sokhmouy\\r\\nNumber.  012898922\\r\\nAdd cable 10m\\r\\nButton 4\\r\\nRj11 1\"\n" +
-                    "  }",UpdateContractModel::class.java)
-//            updateContractModel = listContractModel[Constants.FIRST_ITEM]
+            updateContractModel = listContractModel[Constants.FIRST_ITEM]
             updateContractModel?.run {
                 indexInDoor = getObjectSingleCable(indtype, listInDoor, fragUpdateContractMaintenance_tvInDoor)
                 indexInDoorGP = getObjectSingleCable(indtypel, listInDoorGP, fragUpdateContractMaintenance_tvInDoorGp)
@@ -329,6 +298,14 @@ class UpdateMaintenanceFragment : BaseFragment(), UpdateMaintenanceContract.Upda
                 getListReasonDescription(fragUpdateContractMaintenance_tvReasonDescription)
                 indexReasonDescription = getObjectSingleCable(reasondescription, listReasonDescription, fragUpdateContractMaintenance_tvReasonDescription)
             }
+        }
+    }
+
+    private fun initParamUpdateContract() {
+        presenter.let { pre ->
+            val map = HashMap<String, Any>()
+            addPramsToUpdate(map)
+            pre.postUpdateContractMaintenance(map)
         }
     }
 
@@ -354,8 +331,26 @@ class UpdateMaintenanceFragment : BaseFragment(), UpdateMaintenanceContract.Upda
         hideLoading()
     }
 
+    private fun getHiOpenNetContract() {
+        dataCore.run {
+            showDialogHiOpenNet(fragmentManager) {
+                showLoading()
+                hiOpenNetContract = listHiOpenNet[it].id
+                initParamUpdateContract()
+            }
+        }
+        hideLoading()
+    }
+
     override fun loadUpdateContractMaintenance(response: ResponseModel) {
 //        http://wsfcam.fpt.vn/FCAM.svc/GetDeploymentObject/SIR3-Pitou.Pich/306017/2169492/1157182
+        hideLoading()
+    }
+
+    override fun loadContractHiOpennet(response: HiOpenNetModel) {
+        if (response.data == Constants.HI_OPEN_NET_NOT_YET)
+            getHiOpenNetContract()
+        else initParamUpdateContract()
     }
 
     override fun loadDetailUpdate(response: ResponseBody) {

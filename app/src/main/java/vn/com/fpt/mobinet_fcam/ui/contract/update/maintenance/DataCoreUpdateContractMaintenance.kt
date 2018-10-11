@@ -1,6 +1,7 @@
 package vn.com.fpt.mobinet_fcam.ui.contract.update.maintenance
 
 import android.content.Context
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -14,6 +15,7 @@ import vn.com.fpt.mobinet_fcam.data.network.model.SingleChoiceModel
 import vn.com.fpt.mobinet_fcam.data.network.model.UpdateContractModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
+import vn.com.fpt.mobinet_fcam.others.dialog.hiOpenNet.HiOpenNetDialog
 import vn.com.fpt.mobinet_fcam.ui.contract.update.adapter.UpdateContractAdapter
 
 /**
@@ -42,10 +44,12 @@ class DataCoreUpdateContractMaintenance(val context: Context?) {
     var listOtherCable = ArrayList<SingleChoiceModel>()
     var listResult = ArrayList<SingleChoiceModel>()
     var listRouter = ArrayList<SingleChoiceModel>()
+    var listHiOpenNet = ArrayList<SingleChoiceModel>()
     var listContractKeyValue = ArrayList<DetailContractKeyValueModel>()
     var adapterCableInfo = UpdateContractAdapter()
     var indexInDoor = 0
     var indexInDoorGP = 0
+    var indexHiOpenNet = 0
     var indexOutDoor = 0
     var indexOutDoorGP = 0
     var indexOtherCable = 0
@@ -56,6 +60,7 @@ class DataCoreUpdateContractMaintenance(val context: Context?) {
     var indexReasonDescription = 0
     var serviceType = 0
     var stepUpdate = 0
+    var hiOpenNetContract = 0
 
     fun getDefaultDataList() {
         listInDoor = DataCore.getListCableMaintenance(context)
@@ -101,6 +106,18 @@ class DataCoreUpdateContractMaintenance(val context: Context?) {
         return result
     }
 
+    fun showDialogHiOpenNet(fragmentManager: FragmentManager?, onClick: (Int) -> Unit) {
+        indexHiOpenNet = 0
+        listHiOpenNet = DataCore.getListHiOpenNet(context)
+        listHiOpenNet[indexHiOpenNet].status = true
+        fragmentManager?.let {
+            val dialog = HiOpenNetDialog()
+            dialog.setDataDialog(listHiOpenNet, onClick)
+            if (!it.isStateSaved)
+                dialog.show(it, HiOpenNetDialog::class.java.simpleName)
+        }
+    }
+
     fun addParams(map: HashMap<String, Any>) {
         listContractKeyValue.forEach {
             map[it.key.toLowerCase()] = it.value
@@ -123,7 +140,7 @@ class DataCoreUpdateContractMaintenance(val context: Context?) {
     }
 
     fun initCableInfoView(recyclerView: RecyclerView) {
-        listContractKeyValue = DataCore.getListCableInfo(context)
+        listContractKeyValue = DataCore.getListCableInfo(context, false)
         recyclerView.apply {
             val layout = LinearLayoutManager(context)
             layoutManager = layout
@@ -139,7 +156,7 @@ class DataCoreUpdateContractMaintenance(val context: Context?) {
         val map: HashMap<String, Any> = Gson().fromJson(Gson().toJson(updateContractModel), object : TypeToken<HashMap<String, Any>>() {}.type)
         listContractKeyValue.forEach { item ->
             map.forEach {
-                if (it.key == item.property || (it.key == Constants.KEY_WISTICKINGER && item.property == Constants.KEY_WISTICKING))
+                if (it.key == item.property)
                     item.value = (it.value as Double).toInt().toString()
             }
         }

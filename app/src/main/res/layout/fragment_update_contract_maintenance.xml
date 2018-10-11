@@ -21,31 +21,31 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_15dp"/>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-            <include
-                android:id="@+id/fragUpdateContractMaintenance_llReasonMaintenance"
-                layout="@layout/item_reason_maintenance"
-                android:visibility="gone"/>
+        <include
+            android:id="@+id/fragUpdateContractMaintenance_llReasonMaintenance"
+            layout="@layout/item_reason_maintenance"
+            android:visibility="gone"/>
 
-            <include
-                android:id="@+id/fragUpdateContractMaintenance_llCable"
-                layout="@layout/item_reason_cable_maintenance"
-                android:visibility="gone"/>
+        <include
+            android:id="@+id/fragUpdateContractMaintenance_llCable"
+            layout="@layout/item_reason_cable_maintenance"
+            android:visibility="gone"/>
 
-            <include
-                android:id="@+id/fragUpdateContractMaintenance_llCableInfo"
-                layout="@layout/item_cable_info"
-                android:visibility="gone"/>
+        <include
+            android:id="@+id/fragUpdateContractMaintenance_llCableInfo"
+            layout="@layout/item_cable_info"
+            android:visibility="gone"/>
 
-            <include
-                android:id="@+id/fragUpdateContractMaintenance_llReasonNote"
-                layout="@layout/item_reason_note_maintenance"
-                android:visibility="gone"/>
-        </FrameLayout>
+        <include
+            android:id="@+id/fragUpdateContractMaintenance_llReasonNote"
+            layout="@layout/item_reason_note_maintenance"
+            android:visibility="gone"/>
+    </FrameLayout>
 
     <View
         android:layout_width="@dimen/_150dp"
@@ -88,4 +88,5 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_17dp"/>
     </LinearLayout>
+
 </LinearLayout>
