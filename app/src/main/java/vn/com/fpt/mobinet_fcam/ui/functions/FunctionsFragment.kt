@@ -8,17 +8,19 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_function.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.MenuModel
+import vn.com.fpt.mobinet_fcam.data.network.model.SearchContractModel
 import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.others.datacore.DataCore
+import vn.com.fpt.mobinet_fcam.others.dialog.SearchContractDialog
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.report.ReportContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.utilities.SearchContractFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.adapter.FunctionsAdapter
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
-import vn.com.fpt.mobinet_fcam.ui.login.BlankPresenter
 import vn.com.fpt.mobinet_fcam.ui.port_net.PortNetFragment
+import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
 
@@ -29,12 +31,13 @@ import javax.inject.Inject
  * * All rights reserved                    **
  * *******************************************
  */
-class FunctionsFragment : BaseFragment() {
+class FunctionsFragment : BaseFragment(), FunctionsContract.FunctionsView {
     @Inject
-    lateinit var presenter: BlankPresenter
+    lateinit var presenter: FunctionsPresenter
 
     private lateinit var adapterMenu: FunctionsAdapter
     private var listMenu = ArrayList<MenuModel>()
+    private var dialogSearch: SearchContractDialog? = null
 
     companion object {
         const val MAX_COL = 2
@@ -53,6 +56,8 @@ class FunctionsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getActivityComponent().inject(this)
+        presenter.onAttach(this)
         activity?.let { KeyboardUtils.setupUI(view, activity = it) }
         initView()
     }
@@ -62,7 +67,7 @@ class FunctionsFragment : BaseFragment() {
         listMenu = DataCore.getListMenu(context)
         adapterMenu = FunctionsAdapter { handleOnClick(it) }
         adapterMenu.submitList(listMenu)
-        fragFunction_rvMain.apply {
+        fragFunction_rvMain?.apply {
             adapter = adapterMenu
             val layout = GridLayoutManager(context, MAX_COL)
             layoutManager = layout
@@ -72,14 +77,48 @@ class FunctionsFragment : BaseFragment() {
     }
 
     private fun handleOnClick(position: Int) {
-        val fragment = when (position) {
-            Constants.MENU_DEPLOYMENT_LIST -> SearchListFragment.newInstance(typeContract = Constants.CONTRACT_DEPLOYMENT)
-            Constants.MENU_MAINTENANCE_LIST -> SearchListFragment.newInstance(typeContract = Constants.CONTRACT_MAINTENANCE)
-            Constants.MENU_UTILITIES -> SearchContractFragment()
-            Constants.MENU_PORT_NET -> PortNetFragment()
-            Constants.MENU_REPORT -> ReportContractFragment()
-            else -> InfoFragment() //Else : MENU_INFO
+        if (position == Constants.MENU_UTILITIES)
+            showDialogSearchContract()
+        else
+            addFragment(when (position) {
+                Constants.MENU_DEPLOYMENT_LIST -> SearchListFragment.newInstance(typeContract = Constants.CONTRACT_DEPLOYMENT)
+                Constants.MENU_MAINTENANCE_LIST -> SearchListFragment.newInstance(typeContract = Constants.CONTRACT_MAINTENANCE)
+                Constants.MENU_UTILITIES -> UtilitiesFragment()
+                Constants.MENU_PORT_NET -> PortNetFragment()
+                Constants.MENU_REPORT -> ReportContractFragment()
+                else -> InfoFragment() //Else : MENU_INFO
+            }, true, true)
+    }
+
+    private fun showDialogSearchContract() {
+        fragmentManager?.let {
+            if (dialogSearch != null)
+                dialogSearch = null
+            dialogSearch = SearchContractDialog()
+            dialogSearch?.setDataDialog { data, type ->
+                showLoading()
+                presenter.postSearchContract(data, type)
+            }
+            if (!it.isStateSaved)
+                dialogSearch?.show(it, SearchContractDialog::class.java.simpleName)
         }
-        addFragment(fragment, true, true)
+    }
+
+    override fun loadSearchContract(response: SearchContractModel) {
+        hideLoading()
+        if (response.objid != 0) {
+            dialogSearch?.dismiss()
+            addFragment(UtilitiesFragment.newInstance(response), true, true)
+        } else AppUtils.showDialog(fragmentManager, content = getString(R.string.not_found_contract), confirmDialogInterface = null)
+    }
+
+    override fun handleError(response: String) {
+        hideLoading()
+        AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_error_data), content = response, confirmDialogInterface = null)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDetach()
     }
 }

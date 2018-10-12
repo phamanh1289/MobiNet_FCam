@@ -8,7 +8,8 @@ import vn.com.fpt.mobinet_fcam.ui.contract.list_result.ListResultFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.deployment.UpdateDeploymentFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.maintenance.UpdateMaintenanceFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.utilities.SearchContractFragment
+import vn.com.fpt.mobinet_fcam.ui.contract.utilities.UtilitiesFragment
+import vn.com.fpt.mobinet_fcam.ui.functions.FunctionsFragment
 import vn.com.fpt.mobinet_fcam.ui.image.view_image.ViewImageFragment
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.login.LoginFragment
@@ -30,7 +31,7 @@ interface ActivityComponent {
     fun inject(splashScreenActivity: SplashScreenActivity)
     fun inject(loginFragment: LoginFragment)
     fun inject(searchListFragment: SearchListFragment)
-    fun inject(searchContractFragment: SearchContractFragment)
+    fun inject(searchContractFragment: UtilitiesFragment)
     fun inject(portNetFragment: PortNetFragment)
     fun inject(infoFragment: InfoFragment)
     fun inject(listResultFragment: ListResultFragment)
@@ -38,5 +39,6 @@ interface ActivityComponent {
     fun inject(viewImageFragment: ViewImageFragment)
     fun inject(updateDeploymentContractFragment: UpdateDeploymentFragment)
     fun inject(updateMaintenanceFragment: UpdateMaintenanceFragment)
+    fun inject(functionsFragment: FunctionsFragment)
 
 }

@@ -128,14 +128,6 @@ class DetailContractFragment : BaseFragment(), DetailContractContract.DetailCont
 
     override fun loadDetailContractMaintenance(response: DetailContractModel) {
         setDataToView(response)
-        //supID = MaintenanceID = 6906452
-        //contract = con = PPDD45726
-        //serviceType = 2
-        //objID = 746162
-//        i.putExtra("MaintenanceID", MaintenanceID)
-//        i.putExtra("ObjID", objID)
-//        i.putExtra("Contract", con)
-//        i.putExtra("ServiceType", serviceType)
     }
 
     override fun onDestroy() {

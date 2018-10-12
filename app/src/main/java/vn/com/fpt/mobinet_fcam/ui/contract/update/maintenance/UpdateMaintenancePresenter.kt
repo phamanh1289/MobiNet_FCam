@@ -17,14 +17,14 @@ import javax.inject.Inject
 class UpdateMaintenancePresenter @Inject constructor(private val apiService: ApiService, private val apiHiOpennetService: ApiHiOpennetService) : BasePresenter<UpdateMaintenanceContract.UpdateMaintenanceView>(), UpdateMaintenanceContract.UpdateMaintenancePresenter {
 
     override fun postUpdateContractMaintenance(map: HashMap<String, Any>) {
-        addSubscribe(apiService.postUpdateContractMaintenance(map)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ it ->
-                    view?.loadUpdateContractMaintenance(it)
-                }, {
-                    view?.handleError(it.message.toString())
-                }))
+//        addSubscribe(apiService.postUpdateContractMaintenance(map)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({ it ->
+//                    view?.loadUpdateContractMaintenance(it)
+//                }, {
+//                    view?.handleError(it.message.toString())
+//                }))
     }
 
     override fun getMaintenanceObject(userName: String, passWord: String, mainId: Int, objId: Int) {

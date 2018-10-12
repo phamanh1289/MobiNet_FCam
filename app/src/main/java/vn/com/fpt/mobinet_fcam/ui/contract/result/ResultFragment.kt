@@ -12,7 +12,9 @@ import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.list_result.ListResultFragment
+import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
+import vn.com.fpt.mobinet_fcam.utils.checkNoValue
 
 /**
  * *******************************************
@@ -72,9 +74,9 @@ class ResultFragment : BaseFragment() {
     }
 
     private fun getListInfoContract(textView: TextView, type: Int) {
-//        if (textView.checkNoValue(null))
-//            AppUtils.showDialog(fragmentManager, content = getString(R.string.not_found_contract), confirmDialogInterface = null)
-//        else
+        if (textView.checkNoValue(null))
+            AppUtils.showDialog(fragmentManager, content = getString(R.string.not_found_contract), confirmDialogInterface = null)
+        else
             addFragment(ListResultFragment.newInstance(paramsJson, typeContract, type, serviceType), true, true)
     }
 

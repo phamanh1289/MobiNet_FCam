@@ -75,10 +75,6 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
             typeContract = it.getString(Constants.TYPE_CONTRACT)
             typeInfo = it.getInt(Constants.TYPE_INFO)
             serviceType = it.getInt(Constants.PARAM_SERVICE_TYPE)
-            //paramsJson ={"ChecklistType":1,"Type":2,"Username":"SIR3-Pitou.Pich","Todate":"10-09-2018","Fromdate":"10-02-2018"}
-            //typeContract = maintenance
-            //typeInfo = 1
-            //serviceType = 2
         }
         setTitle(TitleAndMenuModel(title = getString(R.string.info_contract)))
         getListMemberOfTeam()
@@ -106,7 +102,6 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
 
     private fun handleDataListContract(list: Any) {
         listDataContract = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<InfoContractModel>>() {}.type)
-        listDataContract.add(demoObj)
         when (typeContract) {
             Constants.CONTRACT_DEPLOYMENT -> {
                 mAdapterDeployment = ListDeploymentAdapter {
@@ -195,40 +190,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
     }
 
     private fun handleDataMemberOfTeam(list: Any) {
-        val s = "[\n" +
-                "    {\n" +
-                "      \"codeemployee\": \"105412\",\n" +
-                "      \"id\": \"1662\",\n" +
-                "      \"name\": \"Sum Sopheak\",\n" +
-                "      \"account\": \"SIR3-sopheak.Sum\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"codeemployee\": \"105370\",\n" +
-                "      \"id\": \"1572\",\n" +
-                "      \"name\": \"Pich Pitou\",\n" +
-                "      \"account\": \"SIR3-Pitou.Pich\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"codeemployee\": \"105648\",\n" +
-                "      \"id\": \"10762\",\n" +
-                "      \"name\": \"Chab Tich\",\n" +
-                "      \"account\": \"SIR3-Tith.Chab\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"codeemployee\": \"137420\",\n" +
-                "      \"id\": \"10332\",\n" +
-                "      \"name\": \"Seyha Pin\",\n" +
-                "      \"account\": \"SIR3-Seyha.Pin\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"codeemployee\": \"130260\",\n" +
-                "      \"id\": \"8952\",\n" +
-                "      \"name\": \"Bun Lareachseymeta\",\n" +
-                "      \"account\": \"SIR3-meta.bunlareach\"\n" +
-                "    }\n" +
-                "  ]\n"
-        listEmployee = Gson().fromJson(s, object : TypeToken<ArrayList<EmployeeModel>>() {}.type)
-//        listEmployee = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<EmployeeModel>>() {}.type)
+        listEmployee = Gson().fromJson(Gson().toJson(list), object : TypeToken<ArrayList<EmployeeModel>>() {}.type)
         initParams()
     }
 
@@ -266,21 +228,5 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
         super.onDestroy()
         presenter.onDetach()
     }
-
-    val demoObj = InfoContractModel(
-            id = 6907302,
-            objid = 196872,
-            contract = "PPDB52030",
-            datecreate = "2018-10-09T10:52:34.857",
-            dateassign = "",
-            typecus = "",
-            priority = "",
-            fullname = "Chan Huy Chem",
-            address = "133 St.217, Sangkat Orussey 3, Khan 7Makara, Phnom Penh",
-            appointmentdate = "2018-10-09T12:00:00",
-            totalchecklist = 48,
-            totalchecklistinmonth = 2,
-            hourremain = "1:0:3060"
-    )
 
 }

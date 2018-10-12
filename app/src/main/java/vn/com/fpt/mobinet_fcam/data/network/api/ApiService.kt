@@ -6,10 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
-import vn.com.fpt.mobinet_fcam.data.network.model.DetailContractModel
-import vn.com.fpt.mobinet_fcam.data.network.model.InfoUserModel
-import vn.com.fpt.mobinet_fcam.data.network.model.ResponseModel
-import vn.com.fpt.mobinet_fcam.data.network.model.SearchListContractModel
+import vn.com.fpt.mobinet_fcam.data.network.model.*
 
 /**
  * *******************************************
@@ -69,5 +66,7 @@ interface ApiService {
     @GET("GetMaintenanceObject/{userName}/{passWord}/{MaintenanceID}/{ObjID}")
     fun getMaintenanceObject(@Path("userName") userName: String, @Path("passWord") passWord: String, @Path("MaintenanceID") mainId: Int, @Path("ObjID") objId: Int): Observable<ResponseBody>
 
+    @GET("GetInfoContract/{contentSearch}/{typeFind}")
+    fun getInfoContract(@Path("contentSearch") userName: String, @Path("typeFind") passWord: String): Observable<SearchContractModel>
 
 }

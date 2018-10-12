@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/_8dp"
+    android:background="@drawable/shape_circle_dialog_while"
+    tools:ignore="MissingPrefix,ContentDescription">
+
+    <TextView
+        android:id="@+id/textView1"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/_8dp"
+        android:text="@string/search_contract"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:background="@color/silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:lineSpacingExtra="@dimen/_5dp"
+        android:paddingStart="@dimen/_8dp"
+        android:paddingEnd="@dimen/_8dp"
+        android:text="@string/find_by"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view1"/>
+
+    <TextView
+        android:id="@+id/fragDialogSearchContract_tvContract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/_5dp"
+        android:paddingStart="@dimen/_8dp"
+        android:paddingEnd="@dimen/_8dp"
+        android:text="@string/contract"
+        android:textColor="@drawable/selector_text"
+        android:textSize="@dimen/_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fragDialogSearchContract_imgContract"
+        app:layout_constraintStart_toEndOf="@+id/fragDialogSearchContract_imgContract"
+        app:layout_constraintTop_toTopOf="@+id/fragDialogSearchContract_imgContract"/>
+
+    <TextView
+        android:id="@+id/fragDialogSearchContract_tvUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/_5dp"
+        android:paddingStart="@dimen/_8dp"
+        android:paddingEnd="@dimen/_8dp"
+        android:text="@string/user_name"
+        android:textColor="@drawable/selector_text"
+        android:textSize="@dimen/_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fragDialogSearchContract_imgUserName"
+        app:layout_constraintStart_toEndOf="@+id/fragDialogSearchContract_imgUserName"
+        app:layout_constraintTop_toTopOf="@+id/fragDialogSearchContract_imgUserName"/>
+
+    <ImageView
+        android:id="@+id/fragDialogSearchContract_imgContract"
+        android:layout_width="@dimen/_25dp"
+        android:layout_height="@dimen/_25dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/selector_custom_check_box"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2"/>
+
+    <ImageView
+        android:id="@+id/fragDialogSearchContract_imgUserName"
+        android:layout_width="@dimen/_25dp"
+        android:layout_height="@dimen/_25dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:src="@drawable/selector_custom_check_box"
+        app:layout_constraintStart_toStartOf="@+id/fragDialogSearchContract_imgContract"
+        app:layout_constraintTop_toBottomOf="@+id/fragDialogSearchContract_imgContract"/>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:background="@color/silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragDialogSearchContract_etContentSearch"/>
+
+    <TextView
+        android:id="@+id/fragDialogSearchContract_tvCancel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/action_cancel"
+        android:textColor="@color/light_blue_300"
+        android:textSize="@dimen/_17dp"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"/>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="@dimen/_1dp"
+        android:layout_height="0dp"
+        android:background="@color/silver"
+        app:layout_constraintBottom_toBottomOf="@+id/fragDialogSearchContract_tvSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/fragDialogSearchContract_tvSearch"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/search"
+        android:textColor="@color/redMain"
+        android:textSize="@dimen/_17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/view2"/>
+
+    <EditText
+        android:id="@+id/fragDialogSearchContract_etContentSearch"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_35dp"
+        android:layout_marginStart="@dimen/_30dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginEnd="@dimen/_30dp"
+        android:background="@drawable/shape_border_deep_orange_text_view"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/empty"
+        android:inputType="text"
+        android:text="ppdc51106"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragDialogSearchContract_imgUserName"
+        tools:ignore="Autofill"/>
+</android.support.constraint.ConstraintLayout>

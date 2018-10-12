@@ -137,4 +137,6 @@ object Constants {
     const val TYPE_INFO = "info"
     const val PARAMS_JSON = "paramsJson"
     const val MODEL = "model"
+    const val CONTRACT = "Contract"
+    const val USER_NAME = "Username"
 }

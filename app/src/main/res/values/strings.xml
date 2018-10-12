@@ -307,5 +307,10 @@
     <string name="hiopennet_reason4">Wrong phone number</string>
     <string name="hiopennet_reason5">Cannot install application Hi-Opennet</string>
     <string name="hiopennet_title">Hi-Opennet is not activated.\nChooses reason</string>
+    <string name="search_contract">Search Contract</string>
+    <string name="search">Search</string>
+    <string name="find_by">Find by</string>
+    <string name="contract">Contract</string>
+    <string name="user_name">User name</string>
 
 </resources>

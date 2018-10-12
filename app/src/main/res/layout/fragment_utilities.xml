@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:id="@+id/fragResult_llRemaining"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/silver"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="@string/remaining_contract"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <TextView
+            android:id="@+id/fragResult_tvRemaining"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="end"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragResult_llVip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="@string/vip_contract"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <TextView
+            android:id="@+id/fragResult_tvVip"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="end"
+            android:textColor="@color/light_blue_300"
+            android:textSize="@dimen/_17dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragResult_llComingContract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/silver"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="@string/coming_contract"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <TextView
+            android:id="@+id/fragResult_tvComingContract"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="end"
+            android:textColor="@color/redMainTwo"
+            android:textSize="@dimen/_17dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragResult_llLateContract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="@string/late_contract"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <TextView
+            android:id="@+id/fragResult_tvLateContract"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="end"
+            android:textColor="@color/redMainTwo"
+            android:textSize="@dimen/_17dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragResult_llHiOpenNet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/silver"
+        android:padding="@dimen/_16dp"
+        android:visibility="gone">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="@string/hi_open_net"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_17dp"/>
+
+        <TextView
+            android:id="@+id/fragResult_tvHiOpenNet"
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="end"
+            android:textColor="@color/light_blue_300"
+            android:textSize="@dimen/_17dp"/>
+
+    </LinearLayout>
+</LinearLayout>
