@@ -8,7 +8,6 @@ import vn.com.fpt.mobinet_fcam.ui.contract.list_result.ListResultFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.deployment.UpdateDeploymentFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.maintenance.UpdateMaintenanceFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.FunctionsFragment
 import vn.com.fpt.mobinet_fcam.ui.image.view_image.ViewImageFragment
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
@@ -16,6 +15,8 @@ import vn.com.fpt.mobinet_fcam.ui.login.LoginFragment
 import vn.com.fpt.mobinet_fcam.ui.main.MainActivity
 import vn.com.fpt.mobinet_fcam.ui.port_net.PortNetFragment
 import vn.com.fpt.mobinet_fcam.ui.splash_screen.SplashScreenActivity
+import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
 
 /**
  * *******************************************
@@ -40,5 +41,6 @@ interface ActivityComponent {
     fun inject(updateDeploymentContractFragment: UpdateDeploymentFragment)
     fun inject(updateMaintenanceFragment: UpdateMaintenanceFragment)
     fun inject(functionsFragment: FunctionsFragment)
+    fun inject(connectPropertyFragment: ConnectPropertyFragment)
 
 }

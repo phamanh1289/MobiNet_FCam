@@ -1,4 +1,4 @@
-package vn.com.fpt.mobinet_fcam.ui.contract.utilities
+package vn.com.fpt.mobinet_fcam.ui.utilities.kill_session
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,7 @@ import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.SearchContractModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
-import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
-import javax.inject.Inject
 
 /**
  * *******************************************
@@ -19,48 +17,47 @@ import javax.inject.Inject
  * * All rights reserved                    **
  * *******************************************
  */
-class UtilitiesFragment : BaseFragment(), UtilitiesContract.UtilitiesView {
-    @Inject
-    lateinit var presenter: UtilitiesPresenter
-
-    private lateinit var searchContractModel: SearchContractModel
+class KillSessionFragment : BaseFragment(){
+//    @Inject
+//    lateinit var presenter: BlankPresenter
 
     companion object {
-        fun newInstance(model: SearchContractModel): UtilitiesFragment {
+        fun newInstance(model: SearchContractModel): KillSessionFragment {
             val args = Bundle()
             args.putParcelable(Constants.MODEL, model)
-            val fragment = UtilitiesFragment()
+            val fragment = KillSessionFragment()
             fragment.arguments = args
             return fragment
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_utilities, container, false)
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getActivityComponent().inject(this)
-        presenter.onAttach(this)
+//        getActivityComponent().inject(this)
+//        presenter.onAttach(this)
         activity?.let { KeyboardUtils.setupUI(view, activity = it) }
         initView()
     }
 
     private fun initView() {
-        arguments?.let {
-            searchContractModel = it.getParcelable(Constants.MODEL) ?: SearchContractModel()
-        }
+
     }
 
+//    override fun loadLogin(response: ResponseModel) {
+//
+//    }
 
-    override fun handleError(response: String) {
-        hideLoading()
-        AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_error_data), content = response, confirmDialogInterface = null)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.onDetach()
-    }
+//    override fun handleError(response: String) {
+//        hideLoading()
+//        AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_error_data), content = response, confirmDialogInterface = null)
+//    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        presenter.onDetach()
+//    }
 }

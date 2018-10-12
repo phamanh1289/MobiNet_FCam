@@ -1,4 +1,4 @@
-package vn.com.fpt.mobinet_fcam.ui.contract.utilities
+package vn.com.fpt.mobinet_fcam.ui.utilities
 
 import vn.com.fpt.mobinet_fcam.ui.base.BaseView
 

@@ -28,6 +28,37 @@ object DataCore {
         return list
     }
 
+    fun getListUtilities(context: Context?): ArrayList<MenuModel> {
+        val list = ArrayList<MenuModel>()
+        context?.run {
+            list.run {
+                add(MenuModel(title = getString(R.string.utilities_connection),
+                        image = R.drawable.ic_contract_status, type = Constants.UTILITIES_CONNECTION))
+                add(MenuModel(title = getString(R.string.utilities_kill_session),
+                        image = R.drawable.ic_kill_session, type = Constants.UTILITIES_KILL_SESSION))
+                add(MenuModel(title = getString(R.string.utilities_list_connection),
+                        image = R.drawable.ic_list_connect, type = Constants.UTILITIES_LIST_CONNECTION))
+                add(MenuModel(title = getString(R.string.utilities_mac),
+                        image = R.drawable.ic_reset_mac, type = Constants.UTILITIES_RESET_MAC))
+                add(MenuModel(title = getString(R.string.utilities_password),
+                        image = R.drawable.ic_reset_password, type = Constants.UTILITIES_RESET_PASSWORD))
+                add(MenuModel(title = getString(R.string.utilities_online_connect),
+                        image = R.drawable.ic_online_connection, type = Constants.UTILITIES_ONLINE))
+                add(MenuModel(title = getString(R.string.utilities_access_error),
+                        image = R.drawable.ic_error_access, type = Constants.UTILITIES_ERROR))
+                add(MenuModel(title = getString(R.string.utilities_config_ftth),
+                        image = R.drawable.ic_config, type = Constants.UTILITIES_FTTH))
+                add(MenuModel(title = getString(R.string.utilities_config_nano),
+                        image = R.drawable.ic_config, type = Constants.UTILITIES_NEW_NANO))
+                add(MenuModel(title = getString(R.string.utilities_add_card),
+                        image = R.drawable.ic_add_card, type = Constants.UTILITIES_CARD_NANO))
+                add(MenuModel(title = getString(R.string.utilities_new_pico),
+                        image = R.drawable.ic_add_card, type = Constants.UTILITIES_NEW_PICO))
+            }
+        }
+        return list
+    }
+
     fun getListTypeContract(context: Context?): ArrayList<SingleChoiceModel> {
         val list = ArrayList<SingleChoiceModel>()
         context?.let {
@@ -45,6 +76,39 @@ object DataCore {
             with(list) {
                 add(SingleChoiceModel(id = 1, account = it.getString(R.string.type_contract_normal)))
                 add(SingleChoiceModel(id = 3, account = it.getString(R.string.type_contract_system)))
+            }
+        }
+        return list
+    }
+
+    fun getListConnectProperty(context: Context?): ArrayList<DetailContractKeyValueModel> {
+        val list = ArrayList<DetailContractKeyValueModel>()
+        context?.run {
+            list.run {
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_pop), title = getString(R.string.key_connect_property_pop)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_mac), title = getString(R.string.key_connect_property_vlanI)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_first), title = getString(R.string.key_connect_property_firstAccess)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_last), title = getString(R.string.key_connect_property_lastAccess)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_front), title = getString(R.string.key_connect_property_ipFront)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_route), title = getString(R.string.key_connect_property_ipRoute)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_admin), title = getString(R.string.key_connect_property_admin)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_operation), title = getString(R.string.key_connect_property_operation)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_adsl), title = getString(R.string.key_connect_property_modeADSL)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_uptime), title = getString(R.string.key_connect_property_upTime)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_downstream), title = getString(R.string.key_connect_property_downStream)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_upstream), title = getString(R.string.key_connect_property_upStream)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_traffic_download), title = getString(R.string.key_connect_property_output)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_traffic_upload), title = getString(R.string.key_connect_property_input)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_snr_down), title = getString(R.string.key_connect_property_downSNR)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_snr_up), title = getString(R.string.key_connect_property_upsnr)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_attenuation_down), title = getString(R.string.key_connect_property_downAtt)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_attenuation_up), title = getString(R.string.key_connect_property_upAtt)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_rx), title = getString(R.string.key_connect_property_zxAnEponOnuRxPower)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_tx), title = getString(R.string.key_connect_property_zxAnEponOnuTxPower)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_download), title = getString(R.string.connect_property_maximum)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_upload), title = getString(R.string.connect_property_maximum)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_local_type), title = getString(R.string.key_connect_property_localType)))
+                add(DetailContractKeyValueModel(key = getString(R.string.title_connect_property_mac_filter), title = getString(R.string.key_connect_property_macFilter)))
             }
         }
         return list

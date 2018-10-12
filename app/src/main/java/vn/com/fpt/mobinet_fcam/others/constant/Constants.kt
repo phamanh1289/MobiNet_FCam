@@ -81,6 +81,17 @@ object Constants {
     const val MENU_PORT_NET = 3
     const val MENU_REPORT = 4
     const val MENU_INFO = 5
+    const val UTILITIES_CONNECTION = 0
+    const val UTILITIES_KILL_SESSION = 1
+    const val UTILITIES_LIST_CONNECTION = 2
+    const val UTILITIES_RESET_MAC = 3
+    const val UTILITIES_RESET_PASSWORD = 4
+    const val UTILITIES_ONLINE = 5
+    const val UTILITIES_ERROR = 6
+    const val UTILITIES_FTTH = 7
+    const val UTILITIES_NEW_NANO = 8
+    const val UTILITIES_CARD_NANO = 9
+    const val UTILITIES_NEW_PICO = 10
     const val LATE_DATE = -7
     const val CONTRACT_REMAIN = 1
     const val CONTRACT_VIP = 2

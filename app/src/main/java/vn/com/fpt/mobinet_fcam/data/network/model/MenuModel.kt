@@ -1,7 +1,5 @@
 package vn.com.fpt.mobinet_fcam.data.network.model
 
-import vn.com.fpt.mobinet_fcam.data.network.model.BaseModel
-
 /**
  * *******************************************
  * * Created by AnhPT76 on 28/09/2018.      **

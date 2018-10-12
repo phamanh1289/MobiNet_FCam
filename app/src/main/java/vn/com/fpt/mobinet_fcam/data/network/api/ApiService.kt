@@ -69,4 +69,7 @@ interface ApiService {
     @GET("GetInfoContract/{contentSearch}/{typeFind}")
     fun getInfoContract(@Path("contentSearch") userName: String, @Path("typeFind") passWord: String): Observable<SearchContractModel>
 
+    @GET("GetConnectionProperties/{objId}")
+    fun getConnectionProperties(@Path("objId") objId: String): Observable<ConnectPropertyModel>
+
 }

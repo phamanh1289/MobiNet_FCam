@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/_16dp"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="@dimen/_70dp"
+        android:layout_height="@dimen/_70dp"
+        android:background="@drawable/shape_circle_red_menu"
+        android:layout_gravity="center_horizontal"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:id="@+id/itemUtilities_imgView"
+            android:layout_width="@dimen/_35dp"
+            android:layout_height="@dimen/_35dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/ic_menu_deployment"
+            tools:ignore="ContentDescription"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/itemUtilities_textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Maintance"
+        fontPath="@string/Helvetica_Bold"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="@dimen/_15dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:textColor="@color/blueMain"
+        tools:ignore="MissingPrefix"/>
+
+</LinearLayout>

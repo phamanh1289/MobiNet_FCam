@@ -16,7 +16,7 @@ import vn.com.fpt.mobinet_fcam.others.dialog.SearchContractDialog
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.report.ReportContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
-import vn.com.fpt.mobinet_fcam.ui.contract.utilities.UtilitiesFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.adapter.FunctionsAdapter
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.port_net.PortNetFragment
