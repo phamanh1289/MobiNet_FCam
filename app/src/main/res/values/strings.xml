@@ -11,6 +11,9 @@
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="dialog_employee_choose_employee">Choose Employee \"%1$s\'</string>
+    <string name="confirm">Confirm</string>
+    <string name="result">Result</string>
+    <string name="want_to_delete_session">Do you want to delete this session?</string>
     <string name="dialog_employee_id">ID</string>
     <string name="dialog_employee_code">Code</string>
     <string name="dialog_employee_name">Name</string>
@@ -23,7 +26,7 @@
     <string name="mess_update_contract">Do you want to update this contract?</string>
     <string name="empty">…</string>
     <string name="hint_date">dd-MM-yyyy</string>
-    <string name="process_data">Please wait…</string>
+    <string name="process_data">Loading data, please wait…</string>
     <string name="mess_assigned_user">This device is assigned to user \"%1$s\"</string>
     <string name="login">Login</string>
     <string name="login_show_password">Show password</string>
@@ -313,10 +316,10 @@
     <string name="contract">Contract</string>
     <string name="user_name">User name</string>
     <string name="utilities_connection">Connection\nProperties</string>
-    <string name="utilities_kill_session">Kill\nsession</string>
-    <string name="utilities_list_connection">List\nconnection</string>
+    <string name="utilities_kill_session">Kill\nSession</string>
+    <string name="utilities_list_connection">List\nConnection</string>
     <string name="utilities_mac">Reset\nMAC</string>
-    <string name="utilities_password">Reset\npassword</string>
+    <string name="utilities_password">Reset\nPassword</string>
     <string name="utilities_online_connect">Online\nConnection</string>
     <string name="utilities_access_error">Last Access\nError</string>
     <string name="utilities_config_ftth">Config New\nFTTH</string>
@@ -386,4 +389,11 @@
     <string name="key_connect_property_lastUpdate">lastUpdate</string>
     <string name="key_connect_property_vlanI">vlanID</string>
     <string name="connect_property_maximum">Maximum</string>
+    <string name="kill_session_date">Date</string>
+    <string name="kill_session_name">Name</string>
+    <string name="kill_session_nas_name">Nas Name</string>
+    <string name="kill_session_ip_address">Ip Address</string>
+    <string name="kill_session_mac_address">Mac Address</string>
+    <string name="kill_session_delete">Delete</string>
+    <string name="kill_session_reset">Reset Session</string>
 </resources>

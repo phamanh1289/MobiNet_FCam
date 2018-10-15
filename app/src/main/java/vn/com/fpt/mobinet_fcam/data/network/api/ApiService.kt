@@ -72,4 +72,10 @@ interface ApiService {
     @GET("GetConnectionProperties/{objId}")
     fun getConnectionProperties(@Path("objId") objId: String): Observable<ConnectPropertyModel>
 
+    @GET("GetKillSession/name/{userName}")
+    fun getKillSession(@Path("userName") objId: String): Observable<KillSessionModel>
+
+    @GET("KillSession/{objId}")
+    fun toKillSession(@Path("objId") objId: String): Observable<ResponseBody>
+
 }

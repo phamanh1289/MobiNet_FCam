@@ -67,7 +67,7 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
             }
         }
         if (result.isNotBlank())
-            AppUtils.showDialog(fragmentManager, content = result, confirmDialogInterface = null)
+            AppUtils.showDialog(fragmentManager,title = getString(R.string.result), content = result, confirmDialogInterface = null)
         return !result.isNotBlank()
     }
 
@@ -108,7 +108,7 @@ class LoginFragment : BaseFragment(), LoginContract.LoginView {
     }
 
     private fun handleUpdateNewVersion(link: String) {
-        AppUtils.showDialog(fragmentManager, content = "Update", confirmDialogInterface = null)
+        AppUtils.showDialog(fragmentManager,title = getString(R.string.confirm), content = "Update", confirmDialogInterface = null)
     }
 
     private fun handleLoginSuccess(data: InfoUserModel) {

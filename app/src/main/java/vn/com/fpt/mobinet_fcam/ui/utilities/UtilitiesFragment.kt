@@ -5,7 +5,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_utilities.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.MenuModel
@@ -17,6 +16,7 @@ import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.adapter.UtilitiesAdapter
 import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
@@ -63,7 +63,6 @@ class UtilitiesFragment : BaseFragment(), UtilitiesContract.UtilitiesView {
         arguments?.let {
             searchContractModel = it.getParcelable(Constants.MODEL) ?: SearchContractModel()
         }
-        demoObj()
         setTitle(TitleAndMenuModel(title = getString(R.string.menu_utilities)))
         listUtilities = DataCore.getListUtilities(context)
         adapterUtilities = UtilitiesAdapter { handleOnClick(it) }
@@ -79,52 +78,12 @@ class UtilitiesFragment : BaseFragment(), UtilitiesContract.UtilitiesView {
         }
     }
 
-    private fun demoObj() {
-        searchContractModel = Gson().fromJson("{\n" +
-                "    \"admin\": \"admin\",\n" +
-                "    \"operation\": \"operation\",\n" +
-                "    \"downSNR\": \"downSNR\",\n" +
-                "    \"upsnr\": \"upsnr\",\n" +
-                "    \"downAtt\": \"downAtt\",\n" +
-                "    \"upAtt\": \"upAtt\",\n" +
-                "    \"modeADSL\": \"modeADSL\",\n" +
-                "    \"downStream\": \"downStream\",\n" +
-                "    \"upStream\": \"upStream\",\n" +
-                "    \"upTime\": \"upTime\",\n" +
-                "    \"macFilter\": \"macFilter\",\n" +
-                "    \"localType\": \"\",\n" +
-                "    \"portLink1\": \"\",\n" +
-                "    \"portLink2\": \"\",\n" +
-                "    \"portLink3\": \"\",\n" +
-                "    \"portLink4\": \"\",\n" +
-                "    \"uptimestring\": \"uptimestring\",\n" +
-                "    \"zxAnEponOnuRxPower\": \"zxAnEponOnuRxPower\",\n" +
-                "    \"zxAnEponOnuTxPower\": \"zxAnEponOnuTxPower\",\n" +
-                "    \"id\": \"403562\",\n" +
-                "    \"contract\": \"PPDC51106\",\n" +
-                "    \"pop\": \"pop\",\n" +
-                "    \"firstAccess\": \"12/30/2014 2:55:19 PM\",\n" +
-                "    \"lastAccess\": \"2/7/2015 9:24:00 AM\",\n" +
-                "    \"macAddress\": \"00:1f:a4:a9:34:39\",\n" +
-                "    \"vlanID\": \"vlanID\",\n" +
-                "    \"ipFront\": \"ipFront\",\n" +
-                "    \"ipRoute\": \"ipRoute\",\n" +
-                "    \"tRate\": \"tRate\",\n" +
-                "    \"rRate\": \"rRate\",\n" +
-                "    \"input\": \"input\",\n" +
-                "    \"output\": \"output\",\n" +
-                "    \"ip\": \"ip\",\n" +
-                "    \"ring\": \"ring\",\n" +
-                "    \"description\": \"description\"\n" +
-                "}", SearchContractModel::class.java)
-    }
-
     private fun handleOnClick(position: Int) {
         addFragment(when (position) {
             Constants.UTILITIES_CONNECTION -> {
                 ConnectPropertyFragment.newInstance(searchContractModel)
             }
-//            Constants.UTILITIES_KILL_SESSION ->{}
+            Constants.UTILITIES_KILL_SESSION ->{KillSessionFragment.newInstance(searchContractModel)}
 //            Constants.UTILITIES_LIST_CONNECTION ->{}
 //            Constants.UTILITIES_RESET_MAC ->{}
 //            Constants.UTILITIES_RESET_PASSWORD ->{}

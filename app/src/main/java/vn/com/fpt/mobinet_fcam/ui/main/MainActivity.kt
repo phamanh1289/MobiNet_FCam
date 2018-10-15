@@ -35,7 +35,7 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
         }
         actMain_ivLogOut.setOnClickListener {
             if (it.visibility == View.VISIBLE) {
-                AppUtils.showDialog(supportFragmentManager, content = getString(R.string.mess_log_out_user), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+                AppUtils.showDialog(supportFragmentManager,title = getString(R.string.confirm), content = getString(R.string.mess_log_out_user), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
                     override fun onClickOk() {
                         getSharePreferences().toClearSessionLogin()
                         StartActivityUtils.toSplashActivity(this@MainActivity)
@@ -74,7 +74,7 @@ class MainActivity : BaseActivity(), MainActivityContract.MainView {
 
     override fun onBackPressed() {
         when (mCountBack) {
-            0 -> AppUtils.showDialog(supportFragmentManager, content = getString(R.string.mess_close_app), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+            0 -> AppUtils.showDialog(supportFragmentManager,title = getString(R.string.confirm), content = getString(R.string.mess_close_app), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
                 override fun onClickOk() {
                     this@MainActivity.finish()
                 }

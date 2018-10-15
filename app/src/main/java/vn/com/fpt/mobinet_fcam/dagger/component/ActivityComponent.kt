@@ -17,6 +17,7 @@ import vn.com.fpt.mobinet_fcam.ui.port_net.PortNetFragment
 import vn.com.fpt.mobinet_fcam.ui.splash_screen.SplashScreenActivity
 import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
 
 /**
  * *******************************************
@@ -42,5 +43,6 @@ interface ActivityComponent {
     fun inject(updateMaintenanceFragment: UpdateMaintenanceFragment)
     fun inject(functionsFragment: FunctionsFragment)
     fun inject(connectPropertyFragment: ConnectPropertyFragment)
+    fun inject(killSessionFragment: KillSessionFragment)
 
 }

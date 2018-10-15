@@ -86,7 +86,7 @@ class SearchListFragment : BaseFragment(), SearchListContract.SearchListView {
                     it.getContractDeployment(map)
                 paramsJson = Gson().toJson(map)
             }
-        else AppUtils.showDialog(fragmentManager, content = getString(R.string.error_date), confirmDialogInterface = null)
+        else AppUtils.showDialog(fragmentManager,title = getString(R.string.result), content = getString(R.string.error_date), confirmDialogInterface = null)
     }
 
     private fun getDefaultData() {

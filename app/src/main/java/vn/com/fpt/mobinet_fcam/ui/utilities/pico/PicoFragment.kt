@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.network.model.SearchContractModel
+import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
@@ -20,6 +21,7 @@ import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 class PicoFragment : BaseFragment(){
 //    @Inject
 //    lateinit var presenter: BlankPresenter
+private var searchContractModel: SearchContractModel? = null
 
     companion object {
         fun newInstance(model: SearchContractModel): PicoFragment {
@@ -43,8 +45,10 @@ class PicoFragment : BaseFragment(){
         initView()
     }
 
-    private fun initView() {
-
+    private fun initView() {  setTitle(TitleAndMenuModel(title = getString(R.string.utilities_connection).replace("\n", " ")))
+        arguments?.let {
+            searchContractModel = it.getParcelable(Constants.MODEL) ?: SearchContractModel()
+        }
     }
 
 //    override fun loadLogin(response: ResponseModel) {

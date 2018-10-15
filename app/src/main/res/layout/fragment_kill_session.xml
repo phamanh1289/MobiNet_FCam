@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/silver"
+        android:orientation="horizontal"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/kill_session_date"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+        <TextView
+            android:id="@+id/fragKillSession_tvDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:hint="@string/empty"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/kill_session_name"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+        <TextView
+            android:id="@+id/fragKillSession_tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:hint="@string/empty"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/silver"
+        android:orientation="horizontal"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/kill_session_nas_name"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+        <TextView
+            android:id="@+id/fragKillSession_tvNasName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:hint="@string/empty"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/kill_session_ip_address"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+        <TextView
+            android:id="@+id/fragKillSession_tvIpAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:hint="@string/empty"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/silver"
+        android:orientation="horizontal"
+        android:padding="@dimen/_16dp">
+
+        <TextView
+            fontPath="@string/Helvetica_Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/kill_session_mac_address"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+        <TextView
+            android:id="@+id/fragKillSession_tvMacAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:hint="@string/empty"
+            android:textColor="@color/blueMain"
+            android:textSize="@dimen/_15dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fragKillSession_tvSubmit"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="@dimen/_180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/selector_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingTop="@dimen/_16dp"
+        android:paddingBottom="@dimen/_16dp"
+        android:text="@string/kill_session_delete"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20dp"/>
+
+</LinearLayout>

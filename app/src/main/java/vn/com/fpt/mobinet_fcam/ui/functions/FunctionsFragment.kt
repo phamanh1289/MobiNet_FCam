@@ -16,10 +16,10 @@ import vn.com.fpt.mobinet_fcam.others.dialog.SearchContractDialog
 import vn.com.fpt.mobinet_fcam.ui.base.BaseFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.report.ReportContractFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
-import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.functions.adapter.FunctionsAdapter
 import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.port_net.PortNetFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
@@ -109,7 +109,7 @@ class FunctionsFragment : BaseFragment(), FunctionsContract.FunctionsView {
         if (response.objid != 0) {
             dialogSearch?.dismiss()
             addFragment(UtilitiesFragment.newInstance(response), true, true)
-        } else AppUtils.showDialog(fragmentManager, content = getString(R.string.not_found_contract), confirmDialogInterface = null)
+        } else AppUtils.showDialog(fragmentManager, title = getString(R.string.result), content = getString(R.string.not_found_contract), confirmDialogInterface = null)
     }
 
     override fun handleError(response: String) {

@@ -97,7 +97,7 @@ class SplashScreenActivity : BaseActivity(), SplashScreenActivityContract.Splash
             it.map { item ->
                 when (item.isActive) {
                     false -> {
-                        AppUtils.showDialog(supportFragmentManager, content = getString(R.string.mess_error_not_active), confirmDialogInterface = object : ConfirmDialogInterface {
+                        AppUtils.showDialog(supportFragmentManager,title = getString(R.string.confirm), content = getString(R.string.mess_error_not_active), confirmDialogInterface = object : ConfirmDialogInterface {
                             override fun onClickOk() {
                                 this@SplashScreenActivity.finish()
                             }
@@ -127,7 +127,7 @@ class SplashScreenActivity : BaseActivity(), SplashScreenActivityContract.Splash
             handleDataCheckImei(response.Data)
         else {
             hideLoading()
-            AppUtils.showDialog(supportFragmentManager, content = response.Description, confirmDialogInterface = null)
+            AppUtils.showDialog(supportFragmentManager,title = getString(R.string.result), content = response.Description, confirmDialogInterface = null)
         }
     }
 

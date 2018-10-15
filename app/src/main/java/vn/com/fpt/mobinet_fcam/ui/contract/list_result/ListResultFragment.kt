@@ -123,7 +123,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
 
                         override fun actionAccept() {
                             listDataContract[it].let { item ->
-                                AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_accept_checklist, item.contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+                                AppUtils.showDialog(fragmentManager,title = getString(R.string.confirm), content = getString(R.string.mess_accept_checklist, item.contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
                                     override fun onClickOk() {
                                         initParamsAcceptContract(item.objid, item.id)
                                     }
@@ -157,7 +157,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
 
     private fun initParamsAssignEmployee(contract: String, subId: Int) {
         AppUtils.showDialogEmployee(fragmentManager, getString(R.string.dialog_employee_choose_employee, contract), listEmployee) { item ->
-            AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_assign, item.name), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+            AppUtils.showDialog(fragmentManager,title = getString(R.string.confirm), content = getString(R.string.mess_assign, item.name), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
                 override fun onClickOk() {
                     presenter.let {
                         showLoading()
@@ -200,7 +200,7 @@ class ListResultFragment : BaseFragment(), ListResultContract.DetailResultView {
             Constants.ACCEPT_EXITS -> getString(if (!type) R.string.mess_accept_exits else R.string.success)
             else -> getString(if (!type) R.string.mess_error_data else R.string.mess_error_data)
         }
-        AppUtils.showDialog(fragmentManager, title = getString(R.string.key_detail_contract_id_cable), content = result, confirmDialogInterface = null)
+        AppUtils.showDialog(fragmentManager, title = getString(R.string.result), content = result, confirmDialogInterface = null)
     }
 
     override fun loadDivisionStaffMain(response: ResponseModel) {

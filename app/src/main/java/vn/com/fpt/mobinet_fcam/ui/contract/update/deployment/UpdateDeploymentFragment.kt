@@ -92,7 +92,7 @@ class UpdateDeploymentFragment : BaseFragment(), UpdateDeploymentContract.Update
     }
 
     fun confirmExitUpdate() {
-        AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_exit_update_contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+        AppUtils.showDialog(fragmentManager,title = getString(R.string.confirm), content = getString(R.string.mess_exit_update_contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
             override fun onClickOk() {
                 exitUpdate = true
                 activity?.onBackPressed()
@@ -117,7 +117,7 @@ class UpdateDeploymentFragment : BaseFragment(), UpdateDeploymentContract.Update
         fragUpdateContract_tvNext.setOnClickListener {
             if (dataCore.stepUpdate < Constants.STEP_4_UPDATE_REASON_RESULT)
                 handleStepUpdate(Constants.NEXT_STEP_UPDATE)
-            else AppUtils.showDialog(fragmentManager, content = getString(R.string.mess_update_contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
+            else AppUtils.showDialog(fragmentManager,title = getString(R.string.confirm), content = getString(R.string.mess_update_contract), actionCancel = true, confirmDialogInterface = object : ConfirmDialogInterface {
                 override fun onClickOk() {
                     presenter.let { pre ->
                         showLoading()

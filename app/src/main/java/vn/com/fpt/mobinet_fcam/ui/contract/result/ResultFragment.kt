@@ -75,7 +75,7 @@ class ResultFragment : BaseFragment() {
 
     private fun getListInfoContract(textView: TextView, type: Int) {
         if (textView.checkNoValue(null))
-            AppUtils.showDialog(fragmentManager, content = getString(R.string.not_found_contract), confirmDialogInterface = null)
+            AppUtils.showDialog(fragmentManager, title = getString(R.string.result), content = getString(R.string.not_found_contract), confirmDialogInterface = null)
         else
             addFragment(ListResultFragment.newInstance(paramsJson, typeContract, type, serviceType), true, true)
     }
