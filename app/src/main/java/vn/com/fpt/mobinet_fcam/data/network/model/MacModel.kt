@@ -7,12 +7,4 @@ package vn.com.fpt.mobinet_fcam.data.network.model
  * * All rights reserved                    **
  * *******************************************
  */
-data class KillSessionModel(
-        var date: String = "",
-        var name: String = "",
-        var nasname: String = "",
-        var ipaddress: String = "",
-        var logon: String = "",
-        var sesstime: String = "",
-        var callerid: String = ""
-) : BaseModel()
+data class MacModel(val ip: String, val mac: String) : BaseModel()

@@ -18,6 +18,8 @@ import vn.com.fpt.mobinet_fcam.ui.splash_screen.SplashScreenActivity
 import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.list_connection.ListConnectFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.reset_mac.ResetMacFragment
 
 /**
  * *******************************************
@@ -44,5 +46,7 @@ interface ActivityComponent {
     fun inject(functionsFragment: FunctionsFragment)
     fun inject(connectPropertyFragment: ConnectPropertyFragment)
     fun inject(killSessionFragment: KillSessionFragment)
+    fun inject(listConnectFragment: ListConnectFragment)
+    fun inject(resetMacFragment: ResetMacFragment)
 
 }

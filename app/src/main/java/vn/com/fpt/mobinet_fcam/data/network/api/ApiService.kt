@@ -78,4 +78,13 @@ interface ApiService {
     @GET("KillSession/{objId}")
     fun toKillSession(@Path("objId") objId: String): Observable<ResponseBody>
 
+    @GET("GetListConnection/{objId}")
+    fun getListConnection(@Path("objId") objId: String): Observable<Any>
+
+    @GET("GetMAC/1000/{objId}")
+    fun getMac(@Path("objId") objId: String): Observable<MacModel>
+
+    @GET("ResetMAC/{objId}/{newMac}")
+    fun resetMac(@Path("objId") objId: String,@Path("newMac") newMac: String): Observable<ResponseBody>
+
 }

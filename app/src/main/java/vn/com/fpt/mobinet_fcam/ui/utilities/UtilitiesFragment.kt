@@ -17,6 +17,8 @@ import vn.com.fpt.mobinet_fcam.ui.info.InfoFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.adapter.UtilitiesAdapter
 import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.list_connection.ListConnectFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.reset_mac.ResetMacFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
@@ -83,15 +85,33 @@ class UtilitiesFragment : BaseFragment(), UtilitiesContract.UtilitiesView {
             Constants.UTILITIES_CONNECTION -> {
                 ConnectPropertyFragment.newInstance(searchContractModel)
             }
-            Constants.UTILITIES_KILL_SESSION ->{KillSessionFragment.newInstance(searchContractModel)}
-//            Constants.UTILITIES_LIST_CONNECTION ->{}
-//            Constants.UTILITIES_RESET_MAC ->{}
-//            Constants.UTILITIES_RESET_PASSWORD ->{}
-//            Constants.UTILITIES_ONLINE ->{}
-//            Constants.UTILITIES_ERROR ->{}
-//            Constants.UTILITIES_FTTH ->{}
-//            Constants.UTILITIES_NEW_NANO ->{}
-//            Constants.UTILITIES_CARD_NANO ->{}
+            Constants.UTILITIES_KILL_SESSION -> {
+                KillSessionFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_LIST_CONNECTION -> {
+                ListConnectFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_RESET_MAC -> {
+                ResetMacFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_RESET_PASSWORD -> {
+                ListConnectFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_ONLINE -> {
+                ListConnectFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_ERROR -> {
+                ListConnectFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_FTTH -> {
+                ListConnectFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_NEW_NANO -> {
+                ListConnectFragment.newInstance(searchContractModel)
+            }
+            Constants.UTILITIES_CARD_NANO -> {
+                ListConnectFragment.newInstance(searchContractModel)
+            }
             else -> InfoFragment() //Else : MENU_INFO
         }, true, true)
     }

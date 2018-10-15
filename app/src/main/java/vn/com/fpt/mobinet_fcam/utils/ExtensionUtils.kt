@@ -69,7 +69,6 @@ infix fun String.getNotes(value: String) = when {
     else -> ""
 }
 
-
 infix fun String?.getCurrentDate(value: Int)
         : String {
     val c = Calendar.getInstance()
@@ -78,9 +77,7 @@ infix fun String?.getCurrentDate(value: Int)
     return SimpleDateFormat(Constants.TIME_DATE_FORMAT, Locale.getDefault()).format(c.time)
 }
 
-infix fun TextView?.checkNoValue(value: String?
-)
-        : Boolean = this?.text.toString().toInt() == Constants.NO_VALUE
+infix fun TextView?.checkNoValue(value: String?): Boolean = this?.text.toString().toInt() == Constants.NO_VALUE
 
 infix fun TextView?.onChange(view: View) {
     this?.addTextChangedListener(object : TextWatcher {
@@ -91,3 +88,5 @@ infix fun TextView?.onChange(view: View) {
         }
     })
 }
+
+
