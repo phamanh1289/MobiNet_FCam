@@ -19,6 +19,13 @@ import vn.com.fpt.mobinet_fcam.ui.contract.detail.adpater.DetailContractDiff
  * *******************************************
  */
 class ConnectPropertyAdapter : ListAdapter<DetailContractKeyValueModel, ConnectPropertyAdapter.ConnectPropertyHolder>(DetailContractDiff()) {
+
+    companion object {
+        const val INSERT_1_INDEX = 1
+        const val BACKGROUND_WHITE = 2
+        const val BACKGROUND_SILVER = 4
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConnectPropertyHolder {
         return ConnectPropertyHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_connect_property, parent, false))
     }
@@ -32,7 +39,12 @@ class ConnectPropertyAdapter : ListAdapter<DetailContractKeyValueModel, ConnectP
             model?.let { item ->
                 itemView.itemConnectProperty_tvTitle.text = item.title
                 itemView.itemConnectProperty_tvValue.text = item.value
-                itemView.itemConnectProperty_llRootview.setBackgroundColor(ContextCompat.getColor(itemView.context, if (adapterPosition % 2 != 0) R.color.silver else R.color.white))
+                val index = adapterPosition + INSERT_1_INDEX
+                val color = if (index <= BACKGROUND_SILVER) index else index % BACKGROUND_SILVER
+                itemView.itemConnectProperty_llRootview.setBackgroundColor(ContextCompat.getColor(itemView.context, when {
+                    color <= BACKGROUND_WHITE && color != 0 -> R.color.white
+                    else -> R.color.silver
+                }))
             }
         }
     }

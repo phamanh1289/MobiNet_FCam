@@ -2,35 +2,34 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/itemConnectProperty_llRootview"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:padding="@dimen/_8dp"
+    android:padding="@dimen/_4dp"
+    tools:ignore="MissingPrefix"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/itemConnectProperty_tvTitle"
+        fontPath="@string/Helvetica_Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Maintance"
-        fontPath="@string/Helvetica_Bold"
-        android:lineSpacingExtra="@dimen/_3dp"
         android:gravity="center_horizontal|center_vertical"
-        android:textSize="@dimen/_17dp"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
         android:textColor="@color/blueMain"
-        tools:ignore="MissingPrefix"/>
+        android:textSize="@dimen/_15dp"/>
 
     <TextView
         android:id="@+id/itemConnectProperty_tvValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Maintance"
-        android:lineSpacingExtra="@dimen/_3dp"
-        android:layout_marginTop="@dimen/_4dp"
         android:gravity="center_horizontal|center_vertical"
-        android:textSize="@dimen/_15dp"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:hint="@string/empty"
         android:textColor="@color/blueMain"
-        tools:ignore="MissingPrefix"/>
+        android:textSize="@dimen/_14dp"/>
 
 </LinearLayout>

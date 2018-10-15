@@ -343,8 +343,8 @@
     <string name="title_connect_property_mac_filter">MAC Filter</string>
     <string name="title_connect_property_snr_down">SNR Download</string>
     <string name="title_connect_property_snr_up">SNR Upload</string>
-    <string name="title_connect_property_attenuation_down">Attenuation Download</string>
-    <string name="title_connect_property_attenuation_up">Attenuation Upload</string>
+    <string name="title_connect_property_attenuation_down">Attenuation\nDownload</string>
+    <string name="title_connect_property_attenuation_up">Attenuation\nUpload</string>
     <string name="title_connect_property_rx">Power Rx</string>
     <string name="title_connect_property_tx">Power Tx</string>
 
@@ -384,6 +384,6 @@
     <string name="key_connect_property_ring">ring</string>
     <string name="key_connect_property_description">description</string>
     <string name="key_connect_property_lastUpdate">lastUpdate</string>
-    <string name="key_connect_property_vlanI">vlanI</string>
+    <string name="key_connect_property_vlanI">vlanID</string>
     <string name="connect_property_maximum">Maximum</string>
 </resources>

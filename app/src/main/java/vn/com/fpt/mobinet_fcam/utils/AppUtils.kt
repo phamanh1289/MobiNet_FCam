@@ -56,9 +56,14 @@ object AppUtils {
             Constants.DEFAULT_IMEI_3 -> true
             Constants.DEFAULT_IMEI_4 -> true
             Constants.DEFAULT_IMEI_5 -> true
+            //Xiaomi
             "868222039057725" -> true
+            //Sony X
             "358099073026072" -> true
+            //Máy ảo
             "358240051111110" -> true
+            //Máy Minh
+            "358548066496528" -> true
             else -> false
         }
     }
