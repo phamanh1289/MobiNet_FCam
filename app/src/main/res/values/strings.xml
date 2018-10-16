@@ -10,7 +10,7 @@
     <string name="accept">Accept</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
-    <string name="error_mac_address">New mac address is blank!</string>
+    <string name="error_mac_address">New MAC address is blank!</string>
     <string name="dialog_employee_choose_employee">Choose Employee \"%1$s\'</string>
     <string name="confirm">Confirm</string>
     <string name="result">Result</string>
@@ -26,7 +26,7 @@
     <string name="update">Update</string>
     <string name="mess_update_contract">Do you want to update this contract?</string>
     <string name="empty">…</string>
-    <string name="hint_new_mac">Enter new mac address</string>
+    <string name="hint_new_mac">Enter new MAC address</string>
     <string name="hint_new_pass">Enter new password</string>
     <string name="hint_date">dd-MM-yyyy</string>
     <string name="process_data">Loading data, please wait…</string>

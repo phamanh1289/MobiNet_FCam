@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemOnlineConnection_llRootView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="MissingPrefix"
+    tools:layout_editor_absoluteY="25dp">
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvDate"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:text="@string/kill_session_date"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"
+        app:layout_constraintEnd_toStartOf="@+id/viewHorizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvDateValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/empty"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_12dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvDate"
+        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvDate"
+        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvDate"/>
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvNasName"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:text="@string/kill_session_nas_name"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemOnlineConnection_tvDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewHorizontal"
+        app:layout_constraintTop_toTopOf="@+id/itemOnlineConnection_tvDate"/>
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvNasNameValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/empty"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_12dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvNasName"
+        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvNasName"
+        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvNasName"/>
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvIpAddress"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:text="@string/kill_session_ip_address"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvDate"
+        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvDate"
+        app:layout_constraintTop_toBottomOf="@+id/viewVertical"/>
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvIpAddressValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/empty"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_12dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewVerticalFull"
+        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvIpAddress"
+        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvIpAddress"
+        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvIpAddress"/>
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvCallerId"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:text="@string/kill_session_mac_address"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"
+        app:layout_constraintBottom_toTopOf="@+id/itemOnlineConnection_tvIpAddressValue"
+        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvNasName"
+        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvNasName"
+        app:layout_constraintTop_toBottomOf="@+id/viewVertical"
+        app:layout_constraintTop_toTopOf="@+id/itemOnlineConnection_tvIpAddress"/>
+
+    <TextView
+        android:id="@+id/itemOnlineConnection_tvCallerIdValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/empty"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_12dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvCallerId"
+        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvCallerId"
+        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvCallerId"/>
+
+    <View
+        android:id="@+id/viewHorizontal"
+        android:layout_width="@dimen/_1dp"
+        android:layout_height="@dimen/_70dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/deep_orange_100"
+        app:layout_constraintBottom_toTopOf="@+id/viewVerticalFull"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/viewVertical"
+        android:layout_width="@dimen/_150dp"
+        android:layout_height="@dimen/_1dp"
+        android:background="@color/deep_orange_100"
+        app:layout_constraintBottom_toBottomOf="@+id/viewHorizontal"
+        app:layout_constraintEnd_toEndOf="@+id/viewHorizontal"
+        app:layout_constraintStart_toStartOf="@+id/viewHorizontal"
+        app:layout_constraintTop_toTopOf="@+id/viewHorizontal"/>
+
+    <View
+        android:id="@+id/viewVerticalFull"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_6dp"
+        android:background="@color/silver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

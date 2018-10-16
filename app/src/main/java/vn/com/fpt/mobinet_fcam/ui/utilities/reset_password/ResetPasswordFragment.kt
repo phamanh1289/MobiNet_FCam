@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_reset_password.*
 import kotlinx.android.synthetic.main.item_reset_mac_password.*
 import vn.com.fpt.mobinet_fcam.R
+import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
 import vn.com.fpt.mobinet_fcam.data.network.model.SearchContractModel
 import vn.com.fpt.mobinet_fcam.data.network.model.TitleAndMenuModel
 import vn.com.fpt.mobinet_fcam.others.constant.Constants
@@ -61,18 +63,27 @@ class ResetPasswordFragment : BaseFragment(), ResetPasswordContract.ResetPasswor
             fragReset_tvContract.text = contract
             fragReset_tvUserName.text = username
         }
+        fragResetPassword_tvSubmit.setOnClickListener {
+            val pass = fragResetPassword_etNewPassword.text.toString()
+            if (pass.isNotBlank()) {
+                searchContractModel?.run {
+                    showLoading()
+                    presenter.resetPassword(objid.toString(), pass, AppUtils.getIpLan(context))
+                }
+            } else AppUtils.showDialog(fragmentManager, title = getString(R.string.mess_error_data), content = getString(R.string.login_empty_password), confirmDialogInterface = null)
+        }
     }
 
     override fun loadResetPassword(response: String) {
-//        AppUtils.showDialog(fragmentManager, title = getString(R.string.result), content = response, confirmDialogInterface = object : ConfirmDialogInterface {
-//            override fun onClickOk() {
-//                activity?.onBackPressed()
-//            }
-//
-//            override fun onClickCancel() {
-//
-//            }
-//        })
+        AppUtils.showDialog(fragmentManager, title = getString(R.string.result), content = response, confirmDialogInterface = object : ConfirmDialogInterface {
+            override fun onClickOk() {
+                activity?.onBackPressed()
+            }
+
+            override fun onClickCancel() {
+
+            }
+        })
         hideLoading()
     }
 

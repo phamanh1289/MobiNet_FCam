@@ -19,6 +19,7 @@ import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.list_connection.ListConnectFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.online_connection.OnlineConnectionFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.reset_mac.ResetMacFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.reset_password.ResetPasswordFragment
 
@@ -50,5 +51,6 @@ interface ActivityComponent {
     fun inject(listConnectFragment: ListConnectFragment)
     fun inject(resetMacFragment: ResetMacFragment)
     fun inject(resetPasswordFragment: ResetPasswordFragment)
+    fun inject(onlineConnectionFragment: OnlineConnectionFragment)
 
 }

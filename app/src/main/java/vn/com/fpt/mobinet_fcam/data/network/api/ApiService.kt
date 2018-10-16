@@ -90,4 +90,7 @@ interface ApiService {
     @GET("ResetPassword/{objId}/{newPassword}/{ipAddress}/0")
     fun resetPassword(@Path("objId") objId: String,@Path("newPassword") newPassword: String,@Path("ipAddress") ipAddress: String): Observable<ResponseBody>
 
+    @GET("GetOnlineConnection/{objId}")
+    fun getOnlineConnection(@Path("objId") objId: String): Observable<Any>
+
 }

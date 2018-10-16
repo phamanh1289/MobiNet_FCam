@@ -18,6 +18,7 @@ import vn.com.fpt.mobinet_fcam.ui.utilities.adapter.UtilitiesAdapter
 import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.list_connection.ListConnectFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.online_connection.OnlineConnectionFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.reset_mac.ResetMacFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.reset_password.ResetPasswordFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
@@ -98,20 +99,16 @@ class UtilitiesFragment : BaseFragment(), UtilitiesContract.UtilitiesView {
             Constants.UTILITIES_RESET_PASSWORD -> {
                 ResetPasswordFragment.newInstance(searchContractModel)
             }
-//            Constants.UTILITIES_ONLINE -> {
-//                ListConnectFragment.newInstance(searchContractModel)
-//            }
+            Constants.UTILITIES_ONLINE -> {
+                OnlineConnectionFragment.newInstance(searchContractModel)
+            }
 //            Constants.UTILITIES_ERROR -> {
-//                ListConnectFragment.newInstance(searchContractModel)
 //            }
 //            Constants.UTILITIES_FTTH -> {
-//                ListConnectFragment.newInstance(searchContractModel)
 //            }
 //            Constants.UTILITIES_NEW_NANO -> {
-//                ListConnectFragment.newInstance(searchContractModel)
 //            }
 //            Constants.UTILITIES_CARD_NANO -> {
-//                ListConnectFragment.newInstance(searchContractModel)
 //            }
             else -> InfoFragment() //Else : MENU_INFO
         }, true, true)
