@@ -19,6 +19,7 @@ import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFrag
 import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.list_connection.ListConnectFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.reset_mac.ResetMacFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.reset_password.ResetPasswordFragment
 import vn.com.fpt.mobinet_fcam.utils.AppUtils
 import vn.com.fpt.mobinet_fcam.utils.KeyboardUtils
 import javax.inject.Inject
@@ -95,23 +96,23 @@ class UtilitiesFragment : BaseFragment(), UtilitiesContract.UtilitiesView {
                 ResetMacFragment.newInstance(searchContractModel)
             }
             Constants.UTILITIES_RESET_PASSWORD -> {
-                ListConnectFragment.newInstance(searchContractModel)
+                ResetPasswordFragment.newInstance(searchContractModel)
             }
-            Constants.UTILITIES_ONLINE -> {
-                ListConnectFragment.newInstance(searchContractModel)
-            }
-            Constants.UTILITIES_ERROR -> {
-                ListConnectFragment.newInstance(searchContractModel)
-            }
-            Constants.UTILITIES_FTTH -> {
-                ListConnectFragment.newInstance(searchContractModel)
-            }
-            Constants.UTILITIES_NEW_NANO -> {
-                ListConnectFragment.newInstance(searchContractModel)
-            }
-            Constants.UTILITIES_CARD_NANO -> {
-                ListConnectFragment.newInstance(searchContractModel)
-            }
+//            Constants.UTILITIES_ONLINE -> {
+//                ListConnectFragment.newInstance(searchContractModel)
+//            }
+//            Constants.UTILITIES_ERROR -> {
+//                ListConnectFragment.newInstance(searchContractModel)
+//            }
+//            Constants.UTILITIES_FTTH -> {
+//                ListConnectFragment.newInstance(searchContractModel)
+//            }
+//            Constants.UTILITIES_NEW_NANO -> {
+//                ListConnectFragment.newInstance(searchContractModel)
+//            }
+//            Constants.UTILITIES_CARD_NANO -> {
+//                ListConnectFragment.newInstance(searchContractModel)
+//            }
             else -> InfoFragment() //Else : MENU_INFO
         }, true, true)
     }

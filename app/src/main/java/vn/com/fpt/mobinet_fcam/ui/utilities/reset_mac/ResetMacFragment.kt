@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_reset_mac.*
+import kotlinx.android.synthetic.main.item_reset_mac_password.*
 import vn.com.fpt.mobinet_fcam.R
 import vn.com.fpt.mobinet_fcam.data.interfaces.ConfirmDialogInterface
 import vn.com.fpt.mobinet_fcam.data.network.model.MacModel
@@ -84,8 +85,8 @@ class ResetMacFragment : BaseFragment(), ResetMacContract.ResetMacView {
 
     private fun loadDataToView(response: MacModel) {
         searchContractModel?.run {
-            fragResetMac_tvContract.text = contract
-            fragResetMac_tvUserName.text = username
+            fragReset_tvContract.text = contract
+            fragReset_tvUserName.text = username
             fragResetMac_tvFullName.text = fullname
             fragResetMac_tvStatus.text = status
         }

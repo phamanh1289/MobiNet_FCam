@@ -9,59 +9,7 @@
     android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/silver"
-        android:orientation="horizontal"
-        android:padding="@dimen/_10dp">
-
-        <TextView
-            fontPath="@string/Helvetica_Bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:text="@string/contract"
-            android:textColor="@color/blueMain"
-            android:textSize="@dimen/_15dp"/>
-
-        <TextView
-            android:id="@+id/fragResetMac_tvContract"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            android:hint="@string/empty"
-            android:textColor="@color/blueMain"
-            android:textSize="@dimen/_15dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/_10dp">
-
-        <TextView
-            fontPath="@string/Helvetica_Bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:text="@string/user_name"
-            android:textColor="@color/blueMain"
-            android:textSize="@dimen/_15dp"/>
-
-        <TextView
-            android:id="@+id/fragResetMac_tvUserName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            android:hint="@string/empty"
-            android:textColor="@color/blueMain"
-            android:textSize="@dimen/_15dp"/>
-
-    </LinearLayout>
+    <include layout="@layout/item_reset_mac_password"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -173,6 +121,7 @@
 
     <EditText
         android:id="@+id/fragResetMac_etNewMacAddress"
+        fontPath="@string/Helvetica_Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_30dp"
@@ -183,7 +132,6 @@
         android:hint="@string/hint_new_mac"
         android:padding="@dimen/_8dp"
         android:textColor="@color/blueMain"
-        fontPath="@string/Helvetica_Bold"
         android:textSize="@dimen/_17dp"/>
 
     <TextView

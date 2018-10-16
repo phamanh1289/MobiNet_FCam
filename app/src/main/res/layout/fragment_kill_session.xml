@@ -155,8 +155,8 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical|center_horizontal"
-        android:paddingTop="@dimen/_16dp"
-        android:paddingBottom="@dimen/_16dp"
+        android:paddingTop="@dimen/_10dp"
+        android:paddingBottom="@dimen/_10dp"
         android:text="@string/kill_session_delete"
         android:textColor="@color/white"
         android:textSize="@dimen/_20dp"/>

@@ -27,6 +27,7 @@
     <string name="mess_update_contract">Do you want to update this contract?</string>
     <string name="empty">…</string>
     <string name="hint_new_mac">Enter new mac address</string>
+    <string name="hint_new_pass">Enter new password</string>
     <string name="hint_date">dd-MM-yyyy</string>
     <string name="process_data">Loading data, please wait…</string>
     <string name="mess_assigned_user">This device is assigned to user \"%1$s\"</string>

@@ -87,4 +87,7 @@ interface ApiService {
     @GET("ResetMAC/{objId}/{newMac}")
     fun resetMac(@Path("objId") objId: String,@Path("newMac") newMac: String): Observable<ResponseBody>
 
+    @GET("ResetPassword/{objId}/{newPassword}/{ipAddress}/0")
+    fun resetPassword(@Path("objId") objId: String,@Path("newPassword") newPassword: String,@Path("ipAddress") ipAddress: String): Observable<ResponseBody>
+
 }

@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.net.ConnectivityManager
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.FragmentManager
@@ -28,6 +29,8 @@ import vn.com.fpt.mobinet_fcam.ui.contract.search_list.SearchListFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.deployment.UpdateDeploymentFragment
 import vn.com.fpt.mobinet_fcam.ui.contract.update.maintenance.UpdateMaintenanceFragment
 import java.io.IOException
+import java.net.Inet4Address
+import java.net.InetAddress
 import java.util.*
 
 /**
@@ -104,6 +107,13 @@ object AppUtils {
                 imeiDevice = manager.deviceId
         }
         return imeiDevice
+    }
+
+    fun getIpLan(context: Context?): String {
+        val wm = context?.applicationContext?.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        return (InetAddress.getByAddress(ByteArray(4) { i ->
+            (wm.connectionInfo.ipAddress.shr(i * 8).and(255)).toByte()
+        }) as Inet4Address).hostAddress
     }
 
     @SuppressLint("HardwareIds")
