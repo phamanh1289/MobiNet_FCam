@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemAccessError_llRootView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:ignore="MissingPrefix"
     tools:layout_editor_absoluteY="25dp">
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvDate"
+        android:id="@+id/itemAccessError_tvDate"
         fontPath="@string/Helvetica_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvDateValue"
+        android:id="@+id/itemAccessError_tvDateValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
@@ -36,12 +37,12 @@
         android:padding="@dimen/_2dp"
         android:textColor="@color/blueMain"
         android:textSize="@dimen/_12dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvDate"
-        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvDate"
-        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvDate"/>
+        app:layout_constraintEnd_toEndOf="@+id/itemAccessError_tvDate"
+        app:layout_constraintStart_toStartOf="@+id/itemAccessError_tvDate"
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvDate"/>
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvCode"
+        android:id="@+id/itemAccessError_tvCode"
         fontPath="@string/Helvetica_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,16 +51,16 @@
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="@dimen/_3dp"
         android:padding="@dimen/_2dp"
-        android:text="@string/kill_session_nas_name"
+        android:text="@string/dialog_employee_code"
         android:textColor="@color/blueMain"
         android:textSize="@dimen/_14dp"
-        app:layout_constraintBottom_toTopOf="@+id/itemOnlineConnection_tvDateValue"
+        app:layout_constraintBottom_toTopOf="@+id/itemAccessError_tvDateValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/viewHorizontal"
-        app:layout_constraintTop_toTopOf="@+id/itemOnlineConnection_tvDate"/>
+        app:layout_constraintTop_toTopOf="@+id/itemAccessError_tvDate"/>
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvNasNameValue"
+        android:id="@+id/itemAccessError_tvCodeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
@@ -68,12 +69,12 @@
         android:padding="@dimen/_2dp"
         android:textColor="@color/blueMain"
         android:textSize="@dimen/_12dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvCode"
-        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvCode"
-        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvCode"/>
+        app:layout_constraintEnd_toEndOf="@+id/itemAccessError_tvCode"
+        app:layout_constraintStart_toStartOf="@+id/itemAccessError_tvCode"
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvCode"/>
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvDescription"
+        android:id="@+id/itemAccessError_tvDescription"
         fontPath="@string/Helvetica_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +84,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="@dimen/_3dp"
         android:padding="@dimen/_2dp"
-        android:text="@string/kill_session_ip_address"
+        android:text="@string/value_detail_contract_description"
         android:textColor="@color/blueMain"
         android:textSize="@dimen/_14dp"
         app:layout_constraintEnd_toStartOf="@+id/viewHorizontal"
@@ -91,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewVertical"/>
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvIpAddressValue"
+        android:id="@+id/itemAccessError_tvDescriptionValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
@@ -100,12 +101,12 @@
         android:padding="@dimen/_2dp"
         android:textColor="@color/blueMain"
         android:textSize="@dimen/_12dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvDescription"
-        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvDescription"
-        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvDescription"/>
+        app:layout_constraintEnd_toEndOf="@+id/itemAccessError_tvDescription"
+        app:layout_constraintStart_toStartOf="@+id/itemAccessError_tvDescription"
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvDescription"/>
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvCallerId"
+        android:id="@+id/itemAccessError_tvCallerId"
         fontPath="@string/Helvetica_Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,16 +115,16 @@
         android:gravity="center_horizontal|center_vertical"
         android:lineSpacingExtra="@dimen/_3dp"
         android:padding="@dimen/_2dp"
-        android:text="@string/kill_session_mac_address"
+        android:text="@string/caller_id"
         android:textColor="@color/blueMain"
         android:textSize="@dimen/_14dp"
-        app:layout_constraintBottom_toTopOf="@+id/itemOnlineConnection_tvIpAddressValue"
+        app:layout_constraintBottom_toTopOf="@+id/itemAccessError_tvDescriptionValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/viewHorizontal"
-        app:layout_constraintTop_toTopOf="@+id/itemOnlineConnection_tvDescription"/>
+        app:layout_constraintTop_toTopOf="@+id/itemAccessError_tvDescription"/>
 
     <TextView
-        android:id="@+id/itemOnlineConnection_tvCallerIdValue"
+        android:id="@+id/itemAccessError_tvCallerIdValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
@@ -132,10 +133,40 @@
         android:padding="@dimen/_2dp"
         android:textColor="@color/blueMain"
         android:textSize="@dimen/_12dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemOnlineConnection_tvCallerId"
-        app:layout_constraintStart_toStartOf="@+id/itemOnlineConnection_tvCallerId"
-        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvCallerId"/>
+        app:layout_constraintEnd_toEndOf="@+id/itemAccessError_tvCallerId"
+        app:layout_constraintStart_toStartOf="@+id/itemAccessError_tvCallerId"
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvCallerId"/>
 
+
+    <TextView
+        android:id="@+id/itemAccessError_tvAdditional"
+        fontPath="@string/Helvetica_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:text="@string/additional"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvDescriptionValue"/>
+
+    <TextView
+        android:id="@+id/itemAccessError_tvAdditionalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:hint="@string/empty"
+        android:lineSpacingExtra="@dimen/_3dp"
+        android:padding="@dimen/_2dp"
+        android:textColor="@color/blueMain"
+        android:textSize="@dimen/_12dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemAccessError_tvAdditional"
+        app:layout_constraintStart_toStartOf="@+id/itemAccessError_tvAdditional"
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvAdditional"/>
 
     <View
         android:id="@+id/viewHorizontal"
@@ -155,7 +186,7 @@
         android:background="@color/deep_orange_100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvDateValue"/>
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvDateValue"/>
 
     <View
         android:id="@+id/viewVerticalFull"
@@ -165,6 +196,6 @@
         android:background="@color/silver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemOnlineConnection_tvIpAddressValue"/>
+        app:layout_constraintTop_toBottomOf="@+id/itemAccessError_tvAdditionalValue"/>
 
 </android.support.constraint.ConstraintLayout>

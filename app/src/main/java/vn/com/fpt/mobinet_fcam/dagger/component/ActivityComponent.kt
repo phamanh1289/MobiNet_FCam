@@ -18,6 +18,7 @@ import vn.com.fpt.mobinet_fcam.ui.splash_screen.SplashScreenActivity
 import vn.com.fpt.mobinet_fcam.ui.utilities.UtilitiesFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.connect_property.ConnectPropertyFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.kill_session.KillSessionFragment
+import vn.com.fpt.mobinet_fcam.ui.utilities.last_accsee_error.LastAccessErrorFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.list_connection.ListConnectFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.online_connection.OnlineConnectionFragment
 import vn.com.fpt.mobinet_fcam.ui.utilities.reset_mac.ResetMacFragment
@@ -52,5 +53,6 @@ interface ActivityComponent {
     fun inject(resetMacFragment: ResetMacFragment)
     fun inject(resetPasswordFragment: ResetPasswordFragment)
     fun inject(onlineConnectionFragment: OnlineConnectionFragment)
+    fun inject(lastAccessErrorFragment: LastAccessErrorFragment)
 
 }

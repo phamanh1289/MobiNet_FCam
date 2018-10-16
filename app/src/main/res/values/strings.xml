@@ -18,6 +18,7 @@
     <string name="dialog_employee_id">ID</string>
     <string name="dialog_employee_code">Code</string>
     <string name="dialog_employee_name">Name</string>
+    <string name="additional">Additional</string>
     <string name="mess_success_data">Successfully</string>
     <string name="login_user_name">User name</string>
     <string name="login_empty_user_name">User name is not null.</string>
@@ -118,6 +119,7 @@
     <string name="value_detail_contract_cable_outdoor">Cable outdoor</string>
     <string name="value_detail_contract_cable_indoor">Cable indoor</string>
     <string name="value_detail_contract_call_note">Call note</string>
+    <string name="caller_id">CallerID</string>
     <string name="value_detail_contract_checklist">Checklist</string>
     <string name="value_detail_contract_description">Description</string>
     <string name="not_found_contract">Not found any contract!</string>

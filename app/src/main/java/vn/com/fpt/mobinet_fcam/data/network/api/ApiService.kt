@@ -93,4 +93,7 @@ interface ApiService {
     @GET("GetOnlineConnection/{objId}")
     fun getOnlineConnection(@Path("objId") objId: String): Observable<Any>
 
+    @GET("GetLastAccessError/{objId}")
+    fun getLastAccessError(@Path("objId") objId: String): Observable<Any>
+
 }
